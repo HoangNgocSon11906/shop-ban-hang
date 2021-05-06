@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shop.holomen.infrastructure.datasource.mapper.TrangChuMapper">
+    <resultMap id="loaiSanPham" type="com.shop.holomen.domain.loaiSanPham.LoaiSanPham">
+       <result column="ma_loai" property="maLoai.value"></result>
+        <result column="ten_loai" property="tenLoai.value"></result>
+    </resultMap>
+
+    <select id="findLoaiSanPham" resultMap="loaiSanPham">
+        SELECT
+          ma_loai,
+          ten_loai
+        FROM
+          shop.loai_san_pham
+    </select>
+</mapper>

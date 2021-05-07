@@ -3,17 +3,17 @@ package com.shop.holomen.domain.loaiSanPham;
 import java.util.List;
 
 public class LoaiSanPhams {
-    List<LoaiSanPham> loaiSanPhams;
+    List<LoaiSanPham> values;
 
-    public LoaiSanPhams(List<LoaiSanPham> loaiSanPhams) {
-        this.loaiSanPhams = loaiSanPhams;
+    public LoaiSanPhams(List<LoaiSanPham> values) {
+        this.values = values;
     }
 
-    public List<LoaiSanPham> getLoaiSanPhams() {
-        return loaiSanPhams;
+    public List<LoaiSanPham> getValues() {
+        return values;
     }
 
-    public void setLoaiSanPhams(List<LoaiSanPham> loaiSanPhams) {
-        this.loaiSanPhams = loaiSanPhams;
+    public void setValues(List<LoaiSanPham> values) {
+        this.values = values;
     }
 }

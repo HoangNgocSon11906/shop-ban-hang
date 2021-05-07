@@ -1,13 +1,9 @@
-package com.shop.holomen.domain.sanPhamDetail;
+package com.shop.holomen.domain.loaiSanPham;
 
-public class Mau {
+public class TenMap {
     String value;
 
-    public Mau() {
-    }
-
-    public Mau(String value) {
-        this.value = value;
+    public TenMap() {
     }
 
     public String getValue() {

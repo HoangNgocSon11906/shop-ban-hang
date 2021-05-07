@@ -5,7 +5,7 @@
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html class="no-js" lang="vi" >
+<html class="no-js" lang="vi" xmlns:th="http://www.thymeleaf.org">
 <!--<![endif]-->
 <head>
     <meta property="og:image" content="https://file.hstatic.net/1000253775/file/z2370133029954_40509a836ad8764ff7a117e2e9f8c64c_3f79ea8fd8aa434286afacdf005ccaa7.jpg">
@@ -991,37 +991,18 @@
                         </li>
 
                         <li class="">
-                            <a href="/" title="SẢN PHẨM">
+                            <a href="/collections/san-pham-moi" title="SẢN PHẨM">
                                 SẢN PHẨM
                                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
                             </a>
                             <ul class="sub_menu">
+                                <div th:each=" loaiSanPham : ${loaiSanPham.values}">
+                                    <a th:href="@{|/${loaiSanPham.tenMap.value}|}"
+                                       th:value="${loaiSanPham.maLoai.value}"
+                                       th:text="${loaiSanPham.tenLoai.value}"></a>
 
-
-                                <li class="active">
-                                    <a href="/sale" title="SALE OFF 50%">
-                                        SALE OFF 50%
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/aoThun" title="ÁO">
-                                        ÁO THUN	<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="/aoHoodie" title="ÁO">
-                                        ÁO HOODIE	<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="/aoKhoac" title="ÁO">
-                                        ÁO KHOÁC	<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                </ul>
+                                </div>
+                            </ul>
                         </li>
 
                         <li class="">

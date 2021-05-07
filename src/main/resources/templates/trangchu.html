@@ -1035,27 +1035,12 @@
 								<i class="fa fa-chevron-down" aria-hidden="true"></i>
 							</a>
 							<ul class="sub_menu">
-								<div th:each=" loaiSanPham : ${loaiSanPham.loaiSanPhams}">
-									<a th:href="@{|/${loaiSanPham.maLoai.value}|}" th:value="${loaiSanPham.maLoai.value}" th:text="${loaiSanPham.tenLoai.value}"></a>
+								<div th:each=" loaiSanPham : ${loaiSanPham.values}">
+									<a th:href="@{|/${loaiSanPham.tenMap.value}|}" th:value="${loaiSanPham.maLoai.value}" th:text="${loaiSanPham.tenLoai.value}"></a>
 
 								</div>
-
-
-
-
-
-
-
-
-
 									</ul>
 								</li>
-
-
-
-
-
-
 						<li class="">
 							<a href="/pages/huong-dan-dat-hang" title="HƯỚNG DẪN - CHÍNH SÁCH">
 								HƯỚNG DẪN - CHÍNH SÁCH

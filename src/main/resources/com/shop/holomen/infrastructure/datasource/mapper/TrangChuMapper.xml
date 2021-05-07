@@ -5,12 +5,14 @@
     <resultMap id="loaiSanPham" type="com.shop.holomen.domain.loaiSanPham.LoaiSanPham">
        <result column="ma_loai" property="maLoai.value"></result>
         <result column="ten_loai" property="tenLoai.value"></result>
+        <result column="ten_map" property="tenMap.value"></result>
     </resultMap>
 
     <select id="findLoaiSanPham" resultMap="loaiSanPham">
         SELECT
           ma_loai,
-          ten_loai
+          ten_loai,
+          ten_map
         FROM
           shop.loai_san_pham
     </select>

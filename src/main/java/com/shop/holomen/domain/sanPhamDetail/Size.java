@@ -6,6 +6,10 @@ public class Size {
     public Size() {
     }
 
+    public Size(String value) {
+        this.value = value;
+    }
+
     public String getValue() {
         return value;
     }

@@ -6,6 +6,10 @@ public class Image3 {
     public Image3() {
     }
 
+    public Image3(LinkHinh linkHinh) {
+        this.linkHinh = linkHinh;
+    }
+
     public LinkHinh getLinkHinh() {
         return linkHinh;
     }

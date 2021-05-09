@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shop.holomen.infrastructure.datasource.mapper.admin.NhapSanPhamMapper">
+
+    <insert id="insertSanPham" parameterType="com.shop.holomen.domain.sanPhamDetail.SanPhamDetail"
+            useGeneratedKeys="true" keyProperty="sanPhamDetail.sanPhamId.value">
+        INSERT INTO shop.san_pham (
+        ten_san_pham,
+        mo_ta,
+        ma_loai
+        )
+        values (
+        #{sanPhamDetail.tenSanPham.value},
+        #{sanPhamDetail.mota.value},
+        #{sanPhamDetail.maLoai.value}
+        )
+    </insert>
+
+    <insert id="insertSanPhamDetail" parameterType="com.shop.holomen.domain.sanPhamDetail.SanPhamDetail"
+            useGeneratedKeys="true" keyProperty="sanPhamDetail.sanPhamDetailId.value">
+        INSERT INTO shop.san_pham_detail(
+        san_pham_id,
+        gia_thuong,
+        gia_km,
+        main_image,
+        image_1,
+        image_2,
+        image_3,
+        image_4
+        )
+        values (
+        #{sanPhamDetail.sanPhamId.value},
+        #{sanPhamDetail.giaThuong.value},
+        #{sanPhamDetail.giaKM.value},
+        #{sanPhamDetail.mainImage.linkHinh.value},
+        #{sanPhamDetail.image1.linkHinh.value},
+        #{sanPhamDetail.image2.linkHinh.value},
+        #{sanPhamDetail.image3.linkHinh.value},
+        #{sanPhamDetail.image4.linkHinh.value}
+        )
+    </insert>
+
+    <insert id="insertMauSanPham">
+        INSERT INTO shop.mau (
+        san_pham_detail_id,
+        mau
+        )
+        values (
+        #{sanPhamDetailId.value},
+        #{mau.value}
+        )
+    </insert>
+
+    <insert id="insertSizeSanPham">
+        INSERT INTO shop.size (
+        san_pham_detail_id,
+        size
+        )
+        values (
+        #{sanPhamDetailId.value},
+        #{size.value}
+        )
+    </insert>
+
+</mapper>

@@ -1,9 +1,7 @@
 package com.shop.holomen.application;
 
-import com.shop.holomen.domain.loaiSanPham.LoaiSanPham;
 import com.shop.holomen.domain.loaiSanPham.LoaiSanPhamRepository;
 import com.shop.holomen.domain.loaiSanPham.LoaiSanPhams;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

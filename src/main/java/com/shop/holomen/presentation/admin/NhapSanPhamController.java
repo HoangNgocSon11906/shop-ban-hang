@@ -1,6 +1,7 @@
 package com.shop.holomen.presentation.admin;
 
 import com.shop.holomen.application.TrangChuService;
+import com.shop.holomen.application.admin.NhapSanPhamService;
 import com.shop.holomen.domain.hinhSanPham.*;
 import com.shop.holomen.domain.loaiSanPham.LoaiSanPhams;
 import com.shop.holomen.domain.sanPhamDetail.*;
@@ -24,8 +25,11 @@ public class NhapSanPhamController {
     @Autowired
     TrangChuService trangChuService;
 
+    @Autowired
+    NhapSanPhamService nhapSanPhamService;
+
     @ModelAttribute("sanPhamDetail")
-    public SanPhamDetail sanPhamDetail(){
+    public SanPhamDetail sanPhamDetail() {
         List<Mau> mauInnit = new ArrayList<Mau>();
         mauInnit.add(new Mau(""));
         Maus maus = new Maus(mauInnit);
@@ -51,19 +55,14 @@ public class NhapSanPhamController {
 
         return "admin/nhapSanPham";
     }
+
     @RequestMapping(value = "/layGiaTri")
-    String layGiaTri (@ModelAttribute("sanPhamDetail") SanPhamDetail sanPhamDetail, @ModelAttribute("multiPartFile") FormUpLoadImages file,
-                      @ModelAttribute("multiPartFile1") FormUpLoadImages1 file1,
-                      @ModelAttribute("multiPartFile2") FormUpLoadImages2 file2,
-                      @ModelAttribute("multiPartFile3") FormUpLoadImages3 file3,
-                      @ModelAttribute("multiPartFile4") FormUpLoadImages4 file4,
-                      RedirectAttributes redirectAttributes ){
-
-
-//        if (file.getAnh2().isEmpty()) {
-//            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-//            return "redirect:uploadStatus";
-//        }
+    String layGiaTri(@ModelAttribute("sanPhamDetail") SanPhamDetail sanPhamDetail, @ModelAttribute("multiPartFile") FormUpLoadImages file,
+                     @ModelAttribute("multiPartFile1") FormUpLoadImages1 file1,
+                     @ModelAttribute("multiPartFile2") FormUpLoadImages2 file2,
+                     @ModelAttribute("multiPartFile3") FormUpLoadImages3 file3,
+                     @ModelAttribute("multiPartFile4") FormUpLoadImages4 file4,
+                     RedirectAttributes redirectAttributes) {
 
         try {
 
@@ -83,13 +82,23 @@ public class NhapSanPhamController {
             Files.write(path2, bytes2);
             Files.write(path3, bytes3);
             Files.write(path4, bytes4);
-
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getMultipartFiles().getOriginalFilename() + "'");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+        String path = Paths.get(UPLOADED_FOLDER + file.getMultipartFiles().getOriginalFilename()).toString();
+        String path1 = Paths.get(UPLOADED_FOLDER + file1.getAnh1().getOriginalFilename()).toString();
+        String path2 = Paths.get(UPLOADED_FOLDER + file2.getAnh2().getOriginalFilename()).toString();
+        String path3 = Paths.get(UPLOADED_FOLDER + file3.getAnh3().getOriginalFilename()).toString();
+        String path4 = Paths.get(UPLOADED_FOLDER + file4.getAnh4().getOriginalFilename()).toString();
+        sanPhamDetail.setMainImage(new MainImage(new LinkHinh(path)));
+        sanPhamDetail.setImage1(new Image1(new LinkHinh(path1)));
+        sanPhamDetail.setImage2(new Image2(new LinkHinh(path2)));
+        sanPhamDetail.setImage3(new Image3(new LinkHinh(path3)));
+        sanPhamDetail.setImage4(new Image4(new LinkHinh(path4)));
+
+        nhapSanPhamService.insertSanPham(sanPhamDetail);
 
         return "admin/nhapSanPham";
     }

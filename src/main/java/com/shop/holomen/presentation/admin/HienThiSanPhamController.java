@@ -2,6 +2,7 @@ package com.shop.holomen.presentation.admin;
 
 import com.shop.holomen.application.admin.NhapSanPhamService;
 import com.shop.holomen.domain.sanPham.SanPhamId;
+import com.shop.holomen.domain.sanPhamDetail.SanPhamDetail;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailId;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailS;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,12 @@ public class HienThiSanPhamController {
     public String remove(@PathVariable(value = "sanPhamId") String sanPhamId, @PathVariable(value = "sanPhamDetailId") String sanPhamDetailId, Model model) {
         nhapSanPhamService.remove(sanPhamId, sanPhamDetailId);
         return String.format("redirect:/hienthi");
+    }
+
+    @RequestMapping(value = "/edit/{sanPhamId}/{sanPhamDetailId}")
+    public String update(@PathVariable(value = "sanPhamId") String sanPhamId, @PathVariable(value = "sanPhamDetailId") String sanPhamDetailId,Model model) {
+        SanPhamDetail sanPhamDetail = nhapSanPhamService.findBy(sanPhamDetailId);
+        model.addAttribute("sanPhamDetail", sanPhamDetail);
+        return "admin/edit";
     }
 }

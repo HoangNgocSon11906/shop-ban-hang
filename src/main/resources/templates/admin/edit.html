@@ -14828,29 +14828,180 @@
     </style>
 
     <br>
-    <div class="container">
-        <p th:text="*{messages}"></p>
-    <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Tên Sản Phẩm</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Remove</th>
-    </tr>
-  </thead>
-  <tbody>
-  <div th:each="sanPhamDetail : ${sanPhamDetails.values}">
-    <tr>
-      <th scope="row" th:field="*{sanPhamDetail.sanPhamDetailId.value}" th:text="${sanPhamDetail.sanPhamDetailId.value}"></th>
-      <td th:field="*{sanPhamDetail.tenSanPham.value}" th:text="${sanPhamDetail.tenSanPham.value}"></td>
-      <td><a th:href="@{/edit/{sanPhamId}/{sanPhamDetailId}(sanPhamId = *{sanPhamDetail.sanPhamId.value}, sanPhamDetailId = *{sanPhamDetail.sanPhamDetailId.value})}"><i class="fas fa-edit" ></i></a></td>
-      <td><a th:href="@{/remove/{sanPhamId}/{sanPhamDetailId}(sanPhamId = *{sanPhamDetail.sanPhamId.value}, sanPhamDetailId = *{sanPhamDetail.sanPhamDetailId.value})}"><i class="fas fa-trash-alt"></i></a></td>
-    </tr>
-  </div>
-  </tbody>
-</table>
+    <div class="">
+        <div class="container">
+            <H1>Nhập sản phẩm</H1>
+            <form method="post" th:action="@{'/update/'}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Nhập tên sản phẩm</label>
+                    <input type="text" class="form-control" th:field="*{sanPhamDetail.tenSanPham.value}">
+                </div>
+                <label>Nhập mô tả sản phẩm</label>
+                <div>
+                        <textarea id="w3review" name="w3review" rows="4" cols="50"
+                                  th:field="*{sanPhamDetail.mota.value}"> </textarea>
+                </div>
+                <div class="form-group">
+                    <!--<label> Chọn loại sản phẩm</label>-->
+
+                    <!--<select class="" th:field="*{sanPhamDetail.maLoai.value}">-->
+                        <!--<div th:each="sanPham : ${loaiSanPham.values}">-->
+                            <!--<option th:value="${sanPham.maLoai.value}" th:text="${sanPham.tenLoai.value}">-->
+                        <!--</div>-->
+                    <!--</select>-->
+
+                </div>
+                <div class="form-group">
+                    <label>Nhập màu sản phẩm</label>
+                    <div class="input_fields_wrap" th:each="mau : ${sanPhamDetail.maus.values}">
+                        <input th:name="*{sanPhamDetail.maus.values[__${mauStat.index}__].value}"
+                               th:field="*{sanPhamDetail.maus.values[__${mauStat.index}__].value}"/>
+                        <button class="add_field_button btn btn-primary">Thêm màu</button>
+                        <button href="#" class="remove_field btn btn-primary">Xoá</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label> Chọn size sản phẩm</label>
+                    <div class="input_fields_wrap_size" th:each="size : ${sanPhamDetail.sizes.sizes}">
+                        <SELECT th:name="*{sanPhamDetail.sizes.sizes[__${sizeStat.index}__].value}"
+                                th:field="*{sanPhamDetail.sizes.sizes[__${sizeStat.index}__].value}">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="Xl">Xl</option>
+                            <option value="XXL">XXL</option>
+                        </SELECT>
+                        <button class="add_size_button btn btn-primary">Thêm size</button>
+                        <button href="#" class="remove_field_size btn btn-primary">Xoá</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nhập giá tham khảo</label>
+                    <div>
+                        <input type="number" th:field="*{sanPhamDetail.giaThuong.value}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nhập giá bán </label>
+                    <div>
+                        <input type="number" th:field="*{sanPhamDetail.giaKM.value}"/>
+                    </div>
+                </div>
+                <!--<div class="form-group">-->
+                    <!--<label for="main">Chọn hình chính</label>-->
+                    <!--<input type="file" th:field="*{multiPartFile.multipartFiles}" class=""-->
+                           <!--onchange='openFile(event)' id="main">-->
+                    <!--<img alt="image" style="width: 150px" id="output">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<label for="exampleFormControlFile2">Chọn hình 1</label>-->
+                    <!--<input type="file" th:field="*{multiPartFile1.anh1}" class="form-control-file"-->
+                           <!--onchange='openFile1(event)' id="exampleFormControlFile2">-->
+                    <!--<img alt="image" style="width: 150px" id="output1">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<label for="exampleFormControlFile3">Chọn hình 2</label>-->
+                    <!--<input type="file" th:field="*{multiPartFile2.anh2}" class="form-control-file"-->
+                           <!--onchange='openFile2(event)' id="exampleFormControlFile3">-->
+                    <!--<img alt="image" style="width: 150px" id="output2">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<label for="exampleFormControlFile4">Chọn hình 3</label>-->
+                    <!--<input type="file" th:field="*{multiPartFile3.anh3}" class="form-control-file"-->
+                           <!--onchange='openFile3(event)' id="exampleFormControlFile4">-->
+                    <!--<img alt="image" style="width: 150px" id="output3">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<label for="exampleFormControlFile5">Chọn hình 4</label>-->
+                    <!--<input type="file" th:field="*{multiPartFile4.anh4}" class="form-control-file"-->
+                           <!--onchange='openFile4(event)' id="exampleFormControlFile5">-->
+                    <!--<img alt="image" style="width: 150px" id="output4">-->
+                <!--</div>-->
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
         </div>
+        <!--//hiển thị hình-->
+        <script>
+            var openFile = function (event) {
+                var input = event.target;
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var dataURL = reader.result;
+                    var output = document.getElementById('output');
+                    output.src = dataURL;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+            var openFile1 = function (event) {
+                var input = event.target;
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var dataURL = reader.result;
+                    var output = document.getElementById('output1');
+                    output.src = dataURL;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+            var openFile2 = function (event) {
+                var input = event.target;
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var dataURL = reader.result;
+                    var output = document.getElementById('output2');
+                    output.src = dataURL;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+            var openFile3 = function (event) {
+                var input = event.target;
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var dataURL = reader.result;
+                    var output = document.getElementById('output3');
+                    output.src = dataURL;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+            var openFile4 = function (event) {
+                var input = event.target;
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var dataURL = reader.result;
+                    var output = document.getElementById('output4');
+                    output.src = dataURL;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+
+            $(document).ready(function () {
+                var a = '', b = '';
+                $('.product-collections').each(function () {
+                    a = $(this).html().toLowerCase();
+                    $('.pages-title').each(function () {
+                        b = $(this).html().replace("huong-dan-chon-size-", "").replace(' ', '');
+                        console.log(a + '|' + b);
+                        if (a == b) {
+                            $('#huong-dan-chon-size').val(a);
+                            $.ajax({
+                                type: 'GET',
+                                url: '/pages/huong-dan-chon-size-' + a + '?view=modal-size',
+                                async: true,
+                                success: function (data) {
+                                    $('.contentSize .tab-content').html(data);
+
+                                }
+                            })
+                        }
+                    })
+
+                })
+            })
+        </script>
 </main>
 
 <div class="container">
@@ -14938,7 +15089,6 @@
         <div class="site-nav-container-last">
             <p class="title">Giỏ hàng</p>
             <div class="cart-view clearfix">
-
                 <table id="clone-item-cart" class="table-clone-cart">
                     <tr class="item_2 hidden">
                         <td class="img"><a href="" title=""><img src="" alt=""/></a></td>
@@ -15284,6 +15434,7 @@
         var max_fields = 10; //maximum input boxes allowed
         var wrapper = $(".input_fields_wrap"); //Fields wrapper
         var add_button = $(".add_field_button"); //Add button ID
+      var size_lis = $("")
 
         var x = 0; //initlal text box count
         $(add_button).click(function (e) { //on add input button click
@@ -15333,6 +15484,5 @@
     })
 
 </script>
-<script src="https://kit.fontawesome.com/f7ef3dddcd.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -34,5 +34,10 @@ public class NhapSanPhamDataSource implements NhapSanPhamRepository {
         nhapSanPhamMapper.removeSize(sanPhamDetailId);
         nhapSanPhamMapper.removeSanPhamDetail(sanPhamDetailId);
     }
+
+    @Override
+    public SanPhamDetail findBy(String sanPhamDetailId) {
+        return nhapSanPhamMapper.findBy(sanPhamDetailId);
+    }
 }
 

@@ -1,6 +1,5 @@
 package com.shop.holomen.infrastructure.datasource.mapper.admin;
 
-import com.shop.holomen.domain.sanPham.SanPhamId;
 import com.shop.holomen.domain.sanPhamDetail.Mau;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetail;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailId;
@@ -29,4 +28,6 @@ public interface NhapSanPhamMapper {
     void removeMau(@Param("sanPhamDetailId") String sanPhamDetailId);
 
     void removeSize(@Param("sanPhamDetailId") String sanPhamDetailId);
+
+    SanPhamDetail findBy(@Param("sanPhamDetailId") String sanPhamDetailId);
 }

@@ -102,6 +102,9 @@ public class NhapSanPhamController {
 
         nhapSanPhamService.insertSanPham(sanPhamDetail);
 
-        return "admin/nhapSanPham";
+        redirectAttributes.addFlashAttribute("message",
+                    "You successfully uploaded '");
+
+        return String.format("redirect:/hienthi");
     }
 }

@@ -5,6 +5,9 @@ import java.util.List;
 public class Maus {
     List<Mau> values;
 
+    public Maus() {
+    }
+
     public Maus(List<Mau> values) {
         this.values = values;
     }

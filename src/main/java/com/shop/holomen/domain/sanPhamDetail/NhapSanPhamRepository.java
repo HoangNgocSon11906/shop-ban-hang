@@ -1,8 +1,10 @@
 package com.shop.holomen.domain.sanPhamDetail;
 
-import java.nio.file.Path;
-import java.util.List;
-
 public interface NhapSanPhamRepository {
     void insertSanPham(SanPhamDetail sanPhamDetail);
+
+    SanPhamDetailS findAll();
+
+    void remove(String sanPhamId, String sanPhamDetailId);
+
 }

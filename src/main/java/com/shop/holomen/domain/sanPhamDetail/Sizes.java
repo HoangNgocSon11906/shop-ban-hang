@@ -5,6 +5,9 @@ import java.util.List;
 public class Sizes {
     List<Size> sizes;
 
+    public Sizes() {
+    }
+
     public Sizes(List<Size> sizes) {
         this.sizes = sizes;
     }

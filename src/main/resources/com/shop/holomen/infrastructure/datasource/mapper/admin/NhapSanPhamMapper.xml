@@ -3,6 +3,14 @@
 
 <mapper namespace="com.shop.holomen.infrastructure.datasource.mapper.admin.NhapSanPhamMapper">
 
+    <resultMap id="mau" type="com.shop.holomen.domain.sanPhamDetail.Mau">
+       <result property="value" column="mau"></result>
+    </resultMap>
+
+    <resultMap id="size" type="com.shop.holomen.domain.sanPhamDetail.Size">
+        <result property="value" column="size"></result>
+    </resultMap>
+
     <insert id="insertSanPham" parameterType="com.shop.holomen.domain.sanPhamDetail.SanPhamDetail"
             useGeneratedKeys="true" keyProperty="sanPhamDetail.sanPhamId.value">
         INSERT INTO shop.san_pham (
@@ -63,4 +71,73 @@
         )
     </insert>
 
+    <resultMap id="sanPhamDetail" type="com.shop.holomen.domain.sanPhamDetail.SanPhamDetail">
+        <result column="san_pham_id" property="sanPhamId.value"></result>
+        <result column="san_pham_detail_id" property="sanPhamDetailId.value"></result>
+        <result column="ma_loai" property="maLoai.value"></result>
+        <result column="ten_san_pham" property="tenSanPham.value"></result>
+        <result column="mo_ta" property="mota.value"></result>
+        <result column="gia_km" property="giaKM.value"></result>
+        <result column="gia_thuong" property="giaThuong.value"></result>
+        <result column="main_image" property="mainImage.linkHinh.value"></result>
+        <result column="image_1" property="image1.linkHinh.value"></result>
+        <result column="image_2" property="image2.linkHinh.value"></result>
+        <result column="image_3" property="image3.linkHinh.value"></result>
+        <result column="image_4" property="image4.linkHinh.value"></result>
+        <collection property="maus.values" resultMap="mau"></collection>
+        <collection property="sizes.sizes" resultMap="size"></collection>
+    </resultMap>
+
+    <select id="findAll" resultMap="sanPhamDetail">
+        SELECT
+            san_pham_detail_id,
+            san_pham_id,
+            ma_loai,
+            ten_loai,
+            ten_san_pham,
+            mo_ta,
+            gia_thuong,
+            gia_km,
+            main_image,
+            image_1,
+            image_2,
+            image_3,
+            image_4,
+            mau,
+            size
+        FROM
+            shop.loai_san_pham
+        JOIN shop.san_pham USING(ma_loai)
+        JOIN shop.san_pham_detail USING(san_pham_id)
+        JOIN shop.mau USING(san_pham_detail_id)
+        JOIN shop.size USING(san_pham_detail_id)
+    </select>
+
+    <delete id="removeSanPham">
+        DELETE
+        FROM
+        shop.san_pham
+        WHERE san_pham_id = #{sanPhamId};
+    </delete>
+
+    <delete id="removeSanPhamDetail">
+        DELETE
+        FROM
+        shop.san_pham_detail
+        WHERE san_pham_detail_id = #{sanPhamDetailId};
+    </delete>
+
+    <delete id="removeMau">
+        DELETE
+        FROM
+        shop.mau
+        WHERE san_pham_detail_id = #{sanPhamDetailId};
+    </delete>
+
+    <delete id="removeSize">
+        DELETE
+        FROM
+        shop.size
+        WHERE san_pham_detail_id = #{sanPhamDetailId};
+    </delete>
 </mapper>

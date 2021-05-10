@@ -21,7 +21,9 @@ import java.util.List;
 
 @Controller
 public class NhapSanPhamController {
-    private static String UPLOADED_FOLDER = "/Users/tranminhphuong/Documents/image/";
+//    private static String UPLOADED_FOLDER = "/Users/tranminhphuong/Documents/image/";
+    private static String UPLOADED_FOLDER = "/Users/a-mac-016/Documents/image/";
+
     @Autowired
     TrangChuService trangChuService;
 

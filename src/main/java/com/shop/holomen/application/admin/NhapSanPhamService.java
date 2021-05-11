@@ -22,7 +22,7 @@ public class NhapSanPhamService {
     public SanPhamDetail findBy(String sanPhamDetailId) {
         return nhapSanPhamRepository.findBy(sanPhamDetailId);
     }
-    public void remove(String sanPhamId, String sanPhamDetailId) {
+    public void remove(String sanPhamId, Integer sanPhamDetailId) {
         nhapSanPhamRepository.remove(sanPhamId, sanPhamDetailId);
     }
 

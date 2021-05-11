@@ -23,11 +23,11 @@ public interface NhapSanPhamMapper {
 
     void removeSanPham(@Param("sanPhamId")String sanPhamId);
 
-    void removeSanPhamDetail(@Param("sanPhamDetailId") String sanPhamDetailId);
+    void removeSanPhamDetail(@Param("sanPhamDetailId") Integer sanPhamDetailId);
 
-    void removeMau(@Param("sanPhamDetailId") String sanPhamDetailId);
+    void removeMau(@Param("sanPhamDetailId") Integer sanPhamDetailId);
 
-    void removeSize(@Param("sanPhamDetailId") String sanPhamDetailId);
+    void removeSize(@Param("sanPhamDetailId") Integer sanPhamDetailId);
 
     SanPhamDetail findBy(@Param("sanPhamDetailId") String sanPhamDetailId);
 

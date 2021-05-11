@@ -5,7 +5,7 @@ public interface NhapSanPhamRepository {
 
     SanPhamDetailS findAll();
 
-    void remove(String sanPhamId, String sanPhamDetailId);
+    void remove(String sanPhamId, Integer sanPhamDetailId);
 
     SanPhamDetail findBy(String sanPhamDetailId);
 

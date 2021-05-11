@@ -25,4 +25,8 @@ public class NhapSanPhamService {
     public void remove(String sanPhamId, String sanPhamDetailId) {
         nhapSanPhamRepository.remove(sanPhamId, sanPhamDetailId);
     }
+
+    public void update(SanPhamDetail sanPhamDetail) {
+        nhapSanPhamRepository.update(sanPhamDetail);
+    }
 }

@@ -166,4 +166,20 @@
         JOIN shop.size USING(san_pham_detail_id)
         WHERE san_pham_detail.san_pham_detail_id = #{sanPhamDetailId}
     </select>
+
+    <update id="updateSanPham">
+        UPDATE shop.san_pham
+        SET
+          ten_san_pham = #{sanPhamDetail.tenSanPham.value},
+          mo_ta = #{sanPhamDetail.mota.value}
+        WHERE san_pham_id = #{sanPhamDetail.sanPhamId.value}
+    </update>
+
+    <update id="updateSanPhamDetail">
+        UPDATE shop.san_pham_detail
+        SET
+          gia_thuong = #{sanPhamDetail.giaThuong.value},
+          gia_km = #{sanPhamDetail.giaKM.value}
+        WHERE san_pham_id = #{sanPhamDetail.sanPhamDetailId.value}
+    </update>
 </mapper>

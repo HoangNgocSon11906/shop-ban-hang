@@ -9,4 +9,6 @@ public interface NhapSanPhamRepository {
 
     SanPhamDetail findBy(String sanPhamDetailId);
 
+    void update(SanPhamDetail sanPhamDetail);
+
 }

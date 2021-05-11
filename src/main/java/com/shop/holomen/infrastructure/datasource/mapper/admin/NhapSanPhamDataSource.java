@@ -39,5 +39,15 @@ public class NhapSanPhamDataSource implements NhapSanPhamRepository {
     public SanPhamDetail findBy(String sanPhamDetailId) {
         return nhapSanPhamMapper.findBy(sanPhamDetailId);
     }
+
+    @Override
+    public void update(SanPhamDetail sanPhamDetail) {
+        nhapSanPhamMapper.updateSanPham(sanPhamDetail);
+        nhapSanPhamMapper.updateSanPhamDetail(sanPhamDetail);
+        nhapSanPhamMapper.removeMau(sanPhamDetail.getSanPhamDetailId().toString());
+        sanPhamDetail.getMaus().getValues().forEach(mau -> nhapSanPhamMapper.insertMauSanPham(sanPhamDetail.getSanPhamDetailId(), mau));
+        nhapSanPhamMapper.removeSize(sanPhamDetail.getSanPhamDetailId().toString());
+        sanPhamDetail.getSizes().getSizes().forEach(size -> nhapSanPhamMapper.insertSizeSanPham(sanPhamDetail.getSanPhamDetailId(), size));
+    }
 }
 

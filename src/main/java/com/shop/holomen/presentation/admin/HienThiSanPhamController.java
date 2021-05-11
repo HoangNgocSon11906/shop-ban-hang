@@ -8,11 +8,9 @@ import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.websocket.server.PathParam;
 
 @Controller
 public class HienThiSanPhamController {
@@ -34,9 +32,19 @@ public class HienThiSanPhamController {
     }
 
     @RequestMapping(value = "/edit/{sanPhamId}/{sanPhamDetailId}")
-    public String update(@PathVariable(value = "sanPhamId") String sanPhamId, @PathVariable(value = "sanPhamDetailId") String sanPhamDetailId,Model model) {
+    public String edit(@PathVariable(value = "sanPhamId") String sanPhamId, @PathVariable(value = "sanPhamDetailId") String sanPhamDetailId, Model model) {
         SanPhamDetail sanPhamDetail = nhapSanPhamService.findBy(sanPhamDetailId);
         model.addAttribute("sanPhamDetail", sanPhamDetail);
+        int sizeListMau = sanPhamDetail.getMaus().getValues().toArray().length;
+        int sizeListSize = sanPhamDetail.getSizes().getSizes().toArray().length;
+        model.addAttribute("listMau", sizeListMau);
+        model.addAttribute("listSize", sizeListSize);
         return "admin/edit";
+    }
+
+    @RequestMapping(value = "/update")
+    public  String update(@ModelAttribute("sanPhamDetail") SanPhamDetail sanPhamDetail){
+        nhapSanPhamService.update(sanPhamDetail);
+        return String.format("redirect:/hienthi");
     }
 }

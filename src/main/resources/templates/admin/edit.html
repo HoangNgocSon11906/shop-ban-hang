@@ -14831,7 +14831,7 @@
     <div class="">
         <div class="container">
             <H1>Nhập sản phẩm</H1>
-            <form method="post" th:action="@{'/update/'}" enctype="multipart/form-data">
+            <form method="post" th:action="@{/update}" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Nhập tên sản phẩm</label>
                     <input type="text" class="form-control" th:field="*{sanPhamDetail.tenSanPham.value}">
@@ -14841,6 +14841,8 @@
                         <textarea id="w3review" name="w3review" rows="4" cols="50"
                                   th:field="*{sanPhamDetail.mota.value}"> </textarea>
                 </div>
+                <input hidden="hidden" th:field="*{sanPhamDetail.sanPhamId.value}" />
+                <input hidden="hidden" th:field="*{sanPhamDetail.sanPhamDetailId.value}" />
                 <div class="form-group">
                     <!--<label> Chọn loại sản phẩm</label>-->
 
@@ -14853,16 +14855,25 @@
                 </div>
                 <div class="form-group">
                     <label>Nhập màu sản phẩm</label>
-                    <div class="input_fields_wrap" th:each="mau : ${sanPhamDetail.maus.values}">
-                        <input th:name="*{sanPhamDetail.maus.values[__${mauStat.index}__].value}"
-                               th:field="*{sanPhamDetail.maus.values[__${mauStat.index}__].value}"/>
-                        <button class="add_field_button btn btn-primary">Thêm màu</button>
-                        <button href="#" class="remove_field btn btn-primary">Xoá</button>
+                    <button class="add_field_button btn btn-primary">Thêm màu</button>
+                    <p></p>
+                    <div class="input_fields_wrap">
+                        <div th:each="mau : ${sanPhamDetail.maus.values}">
+                            <input th:name="*{sanPhamDetail.maus.values[__${mauStat.index}__].value}"
+                                   th:field="*{sanPhamDetail.maus.values[__${mauStat.index}__].value}"/>
+                            <button href="#" class="remove_field btn btn-primary">Xoá</button>
+                            <p></p>
+                        </div>
                     </div>
                 </div>
+                <input hidden="hidden" id="sizeListMau" th:value="${listMau}"/>
                 <div class="form-group">
+                    <input hidden="hidden" id="sizeListSize" th:value="${listSize}"/>
                     <label> Chọn size sản phẩm</label>
-                    <div class="input_fields_wrap_size" th:each="size : ${sanPhamDetail.sizes.sizes}">
+                    <button class="add_size_button btn btn-primary">Thêm size</button>
+                    <p></p>
+                    <div class="input_fields_wrap_size">
+                    <div th:each="size : ${sanPhamDetail.sizes.sizes}">
                         <SELECT th:name="*{sanPhamDetail.sizes.sizes[__${sizeStat.index}__].value}"
                                 th:field="*{sanPhamDetail.sizes.sizes[__${sizeStat.index}__].value}">
                             <option value="S">S</option>
@@ -14871,8 +14882,8 @@
                             <option value="Xl">Xl</option>
                             <option value="XXL">XXL</option>
                         </SELECT>
-                        <button class="add_size_button btn btn-primary">Thêm size</button>
                         <button href="#" class="remove_field_size btn btn-primary">Xoá</button>
+                        <p></p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -14918,6 +14929,7 @@
                     <!--<img alt="image" style="width: 150px" id="output4">-->
                 <!--</div>-->
                 <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="/hienthi" class="btn btn-primary">Cancel</a>
             </form>
         </div>
         <!--//hiển thị hình-->
@@ -15431,18 +15443,14 @@
 
     //add màu sản phẩm
     $(document).ready(function () {
-        var max_fields = 10; //maximum input boxes allowed
         var wrapper = $(".input_fields_wrap"); //Fields wrapper
         var add_button = $(".add_field_button"); //Add button ID
-      var size_lis = $("")
-
-        var x = 0; //initlal text box count
+        var x = document.getElementById("sizeListMau").value;
         $(add_button).click(function (e) { //on add input button click
+            console.log('click', x)
             e.preventDefault();
-            if (x < max_fields) { //max input box allowed
-                x++; //text box increment
-                $(wrapper).append(`<p></p></p><div><input type="text" name="maus.values[${x}].value" id="maus.values${x}.value"/> <button href="#" class="remove_field btn btn-primary">Xoá</button></div>`); //add input box
-            }
+            x++; //text box increment
+            $(wrapper).append(`<p></p><div><input type="text" name="maus.values[${x}].value" id="maus.values${x}.value"/> <button href="#" class="remove_field btn btn-primary">Xoá</button></div>`); //add input box
         });
 
         $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
@@ -15458,12 +15466,13 @@
         var wrapper = $(".input_fields_wrap_size"); //Fields wrapper
         var add_button = $(".add_size_button"); //Add button ID
 
-        var x = 0; //initlal text box count
+        var x = document.getElementById("sizeListSize").value;//initlal text box count
+        console.log(x);
         $(add_button).click(function (e) { //on add input button click
             e.preventDefault();
             if (x < max_fields) { //max input box allowed
                 x++; //text box increment
-                $(wrapper).append(`<p></p></p><div>
+                $(wrapper).append(`<p></p><div>
 <SELECT name="sizes.sizes[${x}].value" id="sizes.sizes${x}.value">
                             <option value="S">S</option>
                             <option value="M">M</option>
@@ -15471,7 +15480,7 @@
                             <option value="Xl">Xl</option>
                             <option value="XXL">XXL</option>
                         </SELECT>
- <button href="#" class="remove_field_size btn btn-primary">Xoá</button></div>`
+ <button href="#" class="remove_field_size btn btn-primary">Xoá</button></div><p></p>`
                 ); //add input box
             }
         });

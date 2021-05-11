@@ -30,4 +30,8 @@ public interface NhapSanPhamMapper {
     void removeSize(@Param("sanPhamDetailId") String sanPhamDetailId);
 
     SanPhamDetail findBy(@Param("sanPhamDetailId") String sanPhamDetailId);
+
+    void updateSanPham(@Param("sanPhamDetail") SanPhamDetail sanPhamDetail);
+
+    void updateSanPhamDetail(@Param("sanPhamDetail") SanPhamDetail sanPhamDetail);
 }

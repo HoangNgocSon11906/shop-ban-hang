@@ -34,4 +34,6 @@ public interface NhapSanPhamMapper {
     void updateSanPham(@Param("sanPhamDetail") SanPhamDetail sanPhamDetail);
 
     void updateSanPhamDetail(@Param("sanPhamDetail") SanPhamDetail sanPhamDetail);
+
+    List<SanPhamDetail> findSanPhamBy(@Param("tenMap") String tenMap);
 }

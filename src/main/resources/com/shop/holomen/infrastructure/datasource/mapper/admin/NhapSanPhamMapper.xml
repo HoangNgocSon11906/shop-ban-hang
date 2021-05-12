@@ -111,6 +111,7 @@
         JOIN shop.san_pham_detail USING(san_pham_id)
         JOIN shop.mau USING(san_pham_detail_id)
         JOIN shop.size USING(san_pham_detail_id)
+        ORDER BY san_pham_detail.update_date DESC
     </select>
 
     <delete id="removeSanPham">
@@ -182,4 +183,31 @@
           gia_km = #{sanPhamDetail.giaKM.value}
         WHERE san_pham_id = #{sanPhamDetail.sanPhamDetailId.value}
     </update>
+
+    <select id="findSanPhamBy" resultMap="sanPhamDetail">
+        SELECT
+            san_pham_detail_id,
+            san_pham_id,
+            ma_loai,
+            ten_loai,
+            ten_san_pham,
+            mo_ta,
+            gia_thuong,
+            gia_km,
+            main_image,
+            image_1,
+            image_2,
+            image_3,
+            image_4,
+            mau,
+            size
+        FROM
+            shop.loai_san_pham
+        JOIN shop.san_pham USING(ma_loai)
+        JOIN shop.san_pham_detail USING(san_pham_id)
+        JOIN shop.mau USING(san_pham_detail_id)
+        JOIN shop.size USING(san_pham_detail_id)
+        WHERE loai_san_pham.ten_map = #{tenMap}
+        ORDER BY san_pham_detail.update_date DESC
+    </select>
 </mapper>

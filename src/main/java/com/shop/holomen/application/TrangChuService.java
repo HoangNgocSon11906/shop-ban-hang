@@ -15,4 +15,5 @@ public class TrangChuService {
     public LoaiSanPhams findLoaiSanPham() {
         return loaiSanPhamRepository.findLoaiSanPham();
     }
+
 }

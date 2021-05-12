@@ -29,4 +29,8 @@ public class NhapSanPhamService {
     public void update(SanPhamDetail sanPhamDetail) {
         nhapSanPhamRepository.update(sanPhamDetail);
     }
+
+    public SanPhamDetailS findSanPhamBy(String tenMap) {
+        return  nhapSanPhamRepository.findSanPhamBy(tenMap);
+    }
 }

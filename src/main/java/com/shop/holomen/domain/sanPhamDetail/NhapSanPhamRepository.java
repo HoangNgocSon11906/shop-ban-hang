@@ -11,4 +11,6 @@ public interface NhapSanPhamRepository {
 
     void update(SanPhamDetail sanPhamDetail);
 
+    SanPhamDetailS findSanPhamBy(String tenMap);
+
 }

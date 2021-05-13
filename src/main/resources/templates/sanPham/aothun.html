@@ -1429,20 +1429,20 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
                                                    class="image-resize">
                                                     <picture>
                                                         <source media="(max-width: 767px)"
-                                                                srcset="//product.hstatic.net/1000253775/product/967a846c0231ff6fa620_d1c983a6500941b29547f5dd7e365892_large.jpg">
+                                                                 th:src="${sanPham.getMainImage().getLinkHinh().value}">
                                                         <source media="(min-width: 768px)"
-                                                                srcset="//product.hstatic.net/1000253775/product/967a846c0231ff6fa620_d1c983a6500941b29547f5dd7e365892_large.jpg">
+                                                                th:src="${sanPham.getMainImage().getLinkHinh().value}">
                                                         <img class="img-loop" alt=" Áo khoác bomber UL "
-                                                             src="//product.hstatic.net/1000253775/product/967a846c0231ff6fa620_d1c983a6500941b29547f5dd7e365892_large.jpg"/>
+                                                             th:src="${sanPham.getMainImage().getLinkHinh().value}"/>
                                                     </picture>
 
                                                     <picture>
                                                         <source media="(max-width: 767px)"
-                                                                srcset="//product.hstatic.net/1000253775/product/c2167c0efa53070d5e42_0c4462fcb484458799a3dcac4f9c8bc5_large.jpg">
+                                                                th:src="${sanPham.getImage1().getLinkHinh().value}">
                                                         <source media="(min-width: 768px)"
-                                                                srcset="//product.hstatic.net/1000253775/product/c2167c0efa53070d5e42_0c4462fcb484458799a3dcac4f9c8bc5_large.jpg">
+                                                                th:src="${sanPham.getImage1().getLinkHinh().value}">
                                                         <img class="img-loop img-hover" alt=" Áo khoác bomber UL "
-                                                             src="//product.hstatic.net/1000253775/product/c2167c0efa53070d5e42_0c4462fcb484458799a3dcac4f9c8bc5_large.jpg"/>
+                                                             th:src="${sanPham.getImage1().getLinkHinh().value}">/>
                                                     </picture>
                                                 </a>
                                                 <div class="button-add hidden">
@@ -1462,8 +1462,8 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
                                                     <div class="box-pro-prices">
                                                         <p class="pro-price highlight">
 
-                                                            <span class="giaban" th:text="${sanPham.getGiaKM().getValue()}">190,000₫</span>
-                                                            <span class="pro-price-del"><del th:text="${sanPham.getGiaThuong().getValue()}" class="compare-price">380,000₫</del></span>
+                                                            <span class="giaban" th:text="${sanPham.getGiaKM().formattedValue()}">190,000₫</span>
+                                                            <span class="pro-price-del"><del th:text="${sanPham.getGiaThuong().formattedValue()}" class="compare-price">380,000₫</del></span>
                                                         </p>
                                                     </div>
                                                 </div>

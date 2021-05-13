@@ -26,5 +26,5 @@ public class AoThunController {
         model.addAttribute("sanPhamDetailS", sanPhamDetailS);
 
         return "sanPham/aothun";
-    }
+    } /Users/a-mac-016/Documents/GitHub/shop-ban-hang/src/main/resources/templates/image
 }

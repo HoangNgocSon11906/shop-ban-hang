@@ -24,7 +24,6 @@ public class AoThunController {
         SanPhamDetailS sanPhamDetailS = nhapSanPhamService.findSanPhamBy(tenMap);
         model.addAttribute("loaiSanPham", loaiSanPhams);
         model.addAttribute("sanPhamDetailS", sanPhamDetailS);
-
         return "sanPham/aothun";
-    } /Users/a-mac-016/Documents/GitHub/shop-ban-hang/src/main/resources/templates/image
+    }
 }

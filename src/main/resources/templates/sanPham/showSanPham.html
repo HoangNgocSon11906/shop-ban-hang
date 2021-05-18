@@ -15126,19 +15126,11 @@
 					<ul class="clearfix">
 
 
-						<li class="">
+						<li class="active">
 							<a href="/" title="TRANG CHỦ">
 								TRANG CHỦ
 							</a>
 						</li>
-
-
-						<li class="">
-							<a href="/collections/san-pham-moi" title="NEW ARRIVALS">
-								NEW ARRIVALS
-							</a>
-						</li>
-
 
 						<li class="">
 							<a href="/collections/san-pham-moi" title="SẢN PHẨM">
@@ -15146,327 +15138,12 @@
 								<i class="fa fa-chevron-down" aria-hidden="true"></i>
 							</a>
 							<ul class="sub_menu">
+								<div th:each=" loaiSanPham : ${loaiSanPham.values}">
+									<a th:href="@{|/${loaiSanPham.tenMap.value}|}" th:value="${loaiSanPham.maLoai.value}" th:text="${loaiSanPham.tenLoai.value}"></a>
 
-
-								<li class="">
-									<a href="/collections/outlet" title="SALE OFF 50%">
-										SALE OFF 50%
-									</a>
-								</li>
-
-
-								<li class="">
-									<a href="/collections/ao" title="ÁO">
-										ÁO <i class="fa fa-chevron-right" aria-hidden="true"></i>
-									</a>
-									<ul class="sub_menu">
-
-
-										<li class="">
-											<a href="/collections/ao-somi" title="ÁO SƠ MI">
-												ÁO SƠ MI
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/ao-thun" title="ÁO THUN">
-												ÁO THUN
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/ao-polos" title="ÁO POLO">
-												ÁO POLO
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/ao-len-sweater" title="ÁO LEN">
-												ÁO LEN
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/ao-ni-sweatshirt" title="ÁO NỈ - SWEATSHIRT">
-												ÁO NỈ - SWEATSHIRT
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/ao-khoac" title="ÁO KHOÁC">
-												ÁO KHOÁC
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/hoodie" title="ÁO HOODIE">
-												ÁO HOODIE
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/ao-vest" title="ÁO VEST">
-												ÁO VEST
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/ba-lo" title="ÁO BA LỖ">
-												ÁO BA LỖ
-											</a>
-										</li>
-
-
+								</div>
 									</ul>
 								</li>
-
-
-								<li class="">
-									<a href="/collections/quan" title="QUẦN">
-										QUẦN <i class="fa fa-chevron-right" aria-hidden="true"></i>
-									</a>
-									<ul class="sub_menu">
-
-
-										<li class="">
-											<a href="/collections/quan-jeans" title="QUẦN JEAN">
-												QUẦN JEAN
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/quan-joggers" title="QUẦN JOGGER - QUẦN DÀI">
-												QUẦN JOGGER - QUẦN DÀI
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/quan-tay" title="QUẦN TÂY">
-												QUẦN TÂY
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/quan-short" title="QUẦN SHORT">
-												QUẦN SHORT
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/quan-kaki" title="QUẦN KAKI">
-												QUẦN KAKI
-											</a>
-										</li>
-
-
-									</ul>
-								</li>
-
-
-								<li class="">
-									<a href="/collections/quan-ao-the-thao" title="QUẦN ÁO THỂ THAO">
-										QUẦN ÁO THỂ THAO <i class="fa fa-chevron-right" aria-hidden="true"></i>
-									</a>
-									<ul class="sub_menu">
-
-
-										<li class="">
-											<a href="/collections/quan-the-thao" title="QUẦN THỂ THAO">
-												QUẦN THỂ THAO
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/ao-the-thao" title="ÁO THỂ THAO">
-												ÁO THỂ THAO
-											</a>
-										</li>
-
-
-									</ul>
-								</li>
-
-
-								<li class="">
-									<a href="/collections/balo-tui-xach" title="BALO - TÚI XÁCH">
-										BALO - TÚI XÁCH
-									</a>
-								</li>
-
-
-								<li class="">
-									<a href="/collections/giay-dep" title="GIÀY DÉP">
-										GIÀY DÉP
-									</a>
-								</li>
-
-
-								<li class="">
-									<a href="/collections/nhom-phu-kien-khac" title="PHỤ KIỆN KHÁC">
-										PHỤ KIỆN KHÁC <i class="fa fa-chevron-right" aria-hidden="true"></i>
-									</a>
-									<ul class="sub_menu">
-
-
-										<li class="">
-											<a href="/collections/underwear" title="UNDERWEAR">
-												UNDERWEAR
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/non" title="NÓN">
-												NÓN
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/vo" title="VỚ">
-												VỚ
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/that-lung" title="THẮT LƯNG">
-												THẮT LƯNG
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/ong-tay" title="ỐNG TAY">
-												ỐNG TAY
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/mat-kinh" title="MẮT KÍNH">
-												MẮT KÍNH
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/binh-giu-nhiet" title="BÌNH NƯỚC">
-												BÌNH NƯỚC
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/vi" title="VÍ">
-												VÍ
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/du" title="DÙ">
-												DÙ
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/ao-mua" title="ÁO MƯA">
-												ÁO MƯA
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/khau-trang" title="KHẨU TRANG">
-												KHẨU TRANG
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/moc-khoa" title="MÓC KHÓA">
-												MÓC KHÓA
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/vong-tay-rastaclat" title="VÒNG TAY - RASTACLAT">
-												VÒNG TAY - RASTACLAT
-											</a>
-										</li>
-
-
-										<li class="">
-											<a href="/collections/khac" title="KHÁC">
-												KHÁC
-											</a>
-										</li>
-
-
-									</ul>
-								</li>
-
-
-								<li class="">
-									<a href="/collections/tracksuit" title="SET ÁO QUẦN">
-										SET ÁO QUẦN
-									</a>
-								</li>
-
-
-								<li class="">
-									<a href="/collections/set-ao-vest" title="SET ÁO VEST">
-										SET ÁO VEST
-									</a>
-								</li>
-
-
-								<li class="">
-									<a href="/collections/outlet" title="SALE UP TO 50%">
-										SALE UP TO 50%
-									</a>
-								</li>
-
-
-							</ul>
-						</li>
-
-
-						<li class="">
-							<a href="/" title="BỘ SƯU TẬP">
-								BỘ SƯU TẬP
-								<i class="fa fa-chevron-down" aria-hidden="true"></i>
-							</a>
-							<ul class="sub_menu">
-
-
-								<li class="">
-									<a href="/pages/collection-newyear-newme" title="NEW YEAR NEW ME">
-										NEW YEAR NEW ME
-									</a>
-								</li>
-
-
-							</ul>
-						</li>
-
-
 						<li class="">
 							<a href="/pages/huong-dan-dat-hang" title="HƯỚNG DẪN - CHÍNH SÁCH">
 								HƯỚNG DẪN - CHÍNH SÁCH
@@ -15482,11 +15159,13 @@
 								</li>
 
 
+
 								<li class="">
 									<a href="/pages/huong-dan-dat-hang" title="HƯỚNG DẪN ĐẶT HÀNG">
 										HƯỚNG DẪN ĐẶT HÀNG
 									</a>
 								</li>
+
 
 
 								<li class="">
@@ -15496,11 +15175,13 @@
 								</li>
 
 
+
 								<li class="">
 									<a href="/pages/tai-khoan-ngan-hang" title="TÀI KHOẢN NGÂN HÀNG">
 										TÀI KHOẢN NGÂN HÀNG
 									</a>
 								</li>
+
 
 
 								<li class="">
@@ -15510,22 +15191,25 @@
 								</li>
 
 
-								<li class="">
-									<a href="/pages/ctmembership" title="MEMBERSHIP">
-										MEMBERSHIP
-									</a>
-								</li>
+
+								<!--<li class="">-->
+									<!--<a href="/pages/ctmembership" title="MEMBERSHIP">-->
+										<!--MEMBERSHIP-->
+									<!--</a>-->
+								<!--</li>-->
 
 
-								<li class="">
-									<a href="/pages/huong-dan-kiem-tra-sp-tai-cac-chi-nhanh" title="KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH">
-										KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH
-									</a>
-								</li>
+
+								<!--<li class="">-->
+									<!--<a href="/pages/huong-dan-kiem-tra-sp-tai-cac-chi-nhanh" title="KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH">-->
+										<!--KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH-->
+									<!--</a>-->
+								<!--</li>-->
 
 
 							</ul>
 						</li>
+
 
 
 						<li class="">
@@ -15535,6 +15219,7 @@
 						</li>
 
 
+
 						<li class="">
 							<a href="https://www.160store.com/pages/ve-chung-toi" title="GIỚI THIỆU">
 								GIỚI THIỆU
@@ -15542,11 +15227,12 @@
 						</li>
 
 
-						<li class="">
-							<a href="https://www.160store.com/blogs/all" title="NEWS">
-								NEWS
-							</a>
-						</li>
+
+						<!--<li class="">-->
+							<!--<a href="https://www.160store.com/blogs/all" title="NEWS">-->
+								<!--NEWS-->
+							<!--</a>-->
+						<!--</li>-->
 
 
 					</ul>
@@ -20667,138 +20353,18 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 		<div class="footer-block">
 			<div class="container">
 				<div class="footer-address clearfix col-md-8 col-xs-12">
-					<h2 class="city">TP. Hồ Chí Minh</h2>
+					<h2 class="city">TP. Buôn Ma Thuột </h2>
 					<div>
-
-
 						<div class="adress-item">
-							<h4>Store 1</h4>
+							<h4>Store </h4>
 							<ul>
-								<li class="add" data-store="391/375 TRẦN HƯNG ĐẠO P CẦU KHO, Q.1"><i class="fa fa-home"></i>391/375 TRẦN
-									HƯNG ĐẠO P CẦU KHO, Q.1
-								</li>
-								<li class="hotline"><a href="tel:02871006789"><i class="fa fa-phone"></i>028 7100 6789</a></li>
-							</ul>
-						</div>
-
-
-						<div class="adress-item" style="border-right: 1px solid #d0d0d0;">
-							<h4>Store 2</h4>
-							<ul>
-								<li class="add" data-store="297/3 TÔ HIẾN THÀNH, PHƯỜNG 13, Q.10"><i class="fa fa-home"></i>297/3 TÔ
-									HIẾN THÀNH, PHƯỜNG 13, Q.10
-								</li>
-								<li class="hotline"><a href="tel:02871006789"><i class="fa fa-phone"></i>028 7100 6789</a></li>
-							</ul>
-						</div>
-
-
-						<div class="adress-item">
-							<h4>Store 3</h4>
-							<ul>
-								<li class="add" data-store="111 KHUÔNG VIỆT, PHƯỜNG PHÚ TRUNG, Q.TÂN PHÚ"><i class="fa fa-home"></i>111
-									KHUÔNG VIỆT, PHƯỜNG PHÚ TRUNG, Q.TÂN PHÚ
-								</li>
-								<li class="hotline"><a href="tel:02871006789"><i class="fa fa-phone"></i>028 7100 6789</a></li>
-							</ul>
-						</div>
-
-
-						<div class="adress-item" style="border-right: 1px solid #d0d0d0;">
-							<h4>Store 4</h4>
-							<ul>
-								<li class="add" data-store="401 PHAN XÍCH LONG, PHƯỜNG 3, Q.PHÚ NHUẬN"><i class="fa fa-home"></i>401
-									PHAN XÍCH LONG, PHƯỜNG 3, Q.PHÚ NHUẬN
-								</li>
-								<li class="hotline"><a href="tel:02871006789"><i class="fa fa-phone"></i>028 7100 6789</a></li>
-							</ul>
-						</div>
-
-
-						<div class="adress-item">
-							<h4>Store 5</h4>
-							<ul>
-								<li class="add" data-store="94 LÊ VĂN THỌ, PHƯỜNG 11, Q.GÒ VẤP"><i class="fa fa-home"></i>94 LÊ VĂN THỌ,
-									PHƯỜNG 11, Q.GÒ VẤP
-								</li>
-								<li class="hotline"><a href="tel:02871006789"><i class="fa fa-phone"></i>028 7100 6789</a></li>
-							</ul>
-						</div>
-
-
-					</div>
-				</div>
-				<div class="footer-address clearfix col-md-4 col-xs-12">
-					<h2 class="city">TP. BIÊN HÒA</h2>
-
-
-					<div class="adress-item">
-						<h4>Store 6</h4>
-						<ul>
-							<li class="add" data-store="157 PHAN TRUNG, PHƯỜNG TÂN MAI"><i class="fa fa-home"></i>157 PHAN TRUNG,
-								PHƯỜNG TÂN MAI
-							</li>
-							<li class="hotline"><a href="tel:02871006789"><i class="fa fa-phone"></i>028 7100 6789</a></li>
-						</ul>
-					</div>
-
-
-					<div class="newstore clearfix">
-						<h2 class="city">TP. CẦN THƠ</h2>
-						<div class="adress-item">
-							<h4>Store 7</h4>
-							<ul>
-								<li class="add" data-store="35 TRẦN PHÚ"><i class="fa fa-home"></i>35 TRẦN PHÚ</li>
-								<li class="hotline"><a href="tel:02871006789"><i class="fa fa-phone"></i>028 7100 6789</a></li>
+								<li class="add" data-store=" "><i class="fa fa-home"></i>22/14 Bùi Thị Xuân, Tự An,</li>
+								<li class="hotline"><a href="tel:0929340414"><i class="fa fa-phone"></i>028 7100 6789</a></li>
 							</ul>
 						</div>
 					</div>
-				</div>
-				<div class="newstore footer-address hn clearfix col-md-8 col-xs-12">
-					<h2 class="city">TP. HÀ NỘI</h2>
-
-
-					<div class="adress-item">
-						<h4>Store 9</h4>
-						<ul>
-							<li class="add" data-store="SỐ 2 NGÕ 232 TÔN ĐỨC THẮNG, Q.ĐỐNG ĐA"><i class="fa fa-home"></i>SỐ 2 NGÕ 232
-								TÔN ĐỨC THẮNG, Q.ĐỐNG ĐA
-							</li>
-							<li class="hotline"><a href="tel:02871006789"><i class="fa fa-phone"></i>028 7100 6789</a></li>
-						</ul>
-					</div>
-
-
-					<div class="adress-item" style="border-right: 1px solid #d0d0d0;">
-						<h4>Store 10</h4>
-						<ul>
-							<li class="add" data-store="026 PHỐ LÊ ĐẠI HÀNH, QUẬN HAI BÀ TRƯNG"><i class="fa fa-home"></i>026 PHỐ LÊ
-								ĐẠI HÀNH, QUẬN HAI BÀ TRƯNG
-							</li>
-							<li class="hotline"><a href="tel:02871006789"><i class="fa fa-phone"></i>028 7100 6789</a></li>
-						</ul>
-					</div>
-
-
-				</div>
-				<div class="newstore footer-address clearfix col-md-4 col-xs-12">
-					<h2 class="city">TP. ĐÀ NẴNG</h2>
-
-
-					<div class="adress-item">
-						<h4>Store 8</h4>
-						<ul>
-							<li class="add" data-store="144 LÝ TỰ TRỌNG, Q.HẢI CHÂU"><i class="fa fa-home"></i>144 LÝ TỰ TRỌNG, Q.HẢI
-								CHÂU
-							</li>
-							<li class="hotline"><a href="tel:02871006789"><i class="fa fa-phone"></i>028 7100 6789</a></li>
-						</ul>
-					</div>
-
-
 				</div>
 			</div>
-		</div>
 
 		<script>
       $('body').on('click', '.adress-item .add', function () {
@@ -21403,23 +20969,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 
 <!-- chatbot harafunnel -->
 
-<a href="//m.me/1042686802417049" target="_blank" class="harafunnel-icon">
-			<span class="messenger_absolute ">
-				<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="22" cy="22" r="22" fill="url(#paint3_linear)"/>
-					<path fill-rule="evenodd" clip-rule="evenodd"
-								d="M22.0026 7.70215C14.1041 7.70215 7.70117 13.6308 7.70117 20.9442C7.70117 25.1115 9.78083 28.8286 13.0309 31.256V36.305L17.9004 33.6325C19.2 33.9922 20.5767 34.1863 22.0026 34.1863C29.9011 34.1863 36.304 28.2576 36.304 20.9442C36.304 13.6308 29.9011 7.70215 22.0026 7.70215ZM23.4221 25.5314L19.7801 21.6471L12.6738 25.5314L20.4908 17.2331L24.2216 21.1174L31.239 17.2331L23.4221 25.5314Z"
-								fill="white"/>
-					<defs>
-						<linearGradient id="paint3_linear" x1="21.6426" y1="43.3555" x2="21.6426" y2="0.428639"
-														gradientUnits="userSpaceOnUse">
-							<stop stop-color="#1168CF"/>
-							<stop offset="1" stop-color="#2CB7FF"/>
-						</linearGradient>
-					</defs>
-				</svg>
-			</span>
-</a>
+<!--messenger-->
 <script>
   $('body').on('click', 'a.linktocart.button.dark', function () {
     $('button#site-close-handle').trigger('click');
@@ -21433,30 +20983,6 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
     jQuery('.title_block').trigger('click');
   }
 </script>
-
-<div id="send_mail_total">
-	<div class="send_mail_main">
-		<div class="send_mail_content">
-			<div class="send_mail_title">
-				<h2>
-					Lấy lại mật khẩu
-				</h2>
-			</div>
-			<div class="send_mail_body">
-				<div class="login_main">
-					<label>Chúng tôi sẽ gửi cho bạn hướng dẫn về cách thiết lập lại mật khẩu</label>
-					<span></span>
-					<input id="send_email" type="text" placeholder="Nhập Email của bạn">
-				</div>
-			</div>
-			<div class="send_mail_footer">
-				<button id="send_email_submit">Gửi email</button>
-				<button id="send_email_cancel">huỷ bỏ</button>
-			</div>
-		</div>
-	</div>
-</div>
-<div id="send_mail_bg"></div>
 
 <style>
 

@@ -1545,488 +1545,126 @@
 
     </div>
         <div class="menu-desktop hidden-sm hidden-xs">
-            <div id="nav">
-                <nav class="main-nav text-center">
-                    <ul class="clearfix">
+			<div id="nav">
+				<nav class="main-nav text-center">
+					<ul class="clearfix">
 
 
-                        <li class="">
-                            <a href="/" title="TRANG CHỦ">
-                                TRANG CHỦ
-                            </a>
-                        </li>
+						<li class="active">
+							<a href="/" title="TRANG CHỦ">
+								TRANG CHỦ
+							</a>
+						</li>
 
+						<li class="">
+							<a href="/collections/san-pham-moi" title="SẢN PHẨM">
+								SẢN PHẨM
+								<i class="fa fa-chevron-down" aria-hidden="true"></i>
+							</a>
+							<ul class="sub_menu">
+								<div th:each=" loaiSanPham : ${loaiSanPham.values}">
+									<a th:href="@{|/${loaiSanPham.tenMap.value}|}" th:value="${loaiSanPham.maLoai.value}" th:text="${loaiSanPham.tenLoai.value}"></a>
 
+								</div>
+									</ul>
+								</li>
+						<li class="">
+							<a href="/pages/huong-dan-dat-hang" title="HƯỚNG DẪN - CHÍNH SÁCH">
+								HƯỚNG DẪN - CHÍNH SÁCH
+								<i class="fa fa-chevron-down" aria-hidden="true"></i>
+							</a>
+							<ul class="sub_menu">
 
-                        <li class="">
-                            <a href="/collections/san-pham-moi" title="NEW ARRIVALS">
-                                NEW ARRIVALS
-                            </a>
-                        </li>
 
+								<li class="">
+									<a href="/pages/huong-dan-chon-size" title="HƯỚNG DẪN CHỌN SIZE">
+										HƯỚNG DẪN CHỌN SIZE
+									</a>
+								</li>
 
 
-                        <li class="">
-                            <a href="/collections/san-pham-moi" title="SẢN PHẨM">
-                                SẢN PHẨM
-                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                            </a>
-                            <ul class="sub_menu">
 
+								<li class="">
+									<a href="/pages/huong-dan-dat-hang" title="HƯỚNG DẪN ĐẶT HÀNG">
+										HƯỚNG DẪN ĐẶT HÀNG
+									</a>
+								</li>
 
-                                <li class="">
-                                    <a href="/sale" title="SALE OFF 50%">
-                                        SALE OFF 50%
-                                    </a>
-                                </li>
 
 
+								<li class="">
+									<a href="/pages/chinh-sach-doi-tra" title="CHÍNH SÁCH ĐỔI TRẢ">
+										CHÍNH SÁCH ĐỔI TRẢ
+									</a>
+								</li>
 
-                                <li class="">
-                                    <a href="/collections/ao" title="ÁO">
-                                        ÁO	<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                    </a>
-                                    <ul class="sub_menu">
 
 
-                                        <li class="">
-                                            <a href="/collections/ao-somi" title="ÁO SƠ MI">
-                                                ÁO SƠ MI
-                                            </a>
-                                        </li>
+								<li class="">
+									<a href="/pages/tai-khoan-ngan-hang" title="TÀI KHOẢN NGÂN HÀNG">
+										TÀI KHOẢN NGÂN HÀNG
+									</a>
+								</li>
 
 
 
-                                        <li class="">
-                                            <a href="/collections/ao-thun" title="ÁO THUN">
-                                                ÁO THUN
-                                            </a>
-                                        </li>
+								<li class="">
+									<a href="/pages/kiem-tra-don-hang" title="KIỂM TRA ĐƠN HÀNG">
+										KIỂM TRA ĐƠN HÀNG
+									</a>
+								</li>
 
 
 
-                                        <li class="">
-                                            <a href="/collections/ao-polos" title="ÁO POLO">
-                                                ÁO POLO
-                                            </a>
-                                        </li>
+								<!--<li class="">-->
+									<!--<a href="/pages/ctmembership" title="MEMBERSHIP">-->
+										<!--MEMBERSHIP-->
+									<!--</a>-->
+								<!--</li>-->
 
 
 
-                                        <li class="">
-                                            <a href="/collections/ao-len-sweater" title="ÁO LEN">
-                                                ÁO LEN
-                                            </a>
-                                        </li>
+								<!--<li class="">-->
+									<!--<a href="/pages/huong-dan-kiem-tra-sp-tai-cac-chi-nhanh" title="KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH">-->
+										<!--KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH-->
+									<!--</a>-->
+								<!--</li>-->
 
 
+							</ul>
+						</li>
 
-                                        <li class="">
-                                            <a href="/collections/ao-ni-sweatshirt" title="ÁO NỈ - SWEATSHIRT">
-                                                ÁO NỈ - SWEATSHIRT
-                                            </a>
-                                        </li>
 
 
+						<li class="">
+							<a href="/pages/lien-he" title="ĐỊA CHỈ CỬA HÀNG">
+								ĐỊA CHỈ CỬA HÀNG
+							</a>
+						</li>
 
-                                        <li class="">
-                                            <a href="/collections/ao-khoac" title="ÁO KHOÁC">
-                                                ÁO KHOÁC
-                                            </a>
-                                        </li>
 
 
+						<li class="">
+							<a href="https://www.160store.com/pages/ve-chung-toi" title="GIỚI THIỆU">
+								GIỚI THIỆU
+							</a>
+						</li>
 
-                                        <li class="">
-                                            <a href="/collections/hoodie" title="ÁO HOODIE">
-                                                ÁO HOODIE
-                                            </a>
-                                        </li>
 
 
+						<!--<li class="">-->
+							<!--<a href="https://www.160store.com/blogs/all" title="NEWS">-->
+								<!--NEWS-->
+							<!--</a>-->
+						<!--</li>-->
 
-                                        <li class="">
-                                            <a href="/collections/ao-vest" title="ÁO VEST">
-                                                ÁO VEST
-                                            </a>
-                                        </li>
 
+					</ul>
+				</nav>
+			</div>
 
 
-                                        <li class="">
-                                            <a href="/collections/ba-lo" title="ÁO BA LỖ">
-                                                ÁO BA LỖ
-                                            </a>
-                                        </li>
-
-
-                                    </ul>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/collections/quan" title="QUẦN">
-                                        QUẦN	<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                    </a>
-                                    <ul class="sub_menu">
-
-
-                                        <li class="">
-                                            <a href="/collections/quan-jeans" title="QUẦN JEAN">
-                                                QUẦN JEAN
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/quan-joggers" title="QUẦN JOGGER - QUẦN DÀI">
-                                                QUẦN JOGGER - QUẦN DÀI
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/quan-tay" title="QUẦN TÂY">
-                                                QUẦN TÂY
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/quan-short" title="QUẦN SHORT">
-                                                QUẦN SHORT
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/quan-kaki" title="QUẦN KAKI">
-                                                QUẦN KAKI
-                                            </a>
-                                        </li>
-
-
-                                    </ul>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/collections/quan-ao-the-thao" title="QUẦN ÁO THỂ THAO">
-                                        QUẦN ÁO THỂ THAO	<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                    </a>
-                                    <ul class="sub_menu">
-
-
-                                        <li class="">
-                                            <a href="/collections/quan-the-thao" title="QUẦN THỂ THAO">
-                                                QUẦN THỂ THAO
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/ao-the-thao" title="ÁO THỂ THAO">
-                                                ÁO THỂ THAO
-                                            </a>
-                                        </li>
-
-
-                                    </ul>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/collections/balo-tui-xach" title="BALO - TÚI XÁCH">
-                                        BALO - TÚI XÁCH
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/collections/giay-dep" title="GIÀY DÉP">
-                                        GIÀY DÉP
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/collections/nhom-phu-kien-khac" title="PHỤ KIỆN KHÁC">
-                                        PHỤ KIỆN KHÁC	<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                    </a>
-                                    <ul class="sub_menu">
-
-
-                                        <li class="">
-                                            <a href="/collections/underwear" title="UNDERWEAR">
-                                                UNDERWEAR
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/non" title="NÓN">
-                                                NÓN
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/vo" title="VỚ">
-                                                VỚ
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/that-lung" title="THẮT LƯNG">
-                                                THẮT LƯNG
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/ong-tay" title="ỐNG TAY">
-                                                ỐNG TAY
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/mat-kinh" title="MẮT KÍNH">
-                                                MẮT KÍNH
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/binh-giu-nhiet" title="BÌNH NƯỚC">
-                                                BÌNH NƯỚC
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/vi" title="VÍ">
-                                                VÍ
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/du" title="DÙ">
-                                                DÙ
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/ao-mua" title="ÁO MƯA">
-                                                ÁO MƯA
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/khau-trang" title="KHẨU TRANG">
-                                                KHẨU TRANG
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/moc-khoa" title="MÓC KHÓA">
-                                                MÓC KHÓA
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/vong-tay-rastaclat" title="VÒNG TAY - RASTACLAT">
-                                                VÒNG TAY - RASTACLAT
-                                            </a>
-                                        </li>
-
-
-
-                                        <li class="">
-                                            <a href="/collections/khac" title="KHÁC">
-                                                KHÁC
-                                            </a>
-                                        </li>
-
-
-                                    </ul>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/collections/tracksuit" title="SET ÁO QUẦN">
-                                        SET ÁO QUẦN
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/collections/set-ao-vest" title="SET ÁO VEST">
-                                        SET ÁO VEST
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/collections/outlet" title="SALE UP TO 50%">
-                                        SALE UP TO 50%
-                                    </a>
-                                </li>
-
-
-                            </ul>
-                        </li>
-
-
-
-                        <li class="">
-                            <a href="/" title="BỘ SƯU TẬP">
-                                BỘ SƯU TẬP
-                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                            </a>
-                            <ul class="sub_menu">
-
-
-                                <li class="">
-                                    <a href="/pages/collection-newyear-newme" title="NEW YEAR NEW ME">
-                                        NEW YEAR NEW ME
-                                    </a>
-                                </li>
-
-
-                            </ul>
-                        </li>
-
-
-
-                        <li class="">
-                            <a href="/pages/huong-dan-dat-hang" title="HƯỚNG DẪN - CHÍNH SÁCH">
-                                HƯỚNG DẪN - CHÍNH SÁCH
-                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                            </a>
-                            <ul class="sub_menu">
-
-
-                                <li class="">
-                                    <a href="/pages/huong-dan-chon-size" title="HƯỚNG DẪN CHỌN SIZE">
-                                        HƯỚNG DẪN CHỌN SIZE
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/pages/huong-dan-dat-hang" title="HƯỚNG DẪN ĐẶT HÀNG">
-                                        HƯỚNG DẪN ĐẶT HÀNG
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/pages/chinh-sach-doi-tra" title="CHÍNH SÁCH ĐỔI TRẢ">
-                                        CHÍNH SÁCH ĐỔI TRẢ
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/pages/tai-khoan-ngan-hang" title="TÀI KHOẢN NGÂN HÀNG">
-                                        TÀI KHOẢN NGÂN HÀNG
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/pages/kiem-tra-don-hang" title="KIỂM TRA ĐƠN HÀNG">
-                                        KIỂM TRA ĐƠN HÀNG
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/pages/ctmembership" title="MEMBERSHIP">
-                                        MEMBERSHIP
-                                    </a>
-                                </li>
-
-
-
-                                <li class="">
-                                    <a href="/pages/huong-dan-kiem-tra-sp-tai-cac-chi-nhanh" title="KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH">
-                                        KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH
-                                    </a>
-                                </li>
-
-
-                            </ul>
-                        </li>
-
-
-
-                        <li class="">
-                            <a href="/pages/lien-he" title="ĐỊA CHỈ CỬA HÀNG">
-                                ĐỊA CHỈ CỬA HÀNG
-                            </a>
-                        </li>
-
-
-
-                        <li class="">
-                            <a href="https://www.160store.com/pages/ve-chung-toi" title="GIỚI THIỆU">
-                                GIỚI THIỆU
-                            </a>
-                        </li>
-
-
-
-                        <li class="">
-                            <a href="https://www.160store.com/blogs/all" title="NEWS">
-                                NEWS
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </nav>
-            </div>
-
-
-        </div>
+		</div>
         <div class="header-wrap-icon">
 		<span class="icon-account" aria-label="Tài khoản" title="Tài khoản">
 
@@ -9625,20 +9263,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 
 <!-- chatbot harafunnel -->
 
-<a href="//m.me/1042686802417049" target="_blank" class="harafunnel-icon">
-			<span class="messenger_absolute ">
-				<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="22" cy="22" r="22" fill="url(#paint3_linear)"/>
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M22.0026 7.70215C14.1041 7.70215 7.70117 13.6308 7.70117 20.9442C7.70117 25.1115 9.78083 28.8286 13.0309 31.256V36.305L17.9004 33.6325C19.2 33.9922 20.5767 34.1863 22.0026 34.1863C29.9011 34.1863 36.304 28.2576 36.304 20.9442C36.304 13.6308 29.9011 7.70215 22.0026 7.70215ZM23.4221 25.5314L19.7801 21.6471L12.6738 25.5314L20.4908 17.2331L24.2216 21.1174L31.239 17.2331L23.4221 25.5314Z" fill="white"/>
-					<defs>
-						<linearGradient id="paint3_linear" x1="21.6426" y1="43.3555" x2="21.6426" y2="0.428639" gradientUnits="userSpaceOnUse">
-							<stop stop-color="#1168CF"/>
-							<stop offset="1" stop-color="#2CB7FF"/>
-						</linearGradient>
-					</defs>
-				</svg>
-			</span>
-</a>
+<!--messenger-->
 <script>
   $('body').on('click', 'a.linktocart.button.dark', function(){
     $('button#site-close-handle').trigger('click');

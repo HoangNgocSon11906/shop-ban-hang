@@ -3601,11 +3601,11 @@ background-color: #d0d0d0;
 .swatch .swatch-element{
 	margin-bottom: 5px;
 }
-.swatch-element label.sd,
-.swatch-element.checked label {
+.swatch-element1 label.sd,
+.swatch-element1.checked label {
 	border-color: $colorPrimary !important;
 }
-.swatch-element.checked label img.img-check {
+.swatch-element1.checked label img.img-check {
 	display: block;
 }
 .swatch .swatch-element.soldout label {

@@ -15,32 +15,32 @@
 				content="https://file.hstatic.net/1000253775/file/z2425169697955_60b382efeaf1908e2371799e5a6efbb1_bf8650e1476d41ed9e98384f98bf119c.jpg">
 	<!--&lt;!&ndash; Google Tag Manager &ndash;&gt;-->
 	<!--<script>(function (w, d, s, l, i) {-->
-    <!--w[l] = w[l] || [];-->
-    <!--w[l].push({-->
-      <!--'gtm.start':-->
-        <!--new Date().getTime(), event: 'gtm.js'-->
-    <!--});-->
-    <!--var f = d.getElementsByTagName(s)[0],-->
-      <!--j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';-->
-    <!--j.async = true;-->
-    <!--j.src =-->
-      <!--'https://www.googletagmanager.com/gtm.js?id=' + i + dl;-->
-    <!--f.parentNode.insertBefore(j, f);-->
-  <!--})(window, document, 'script', 'dataLayer', 'GTM-WX242C4');</script>-->
+	<!--w[l] = w[l] || [];-->
+	<!--w[l].push({-->
+	<!--'gtm.start':-->
+	<!--new Date().getTime(), event: 'gtm.js'-->
+	<!--});-->
+	<!--var f = d.getElementsByTagName(s)[0],-->
+	<!--j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';-->
+	<!--j.async = true;-->
+	<!--j.src =-->
+	<!--'https://www.googletagmanager.com/gtm.js?id=' + i + dl;-->
+	<!--f.parentNode.insertBefore(j, f);-->
+	<!--})(window, document, 'script', 'dataLayer', 'GTM-WX242C4');</script>-->
 	<!--&lt;!&ndash; End Google Tag Manager &ndash;&gt;-->
 
 	<!--&lt;!&ndash; Global site tag (gtag.js) - Google Analytics &ndash;&gt;-->
 	<!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113376140-1"></script>-->
 	<!--<script>-->
-    <!--window.dataLayer = window.dataLayer || [];-->
+	<!--window.dataLayer = window.dataLayer || [];-->
 
-    <!--function gtag() {-->
-      <!--dataLayer.push(arguments);-->
-    <!--}-->
+	<!--function gtag() {-->
+	<!--dataLayer.push(arguments);-->
+	<!--}-->
 
-    <!--gtag('js', new Date());-->
+	<!--gtag('js', new Date());-->
 
-    <!--gtag('config', 'UA-113376140-1');-->
+	<!--gtag('config', 'UA-113376140-1');-->
 	<!--</script>-->
 	<!--&lt;!&ndash; Global site tag (gtag.js) - Google Analytics &ndash;&gt;-->
 
@@ -51,7 +51,7 @@
 	<!--[if lt IE 9]>
 	<script src="//hstatic.net/0/0/global/design/theme-default/html5shiv.js"></script><![endif]-->
 	<title th:text="${sanPhamDetail.tenSanPham.value}">
-	
+
 	</title>
 
 	<link rel="canonical" href="https://www.160store.com/products/ao-thun-swalla-staiirof"/>
@@ -93,7 +93,7 @@
 	<style>.grecaptcha-badge {
 		visibility: hidden;
 	}</style>
-	
+
 	<noscript><img height='1' width='1' style='display:none'
 								 src='https://www.facebook.com/tr?id=498778034242936&amp;ev=PageView&amp;noscript=1'/></noscript>
 	<!-- Event snippet for PAGE_VIEW-0-10/26/2020 08:56:32 conversion page -->
@@ -13555,11 +13555,13 @@
 			display: none
 		}
 	</style>
-	<link rel="stylesheet" href="/static/css/styles.css" th:href="@{/css/styles.css}" />
-	<link rel="stylesheet" href="/static/css/flexslider.css" th:href="@{/cssflexslider.css}" />
-	<link rel="stylesheet" href="/static/css/f-cus.css" th:href="@{/css/f-cus.css}" />
+	<link rel="stylesheet" href="/static/css/styles.css" th:href="@{/css/styles.css}"/>
+	<link rel="stylesheet" href="/static/css/flexslider.css" th:href="@{/cssflexslider.css}"/>
+	<link rel="stylesheet" href="/static/css/f-cus.css" th:href="@{/css/f-cus.css}"/>
 	<!--+++++++++++++++++++++++++  JS ++++++++++++++++++++++++-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js" integrity="sha512-h9kKZlwV1xrIcr2LwAPZhjlkx+x62mNwuQK5PAu9d3D+JXMNlGx8akZbqpXvp0vA54rz+DrqYVrzUGDMhwKmwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+					integrity="sha512-h9kKZlwV1xrIcr2LwAPZhjlkx+x62mNwuQK5PAu9d3D+JXMNlGx8akZbqpXvp0vA54rz+DrqYVrzUGDMhwKmwQ=="
+					crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<!--<script src='//theme.hstatic.net/1000253775/1000703955/14/jquery.min.1.11.0.js?v=39' type='text/javascript'></script>-->
 	<script>
     var formatMoney = '{{amount}}₫';
@@ -15005,11 +15007,12 @@
 							</a>
 							<ul class="sub_menu">
 								<div th:each=" loaiSanPham : ${loaiSanPham.values}">
-									<a th:href="@{|/${loaiSanPham.tenMap.value}|}" th:value="${loaiSanPham.maLoai.value}" th:text="${loaiSanPham.tenLoai.value}"></a>
+									<a th:href="@{|/${loaiSanPham.tenMap.value}|}" th:value="${loaiSanPham.maLoai.value}"
+										 th:text="${loaiSanPham.tenLoai.value}"></a>
 
 								</div>
-									</ul>
-								</li>
+							</ul>
+						</li>
 						<li class="">
 							<a href="/pages/huong-dan-dat-hang" title="HƯỚNG DẪN - CHÍNH SÁCH">
 								HƯỚNG DẪN - CHÍNH SÁCH
@@ -15025,13 +15028,11 @@
 								</li>
 
 
-
 								<li class="">
 									<a href="/pages/huong-dan-dat-hang" title="HƯỚNG DẪN ĐẶT HÀNG">
 										HƯỚNG DẪN ĐẶT HÀNG
 									</a>
 								</li>
-
 
 
 								<li class="">
@@ -15041,13 +15042,11 @@
 								</li>
 
 
-
 								<li class="">
 									<a href="/pages/tai-khoan-ngan-hang" title="TÀI KHOẢN NGÂN HÀNG">
 										TÀI KHOẢN NGÂN HÀNG
 									</a>
 								</li>
-
 
 
 								<li class="">
@@ -15057,25 +15056,22 @@
 								</li>
 
 
-
 								<!--<li class="">-->
-									<!--<a href="/pages/ctmembership" title="MEMBERSHIP">-->
-										<!--MEMBERSHIP-->
-									<!--</a>-->
+								<!--<a href="/pages/ctmembership" title="MEMBERSHIP">-->
+								<!--MEMBERSHIP-->
+								<!--</a>-->
 								<!--</li>-->
 
 
-
 								<!--<li class="">-->
-									<!--<a href="/pages/huong-dan-kiem-tra-sp-tai-cac-chi-nhanh" title="KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH">-->
-										<!--KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH-->
-									<!--</a>-->
+								<!--<a href="/pages/huong-dan-kiem-tra-sp-tai-cac-chi-nhanh" title="KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH">-->
+								<!--KIỂM TRA SẢN PHẨM TẠI CHI NHÁNH-->
+								<!--</a>-->
 								<!--</li>-->
 
 
 							</ul>
 						</li>
-
 
 
 						<li class="">
@@ -15085,7 +15081,6 @@
 						</li>
 
 
-
 						<li class="">
 							<a href="https://www.160store.com/pages/ve-chung-toi" title="GIỚI THIỆU">
 								GIỚI THIỆU
@@ -15093,11 +15088,10 @@
 						</li>
 
 
-
 						<!--<li class="">-->
-							<!--<a href="https://www.160store.com/blogs/all" title="NEWS">-->
-								<!--NEWS-->
-							<!--</a>-->
+						<!--<a href="https://www.160store.com/blogs/all" title="NEWS">-->
+						<!--NEWS-->
+						<!--</a>-->
 						<!--</li>-->
 
 
@@ -15319,7 +15313,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 									<div class="product-gallery__thumbs-container hidden-sm hidden-xs">
 										<div class="product-gallery__thumbs thumb-fix">
 
-											<div class="product-gallery__thumb active" >
+											<div class="product-gallery__thumb active">
 												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getMainImage().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getMainImage().getLinkHinh().value}|"
@@ -15421,10 +15415,11 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 											<div id="variant-swatch-0" class="swatch clearfix color swFirst" data-option="option1"
 													 data-option-index="0">
 												<div class="header">Màu sắc</div>
-												<div class="select-swap" th:each="mau : ${sanPhamDetail.getMaus().values}">
+												<div class="select-swap">
 
 
-													<div data-value="Đen-0010" class="swatch-element1 color den-0010">
+													<div data-value="Đen-0010" class="swatch-element1 color den-0010"
+															 th:each="mau : ${sanPhamDetail.getMaus().values}">
 														<input class="variant-0" th:id="${mau.value}" type="radio" name="mau"
 																	 th:value="${mau.value}"/>
 
@@ -15435,23 +15430,23 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 														</label>
 
 													</div>
-													
 
 
 												</div>
 											</div>
-											
 
 
 											<div id="variant-swatch-1" class="swatch clearfix optionSwatch " data-option="option2"
 													 data-option-index="1">
 												<div class="header">SIZE</div>
-												<div class="select-swap" th:each="size : ${sanPhamDetail.sizes.sizes}">
-													<div data-value="S" class="swatch-element1 s" >
-														<input class="variant-1" th:id="${size.value}" type="radio" name="option2" value="S"/>
+												<div class="select-swap" >
+													<div data-value="S" class="swatch-element1 s " th:each="size : ${sanPhamDetail.sizes.sizes}">
+														<input class="variant-1" th:id="${size.value}" type="radio" name="option2" th:value="${size.value}"/>
 
-														<label class="lbSwatch" th:for="${size.value}" th:text="${size.value}">
-
+														<label class="lbSwatch" th:for="${size.value}" >
+															<span th:text="${size.value}"></span>
+															<img alt="select-pro" class="img-check"
+																	 src="//theme.hstatic.net/1000253775/1000703955/14/select-pro.png?v=39"/>
 														</label>
 
 													</div>
@@ -15521,74 +15516,8 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 												<div> Đặt hàng</div>
 												<div class="btnAddToCartAdditionalInfo"></div>
 											</button>
-											<button type="button" id="buy-now" class="active  add-to-cartProduct button dark btn-addtocart ">
-												<img class="availableIcon" src="//theme.hstatic.net/1000253775/1000703955/14/store.svg?v=39"
-														 alt="Available Store"/>
-												<span>Xem CH có SP này</span>
-											</button>
 										</div>
 									</div>
-									<div class="content-map hidden">
-
-										<a href="#" data-toggle="modal" data-target="#modalMap"
-											 data-url="/blogs/cua-hang-tp-ho-chi-minh/cnhanoi2">
-											26 Lê Đại Hành, Quận Hai Bà Trưng, Tp Hà Nội
-										</a>
-
-										<a href="#" data-toggle="modal" data-target="#modalMap"
-											 data-url="/blogs/cua-hang-tp-ho-chi-minh/94-le-van-tho-q-go-vap-gan-cho-hanh-thong-tay">
-											94 Lê Văn Thọ, P.11, Q.Gò Vấp
-										</a>
-
-										<a href="#" data-toggle="modal" data-target="#modalMap"
-											 data-url="/blogs/cua-hang-tp-ho-chi-minh/144-ly-tu-trong-quan-hai-chau-1-tp-da-nang">
-											144 Lý Tự Trọng, P.Thuận Phước, Đà Nẵng
-										</a>
-
-										<a href="#" data-toggle="modal" data-target="#modalMap"
-											 data-url="/blogs/cua-hang-tp-ho-chi-minh/so-2-ngo-232-ton-duc-thang-phuong-cat-linh-quan-dong-da-ha-noi">
-											Số 2 ngõ 232 Tôn Đức Thắng, P.Hàng Bột, Q.Đống Đa, Hà Nội
-										</a>
-
-										<a href="#" data-toggle="modal" data-target="#modalMap"
-											 data-url="/blogs/cua-hang-tp-ho-chi-minh/35-tran-phu-quan-ninh-kieu-tp-can-tho">
-											35 Trần Phú, P.Cái Khế, Q.Ninh Kiều, TP.Cần Thơ
-										</a>
-
-										<a href="#" data-toggle="modal" data-target="#modalMap"
-											 data-url="/blogs/cua-hang-tp-ho-chi-minh/157-phan-trung-phuong-tan-mai-tp-bien-hoa-dong-nai">
-											157 Phan Trung, P.Tân Mai, TP.Biên Hòa
-										</a>
-
-										<a href="#" data-toggle="modal" data-target="#modalMap"
-											 data-url="/blogs/cua-hang-tp-ho-chi-minh/401-phan-xich-long-phuong-3-quan-phu-nhuan">
-											401 Phan Xích Long, P.3, Q.Phú Nhuận
-										</a>
-
-										<a href="#" data-toggle="modal" data-target="#modalMap"
-											 data-url="/blogs/cua-hang-tp-ho-chi-minh/chi-nhanh-khuong-viet">
-											111 Khuông Việt, P.Phú Trung, Q.Tân Phú
-										</a>
-
-										<a href="#" data-toggle="modal" data-target="#modalMap"
-											 data-url="/blogs/cua-hang-tp-ho-chi-minh/chi-nhanh-to-hien-thanh">
-											297/3 Tô Hiến Thành, P.13, Q.10
-										</a>
-
-										<a href="#" data-toggle="modal" data-target="#modalMap"
-											 data-url="/blogs/cua-hang-tp-ho-chi-minh/chi-nhanh-tran-hung-dao">
-											391/375 Trần Hưng Đạo, P.Cầu Kho, Q.1
-										</a>
-
-									</div>
-									<div class="inventory-store">
-										<h2>
-											<span class="numberStore"></span>
-										</h2>
-										<div id="stock-box-mobile"></div>
-										<span class="icon"><i class="fa fa-angle-double-down" aria-hidden="true"></i></span>
-									</div>
-
 
 									<a class="combo-giare hidden" href="javascript:void(0)">
 										<img src="//theme.hstatic.net/1000253775/1000703955/14/button_combo.png?v=39">
@@ -15601,10 +15530,6 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 
 								</form>
 								<div class="product-description">
-									<!-- <div class="title-bl">
- <h2>Mô tả</h2>
- </div>
- -->
 									<div class="description-content">
 										<h2>
 											Thông tin sản phẩm
@@ -15614,6 +15539,8 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 										</div>
 									</div>
 								</div>
+								<p></p>
+								<p></p>
 							</div>
 
 						</div>
@@ -19203,8 +19130,8 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 			</div>
 			<button id="closedivZoom"><i></i></button>
 		</div>
-		
-  
+
+
 		<style>
 
 			#carousel .owl-nav > .owl-prev {
@@ -19593,51 +19520,52 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 				</div>
 			</div>
 
-		<div class="footer-socials">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-xs-12 col-sm-6 fix-footer-mobile">
-						<h4>Like 160STORE trên mạng xã hội</h4>
-						<ul class="clearfix social">
+			<div class="footer-socials">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 col-xs-12 col-sm-6 fix-footer-mobile">
+							<h4>Like 160STORE trên mạng xã hội</h4>
+							<ul class="clearfix social">
 
-							<li>
-								<a href="https://www.facebook.com/160store" class="ico-social-ft fb">
-									<img src="https://file.hstatic.net/1000253775/file/icon_fb_3f32ab0772e64de6b2b9b7463fab6080.png">
+								<li>
+									<a href="https://www.facebook.com/160store" class="ico-social-ft fb">
+										<img src="https://file.hstatic.net/1000253775/file/icon_fb_3f32ab0772e64de6b2b9b7463fab6080.png">
+										<img class="ico-social-hover"
+												 src="https://file.hstatic.net/1000253775/file/icon_fb_3f32ab0772e64de6b2b9b7463fab6080.png">
+									</a>
+								</li>
+
+
+								<li><a href="https://www.instagram.com/160store" class="ico-social-ft in">
+									<img
+										src="https://file.hstatic.net/1000253775/file/icon_insta_ne_421190a81e254b6d8b19ea3ca5b2909f.png">
 									<img class="ico-social-hover"
-											 src="https://file.hstatic.net/1000253775/file/icon_fb_3f32ab0772e64de6b2b9b7463fab6080.png">
+											 src="https://file.hstatic.net/1000253775/file/icon_insta_ne_421190a81e254b6d8b19ea3ca5b2909f.png">
 								</a>
-							</li>
+								</li>
 
 
-							<li><a href="https://www.instagram.com/160store" class="ico-social-ft in">
-								<img src="https://file.hstatic.net/1000253775/file/icon_insta_ne_421190a81e254b6d8b19ea3ca5b2909f.png">
-								<img class="ico-social-hover"
-										 src="https://file.hstatic.net/1000253775/file/icon_insta_ne_421190a81e254b6d8b19ea3ca5b2909f.png">
-							</a>
-							</li>
-
-
-						</ul>
-					</div>
-					<div class="col-md-4 col-xs-12 col-sm-6  fix-footer-mobile">
-						<div class="adress-item">
-							<h4>Chính sách</h4>
-							<ul class="clearfix xx-menu">
-								<li><a href="/pages/huong-dan-dat-hang" class="title-menux">Hướng dẫn đặt hàng</a></li>
-								<li><a href="/pages/chinh-sach-doi-tra" class="title-menux">Chính sách đổi trả</a></li>
-								<li><a href="/pages/tai-khoan-ngan-hang" class="title-menux">Thông tin chuyển khoản</a></li>
-								<li><a href="/pages/kiem-tra-don-hang" class="title-menux">Kiểm tra đơn hàng</a></li>
 							</ul>
+						</div>
+						<div class="col-md-4 col-xs-12 col-sm-6  fix-footer-mobile">
+							<div class="adress-item">
+								<h4>Chính sách</h4>
+								<ul class="clearfix xx-menu">
+									<li><a href="/pages/huong-dan-dat-hang" class="title-menux">Hướng dẫn đặt hàng</a></li>
+									<li><a href="/pages/chinh-sach-doi-tra" class="title-menux">Chính sách đổi trả</a></li>
+									<li><a href="/pages/tai-khoan-ngan-hang" class="title-menux">Thông tin chuyển khoản</a></li>
+									<li><a href="/pages/kiem-tra-don-hang" class="title-menux">Kiểm tra đơn hàng</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
 
-		<div class="copyright">
-			© 2021 160STORE
-		</div>
+			<div class="copyright">
+				© 2021 160STORE
+			</div>
 	</footer>
 
 	<div class="back-to-top">
@@ -19890,7 +19818,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 					<table class="table-total">
 						<tr>
 							<td class="text-left">TỔNG TIỀN:</td>
-							<td class="text-right" id="total-view-cart">280,000₫</td>
+							<td class="text-right" id="total-view-cart"></td>
 						</tr>
 
 						<tr>
@@ -20184,21 +20112,21 @@ _Hasync.push(['Histats.track_hits', '']);
   })
 </script>
 <script>
-												console.log("ngon1");
-												console.log($('.variant-0'))
-												console.log(document.getElementsByClassName('variant-0'))
-														$('.variant-0').change(function() {
-															console.log("ngon2");
-  // if (this.value == '') {
-  //   $(".user-title").show();
-  //   $(".company-title").hide();
-  // }
-  // else if (this.value == 'societa') {
-  //   $(".user-title").hide();
-  //   $(".company-title").show();
-  // }
-});
-													
-													</script>
+
+  $('.swatch[data-option="option5"] .select-swap .swatch-element1').each(function () {
+    if ($(this).hasClass('checked')) {
+      hasCheckedOpion1 = true;
+      console.log("check mau")
+      return false;
+    }
+  })
+  $('.swatch[data-option="option6"] .select-swap .swatch-element1').each(function(){
+    if($(this).hasClass('checked')){
+      hasCheckedOpion2 = true;
+      console.log("check size")
+      return false;
+    }
+  })
+</script>
 </body>
 </html>

@@ -50,7 +50,7 @@
 	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/><![endif]-->
 	<!--[if lt IE 9]>
 	<script src="//hstatic.net/0/0/global/design/theme-default/html5shiv.js"></script><![endif]-->
-	<title th:text="${sanPhamDetail.tenSanPham.value}">
+	<!--<title th:text="${sanPhamDetail.tenSanPham.value}">-->
 
 	</title>
 
@@ -15119,7 +15119,7 @@
 			</a>
 		</span>
 			<span id="site-cart-handle" class="icon-cart" aria-label="Open cart" title="Giỏ hàng">
-			<a href="/cart">
+			<a href="/cart" class="cart-menu-1">
 				<span class="cart-menu" aria-hidden="true">
 					<svg version="1.1" class="svg-cart" xmlns="http://www.w3.org/2000/svg"
 							 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 27"
@@ -15218,7 +15218,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 							<li><a href="/collections/san-pham-moi" target="_self">SẢN PHẨM MỚI</a></li>
 
 
-							<li class="active"><span th:text="${sanPhamDetail.tenSanPham.value}"> </span></li>
+							<!--<li class="active"><span th:text="${sanPhamDetail.tenSanPham.value}"> </span></li>-->
 
 						</ol>
 					</div>
@@ -15398,11 +15398,14 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 							</div>
 							<div class="col-md-4 col-sm-12 col-xs-12 product-content-desc" id="detail-product">
 								<div class="product-title">
-									<h1 th:text="${sanPhamDetail.getTenSanPham().value}">Áo thun SWALLA STAIIROF</h1>
+									<h1  th:text="${sanPhamDetail.getTenSanPham().value}">Áo thun SWALLA STAIIROF</h1>
 								</div>
 								<div class="product-price pdPrice" id="price-preview">
 
-									<span th:text="${sanPhamDetail.getGiaKM().formattedValue()} + 'đ'" class="pro-price">320,000₫</span>
+									<span  th:text="${sanPhamDetail.getGiaKM().formattedValue()} + 'đ'" class="pro-price">320,000₫</span>
+									<input hidden="hidden" th:value="${sanPhamDetail.sanPhamDetailId.value}" id="sanPhamDetailId"/>
+									<input hidden="hidden" th:value="${sanPhamDetail.getGiaKM().value}" id="giaSp"/>
+									<input hidden="hidden" th:value="${sanPhamDetail.tenSanPham.value}" id="tenSanPham"/>
 
 								</div>
 
@@ -15418,7 +15421,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 												<div class="select-swap">
 
 
-													<div data-value="Đen-0010" class="swatch-element1 color den-0010"
+													<div data-value="Đen-0010" class="swatch-element1 chon-mau color den-0010"
 															 th:each="mau : ${sanPhamDetail.getMaus().values}">
 														<input class="variant-0" th:id="${mau.value}" type="radio" name="mau"
 																	 th:value="${mau.value}"/>
@@ -15440,8 +15443,8 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 													 data-option-index="1">
 												<div class="header">SIZE</div>
 												<div class="select-swap" >
-													<div data-value="S" class="swatch-element1 s " th:each="size : ${sanPhamDetail.sizes.sizes}">
-														<input class="variant-1" th:id="${size.value}" type="radio" name="option2" th:value="${size.value}"/>
+													<div data-value="S" class="swatch-element1 chon-size " th:each="size : ${sanPhamDetail.sizes.sizes}">
+														<input class="variant-1" th:id="${size.value}" type="radio" name="size" th:value="${size.value}"/>
 
 														<label class="lbSwatch" th:for="${size.value}" >
 															<span th:text="${size.value}"></span>
@@ -19799,7 +19802,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 			<p class="title">Giỏ hàng</p>
 			<div class="cart-view clearfix">
 				<table id="clone-item-cart" class="table-clone-cart">
-					<tr class="item_2 hidden">
+					<tr class="item_2">
 						<td class="img"><a href="" title=""><img src="" alt=""/></a></td>
 						<td>
 							<a class="pro-title-view" href="" title=""></a>
@@ -20127,6 +20130,51 @@ _Hasync.push(['Histats.track_hits', '']);
       return false;
     }
   })
+	
+	$('#add-to-cart').click(function () {
+		$( "div.chon-mau" ).each(function(){
+			if ($(this).hasClass('checked')) {
+				localStorage.setItem('mau', $(this).find('input').val())
+			}
+		})
+		$( "div.chon-size" ).each(function(){
+			if ($(this).hasClass('checked')) {
+				localStorage.setItem('size', $(this).find('input').val())
+			}
+		})
+		localStorage.setItem('item', $('#quantity').val())
+		localStorage.setItem('sanPhamDetailId',$('#sanPhamDetailId').val())
+		localStorage.setItem('giaSP',$('#giaSp').val())
+		localStorage.setItem('tenSP',$('#tenSanPham').val() )
+		
+		// $( ".pro-title-view" ).text("tenSp");
+		//  $( ".variant" ).text("a");
+		 
+		const cart = JSON.parse(localStorage.getItem('cart'))
+		const firstCart = [{
+			soluong: Number($('#quantity').val()),
+			giaSP: $('#giaSp').val(),
+			sanPhamDetailId: $('#sanPhamDetailId').val(),
+			tenSP: $('#tenSanPham').val()
+		}]
+		console.log('cart', cart)
+		const newCart = cart && cart.length > 0 ? cart.map(function (value) {
+			if($('#sanPhamDetailId').val() === value.sanPhamDetailId) {
+				console.log('map', Number($('#quantity').val()) + value.soluong)
+				return {
+				 soluong: Number($('#quantity').val()) + value.soluong,
+					...value
+				}
+			}
+			return value
+		}) : firstCart
+		
+		console.log('cart', newCart)
+		localStorage.setItem('cart', JSON.stringify(newCart))
+		$('.cart-menu-1').trigger('click');
+		
+		
+	})
 </script>
 </body>
 </html>

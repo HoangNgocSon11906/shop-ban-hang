@@ -20158,18 +20158,21 @@ _Hasync.push(['Histats.track_hits', '']);
 			tenSP: $('#tenSanPham').val()
 		}]
 		console.log('cart', cart)
-		const newCart = cart && cart.length > 0 ? cart.map(function (value) {
+		console.log('length', cart && cart.length )
+		var newCart = cart && cart.length > 0 ? cart.map(function (value) {
 			if($('#sanPhamDetailId').val() === value.sanPhamDetailId) {
 				console.log('map', Number($('#quantity').val()) + value.soluong)
 				return {
 				 soluong: Number($('#quantity').val()) + value.soluong,
-					...value
+					giaSP: value.giaSP,
+			sanPhamDetailId: value.sanPhamDetailId,
+			tenSP: value.tenSP
 				}
 			}
 			return value
 		}) : firstCart
 		
-		console.log('cart', newCart)
+		console.log('newcart', newCart)
 		localStorage.setItem('cart', JSON.stringify(newCart))
 		$('.cart-menu-1').trigger('click');
 		

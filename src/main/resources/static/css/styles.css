@@ -4999,6 +4999,24 @@ section.section.section-collection {
 		font-size:12px;
 	}
 }
+/* 1.6 - Tables */
+table {
+	width: 100%;
+	border-spacing: 0; }
+
+table tr td {
+	border-top: 1px solid #dddddd; }
+
+table tr td, table tr th {
+	padding: 10px;
+	text-align: center; }
+
+table tr td:first-child, table tr th:first-child {
+	padding-left: 0px; }
+
+table tr td:last-child, table tr th:last-child {
+	padding-right: 0px; }
+
 
 
 

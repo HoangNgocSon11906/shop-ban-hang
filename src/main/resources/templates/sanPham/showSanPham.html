@@ -43,7 +43,7 @@
 	<!--gtag('config', 'UA-113376140-1');-->
 	<!--</script>-->
 	<!--&lt;!&ndash; Global site tag (gtag.js) - Google Analytics &ndash;&gt;-->
-
+	<script src="https://kit.fontawesome.com/f7ef3dddcd.js" crossorigin="anonymous"></script>
 	<link rel="shortcut icon" href="//theme.hstatic.net/1000253775/1000703955/14/favicon.png?v=39" type="image/png"/>
 	<meta charset="utf-8"/>
 	<!--[if IE]>
@@ -15119,14 +15119,14 @@
 			</a>
 		</span>
 			<span id="site-cart-handle" class="icon-cart" aria-label="Open cart" title="Giỏ hàng">
-			<a href="/cart" class="cart-menu-1">
+			<a href="/cart" onclick="hienthigiohang()" class="cart-menu-1">
 				<span class="cart-menu" aria-hidden="true">
 					<svg version="1.1" class="svg-cart" xmlns="http://www.w3.org/2000/svg"
 							 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 27"
 							 style="enable-background:new 0 0 24 27;" xml:space="preserve"> <g> <path
 						d="M0,6v21h24V6H0z M22,25H2V8h20V25z"/> </g> <g> <path
 						d="M12,2c3,0,3,2.3,3,4h2c0-2.8-1-6-5-6S7,3.2,7,6h2C9,4.3,9,2,12,2z"/> </g> </svg>
-					<span class="count-holder"><span class="count">1</span></span>
+					<span class="count-holder"><span class="count"></span></span>
 				</span>
 			</a>
 		</span>
@@ -19800,19 +19800,9 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 	<div id="site-cart" class="site-nav-container" tabindex="-1">
 		<div class="site-nav-container-last">
 			<p class="title">Giỏ hàng</p>
-			<div class="cart-view clearfix">
+			<div class="cart-view clearfix" id="gio-hang">
 				<table id="clone-item-cart" class="table-clone-cart">
-					<tr class="item_2">
-						<td class="img"><a href="" title=""><img src="" alt=""/></a></td>
-						<td>
-							<a class="pro-title-view" href="" title=""></a>
-							<span class="variant"></span>
-							<span class="pro-quantity-view"></span>
-							<span class="pro-price-view"></span>
-							<span class="remove_link remove-cart">
-					</span>
-						</td>
-					</tr>
+
 				</table>
 				<form action="/cart" method="post" id="cartformpage">
 					<table id="cart-view">
@@ -20145,6 +20135,35 @@ _Hasync.push(['Histats.track_hits', '']);
     }
   return sanPham;
   }
+  // chuyen gio hang thanh html
+  function chuyenGioHangThanhHtml(gioHang) {
+	  var gioHangHtml = '';
+	  for (var i=0; i< gioHang.length; i++){
+	    var sanPham = gioHang[i];
+	    var sanPhamHtml = chuyenSanPhamThanhHtml(sanPham);
+	    gioHangHtml = gioHangHtml + sanPhamHtml;
+		}
+		return gioHangHtml
+  }
+  
+  // chuyen doi tuong thanh html
+	function chuyenSanPhamThanhHtml(sanPham) {
+	  var sanPhamHtml = '<tr class="item_2">';
+		sanPhamHtml += '<td class="img"><a href="" title=""><img src="" alt=""/></a></td>'
+    sanPhamHtml += '<td>'
+    sanPhamHtml += '<a class="pro-title-view" href="" title="">'+ sanPham.tenSanPham +'</a>'
+    sanPhamHtml +=	'<span class="variant">'+ sanPham.mau +'/'+ sanPham.size +'</span>'
+    sanPhamHtml +=	'<span class="pro-quantity-view">'+ sanPham.soLuong +'</span>'
+    sanPhamHtml +=  '<span class="pro-price-view">'+ sanPham.giaSP +'</span>'
+    sanPhamHtml +=  '<span class="remove_link remove-cart"><i class="fas fa-trash-alt"></i></span>'
+    sanPhamHtml +=  '</td>'
+    sanPhamHtml +=  '</tr>'
+	return sanPhamHtml
+  }
+  
+  function xoaSanPhamTrongGioHang() {
+		
+  }
   var danhSachSanPham = JSON.parse(localStorage.getItem("danhSachSanPham"));
 	if (danhSachSanPham == null) {
 	  danhSachSanPham = new Array();
@@ -20174,7 +20193,6 @@ _Hasync.push(['Histats.track_hits', '']);
     var soLuong = $('#quantity').val();
     var sanPhamDautien = taoDoiTuongSanPham(sanPhamDetailId, tenSp, giaSp, mauSp, sizeSp, soLuong );
     var coTonTaiTronggioHang = false;
-    console.log(danhSachSanPham.length)
 		for ( var i = 0; i< danhSachSanPham.length; i++){
 		  var sanPhamHienTai = danhSachSanPham[i];
 			if (sanPhamHienTai.sanPhamDetailId == sanPhamDautien.sanPhamDetailId &&
@@ -20182,7 +20200,6 @@ _Hasync.push(['Histats.track_hits', '']);
 			sanPhamHienTai.size == sanPhamDautien.size){
 			  sanPhamHienTai.soLuong = Number(sanPhamDautien.soLuong) + Number(sanPhamHienTai.soLuong);
 			  coTonTaiTronggioHang = true;
-			  console.log(sanPhamHienTai);
 			}
 		}
 	if(coTonTaiTronggioHang == false) {
@@ -20191,9 +20208,22 @@ _Hasync.push(['Histats.track_hits', '']);
 
 		var danhSachSanPhamJson = JSON.stringify(danhSachSanPham)
 		localStorage.setItem("danhSachSanPham", danhSachSanPhamJson)
+    // hien thi gio hang
     $('.cart-menu-1').trigger('click');
-  })
+    var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"));
+    var html = chuyenGioHangThanhHtml(gioHang);
+    var nodeGioHang = document.getElementById('clone-item-cart');
+    nodeGioHang.innerHTML = html;
 
+  })
+  // hien thi gio hang
+	function hienthigiohang() {
+    var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"))
+    var html = chuyenGioHangThanhHtml(gioHang);
+    var nodeGioHang = document.getElementById('clone-item-cart');
+    console.log("ngonnnn")
+    nodeGioHang.innerHTML = html;
+  }
 </script>
 </body>
 </html>

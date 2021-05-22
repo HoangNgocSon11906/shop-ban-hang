@@ -19,7 +19,18 @@ public class NhapSanPhamService {
     public SanPhamDetailS findAll() {
         return nhapSanPhamRepository.findAll();
     }
-    public void remove(String sanPhamId, String sanPhamDetailId) {
+    public SanPhamDetail findBy(String sanPhamDetailId) {
+        return nhapSanPhamRepository.findBy(sanPhamDetailId);
+    }
+    public void remove(String sanPhamId, Integer sanPhamDetailId) {
         nhapSanPhamRepository.remove(sanPhamId, sanPhamDetailId);
+    }
+
+    public void update(SanPhamDetail sanPhamDetail) {
+        nhapSanPhamRepository.update(sanPhamDetail);
+    }
+
+    public SanPhamDetailS findSanPhamBy(String tenMap) {
+        return  nhapSanPhamRepository.findSanPhamBy(tenMap);
     }
 }

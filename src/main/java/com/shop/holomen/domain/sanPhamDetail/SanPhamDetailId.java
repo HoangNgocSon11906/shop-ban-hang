@@ -1,16 +1,16 @@
 package com.shop.holomen.domain.sanPhamDetail;
 
 public class SanPhamDetailId {
-    int value;
+    Integer value;
 
     public SanPhamDetailId() {
     }
 
-    public int getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 }

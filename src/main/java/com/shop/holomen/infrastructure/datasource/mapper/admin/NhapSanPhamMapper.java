@@ -1,6 +1,5 @@
 package com.shop.holomen.infrastructure.datasource.mapper.admin;
 
-import com.shop.holomen.domain.sanPham.SanPhamId;
 import com.shop.holomen.domain.sanPhamDetail.Mau;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetail;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailId;
@@ -24,9 +23,17 @@ public interface NhapSanPhamMapper {
 
     void removeSanPham(@Param("sanPhamId")String sanPhamId);
 
-    void removeSanPhamDetail(@Param("sanPhamDetailId") String sanPhamDetailId);
+    void removeSanPhamDetail(@Param("sanPhamDetailId") Integer sanPhamDetailId);
 
-    void removeMau(@Param("sanPhamDetailId") String sanPhamDetailId);
+    void removeMau(@Param("sanPhamDetailId") Integer sanPhamDetailId);
 
-    void removeSize(@Param("sanPhamDetailId") String sanPhamDetailId);
+    void removeSize(@Param("sanPhamDetailId") Integer sanPhamDetailId);
+
+    SanPhamDetail findBy(@Param("sanPhamDetailId") String sanPhamDetailId);
+
+    void updateSanPham(@Param("sanPhamDetail") SanPhamDetail sanPhamDetail);
+
+    void updateSanPhamDetail(@Param("sanPhamDetail") SanPhamDetail sanPhamDetail);
+
+    List<SanPhamDetail> findSanPhamBy(@Param("tenMap") String tenMap);
 }

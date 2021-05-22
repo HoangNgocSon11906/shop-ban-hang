@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div class="site-nav-container-last">
+	<p class="title">Giỏ hàng</p>
+	<div class="cart-view clearfix">
+		<form action="/cart" method="post" id="cartformpage">
+			<table id="cart-view">
+			</table>
+			<span class="line"></span>
+			<table class="table-total">
+				<tr>
+					<td class="text-left">TỔNG TIỀN:</td>
+					<td class="text-right" id="total-view-cart"></td>
+				</tr>
+
+				<tr>
+					<td><a href="javascript:void(0)" class="linktocart button dark">Tiếp tục mua hàng</a></td>
+					<td class="checkout">
+						<a href="/checkout" id="checkout" class="linktocheckout btn-checkout button dark" name="checkout"
+							 value="">
+							<div>
+								Thanh toán
+							</div>
+						</a>
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<div class="checkout-note clearfix">
+						<textarea id="note" name="note" rows="8" cols="50" placeholder="Ghi chú"></textarea>
+					</div>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+</div>
+</body>
+</html>

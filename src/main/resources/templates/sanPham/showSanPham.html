@@ -20180,9 +20180,9 @@ _Hasync.push(['Histats.track_hits', '']);
 			if (sanPhamHienTai.sanPhamDetailId == sanPhamDautien.sanPhamDetailId &&
 				sanPhamHienTai.mau == sanPhamDautien.mau &&
 			sanPhamHienTai.size == sanPhamDautien.size){
-			  sanPhamDautien.soLuong = Number(sanPhamDautien.soLuong) + Number(sanPhamHienTai.soLuong);
+			  sanPhamHienTai.soLuong = Number(sanPhamDautien.soLuong) + Number(sanPhamHienTai.soLuong);
 			  coTonTaiTronggioHang = true;
-			  danhSachSanPham.push(sanPhamDautien);
+			  console.log(sanPhamHienTai);
 			}
 		}
 	if(coTonTaiTronggioHang == false) {
@@ -20191,6 +20191,7 @@ _Hasync.push(['Histats.track_hits', '']);
 
 		var danhSachSanPhamJson = JSON.stringify(danhSachSanPham)
 		localStorage.setItem("danhSachSanPham", danhSachSanPhamJson)
+    $('.cart-menu-1').trigger('click');
   })
 
 </script>

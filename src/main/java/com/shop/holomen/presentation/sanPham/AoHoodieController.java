@@ -19,7 +19,7 @@ public class AoHoodieController {
     @Autowired
     NhapSanPhamService nhapSanPhamService;
 
-    @RequestMapping(value = "/aohoodie", method = RequestMethod.GET)
+    @RequestMapping(value = "/aohoodie")
     public String sale(Model model) {
         LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
         SanPhamDetailS sanPhamDetailS = nhapSanPhamService.findSanPhamBy("aohoodie");

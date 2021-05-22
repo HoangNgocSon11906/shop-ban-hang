@@ -18,7 +18,7 @@ public class AoThunController {
     @Autowired
     NhapSanPhamService nhapSanPhamService;
 
-    @RequestMapping(value = "/{tenMap}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{tenMap}")
     public String sale(@PathVariable("tenMap") String tenMap,  Model model) {
         LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
         SanPhamDetailS sanPhamDetailS = nhapSanPhamService.findSanPhamBy(tenMap);

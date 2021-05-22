@@ -20115,71 +20115,84 @@ _Hasync.push(['Histats.track_hits', '']);
   })
 </script>
 <script>
+	// ham tao doi tuong
+	function taoDoiTuongSanPham(sanPhamDetailId, tenSanPham, giaSp, mau, size, soLuong) {
+    var sanPham = new Object();
+    sanPham.sanPhamDetailId = sanPhamDetailId;
+    sanPham.tenSanPham = tenSanPham;
+    sanPham.giaSP = giaSp;
+    sanPham.mau = mau
+    sanPham.size = size;
+    sanPham.soLuong = soLuong;
 
-  $('.swatch[data-option="option5"] .select-swap .swatch-element1').each(function () {
-    if ($(this).hasClass('checked')) {
-      hasCheckedOpion1 = true;
-      console.log("check mau")
-      return false;
+    sanPham.thanhTien = function () {
+      var thanhTien = this.giaSP * this.soLuong;
+      return thanhTien;
+
     }
-  })
-  $('.swatch[data-option="option6"] .select-swap .swatch-element1').each(function(){
-    if($(this).hasClass('checked')){
-      hasCheckedOpion2 = true;
-      console.log("check size")
-      return false;
+
+    sanPham.toJson = function () {
+      var sanPhamJson = JSON.stringify(this);
+      return sanPhamJson
     }
+
+    sanPham.fromJson = function (json) {
+			var doiTuongDayDu = new Object();
+			var doiTuong = JSON.parse(json);
+			var doiTuongDayDu = taoDoiTuongSanPham(doiTuong.sanPhamDetailId, doiTuong.tenSanPham, doiTuong.giaSP,
+				doiTuong.mau, doiTuong.size, doiTuong.soLuong);
+			return doiTuongDayDu;
+    }
+  return sanPham;
+  }
+  var danhSachSanPham = JSON.parse(localStorage.getItem("danhSachSanPham"));
+	if (danhSachSanPham == null) {
+	  danhSachSanPham = new Array();
+	}
+	// B1:tạo đối tượng sản phẩm
+  $('#add-to-cart').click(function () {
+
+
+    // lay mau
+      $("div.chon-mau").each(function () {
+        if ($(this).hasClass('checked')) {
+          localStorage.setItem('mau', $(this).find('input').val())
+        }
+
+    })
+		// lay size
+    	$( "div.chon-size" ).each(function(){
+    		if ($(this).hasClass('checked')) {
+    			localStorage.setItem('size', $(this).find('input').val())
+    		}
+    	})
+    var sanPhamDetailId = $('#sanPhamDetailId').val();
+		var mauSp = localStorage.getItem("mau");
+		var sizeSp = localStorage.getItem("size");
+    var giaSp = $('#giaSp').val();
+    var tenSp = $('#tenSanPham').val();
+    var soLuong = $('#quantity').val();
+    var sanPhamDautien = taoDoiTuongSanPham(sanPhamDetailId, tenSp, giaSp, mauSp, sizeSp, soLuong );
+    var coTonTaiTronggioHang = false;
+    console.log(danhSachSanPham.length)
+		for ( var i = 0; i< danhSachSanPham.length; i++){
+		  var sanPhamHienTai = danhSachSanPham[i];
+			if (sanPhamHienTai.sanPhamDetailId == sanPhamDautien.sanPhamDetailId &&
+				sanPhamHienTai.mau == sanPhamDautien.mau &&
+			sanPhamHienTai.size == sanPhamDautien.size){
+			  sanPhamDautien.soLuong = Number(sanPhamDautien.soLuong) + Number(sanPhamHienTai.soLuong);
+			  coTonTaiTronggioHang = true;
+			  danhSachSanPham.push(sanPhamDautien);
+			}
+		}
+	if(coTonTaiTronggioHang == false) {
+	  danhSachSanPham.push(sanPhamDautien);
+	}
+
+		var danhSachSanPhamJson = JSON.stringify(danhSachSanPham)
+		localStorage.setItem("danhSachSanPham", danhSachSanPhamJson)
   })
-	
-	$('#add-to-cart').click(function () {
-		$( "div.chon-mau" ).each(function(){
-			if ($(this).hasClass('checked')) {
-				localStorage.setItem('mau', $(this).find('input').val())
-			}
-		})
-		$( "div.chon-size" ).each(function(){
-			if ($(this).hasClass('checked')) {
-				localStorage.setItem('size', $(this).find('input').val())
-			}
-		})
-		localStorage.setItem('item', $('#quantity').val())
-		localStorage.setItem('sanPhamDetailId',$('#sanPhamDetailId').val())
-		localStorage.setItem('giaSP',$('#giaSp').val())
-		localStorage.setItem('tenSP',$('#tenSanPham').val() )
-		
-		// $( ".pro-title-view" ).text("tenSp");
-		//  $( ".variant" ).text("a");
-		 
-		const cart = JSON.parse(localStorage.getItem('cart'))
-		const firstCart = [{
-			soluong: Number($('#quantity').val()),
-			giaSP: $('#giaSp').val(),
-			sanPhamDetailId: $('#sanPhamDetailId').val(),
-			tenSP: $('#tenSanPham').val()
-		}]
-		console.log('cart', cart)
-		var newCart = cart && cart.length > 0 ? cart.map(function (value) {
-			if($('#sanPhamDetailId').val() === value.sanPhamDetailId) {
-				console.log('map', Number($('#quantity').val()) + value.soluong)
-				return {
-				 	soluong: Number($('#quantity').val()) + value.soluong,
-					giaSP: value.giaSP,
-					sanPhamDetailId: value.sanPhamDetailId,
-					tenSP: value.tenSP
-				}
-			}
-			if ($('#sanPhamDetailId').val() !== value.sanPhamDetailId) {
-				.push(firstCart)
-			}
-			return value
-		}) : firstCart
-		
-		console.log('newcart', newCart)
-		localStorage.setItem('cart', JSON.stringify(newCart))
-		$('.cart-menu-1').trigger('click');
-		
-		
-	})
+
 </script>
 </body>
 </html>

@@ -1,842 +1,16 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="flexbox">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="flexbox" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<link rel="shortcut icon" href="//theme.hstatic.net/1000253775/1000703955/14/favicon.png?v=39" type="image/png"/>
 	<title>
-		160STORE - Thanh toán đơn hàng
+		HOLOMEN STORE - Thanh toán đơn hàng
 	</title>
-
-
 	<meta name="description" content="160STORE - Thanh to&#225;n đơn h&#224;ng"/>
+	<link rel="stylesheet" href="/static/css/checkout.css" th:href="@{/css/checkout.css}"/>
 
-	<link href='//hstatic.net/0/0/global/checkouts.css?v=1.1' rel='stylesheet' type='text/css' media='all'/>
-	<link href='//theme.hstatic.net/1000253775/1000703955/14/check_out.css?v=39' rel='stylesheet' type='text/css'
-				media='all'/>
 	<script src='//hstatic.net/0/0/global/jquery.min.js' type='text/javascript'></script>
 
 	<script src='//hstatic.net/0/0/global/jquery.validate.js' type='text/javascript'></script>
-
-	<style>
-
-
-		form#form_update_shipping_method {
-			position: relative;
-		}
-
-		.footer-powered-by {
-			text-align: center;
-			color: #bbb5b5;
-			font-size: 0.65000em;
-		}
-
-		.order-checkout__loading {
-			position: static;
-		}
-
-		.order-checkout__loading--box {
-			position: absolute;
-			left: 0;
-			top: 0;
-			z-index: -1;
-			width: 100%;
-			height: 100%;
-			display: -webkit-flex;
-			display: flex;
-			opacity: 0;
-			visibility: hidden;
-			justify-content: center;
-			align-items: center;
-			padding: 0;
-		}
-
-		.order-checkout__loading--box.show {
-			z-index: 2;
-			visibility: visible;
-			opacity: 1;
-		}
-
-		.order-checkout__loading--circle {
-			border: 2px solid #f3f3f3;
-			border-top: 2px solid #5cabe0;
-			border-radius: 50%;
-			width: 32px;
-			height: 32px;
-			margin: 0;
-			-webkit-transform-origin: 50%;
-			-o-transform-origin: 50%;
-			-ms-transform-origin: 50%;
-			transform-origin: 50%;
-			-moz-animation: spin 700ms infinite linear;
-			-ms-animation: spin 1.5s infinite linear;
-			-webkit-animation: spin 700ms infinite linear;
-			-o-animation: spin 700ms infinite linear;
-			animation: spin 700ms infinite linear;
-			z-index: 1;
-		}
-
-		.order-checkout__loading--box.show:after {
-			content: "";
-			position: fixed;
-			width: 100%;
-			height: 100%;
-			left: 0;
-			top: 0;
-			z-index: 3;
-		}
-
-
-		.step-sections {
-			position: relative;
-			z-index: 3;
-		}
-
-		@media (max-width: 767px) {
-			.order-checkout__loading--box {
-				position: fixed;
-			}
-
-			.order-checkout__loading--box.show:after {
-				display: none;
-			}
-		}
-
-
-		.order-checkout__loading--show .order-checkout__loading--box {
-			display: block;
-		}
-
-
-		@-moz-keyframes spin {
-			100% {
-				-moz-transform: rotate(360deg);
-			}
-		}
-
-		@-webkit-keyframes spin {
-			100% {
-				-webkit-transform: rotate(360deg);
-			}
-		}
-
-		@keyframes spin {
-			100% {
-				-webkit-transform: rotate(360deg);
-				transform: rotate(360deg);
-			}
-		}
-
-		.redeem-login {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-		}
-
-		.redeem-login-title {
-			position: relative;
-			display: flex;
-			flex-wrap: wrap;
-		}
-
-		.redeem-login-title h2 {
-			color: #333;
-			margin-right: 5px;
-		}
-
-		.redeem-login-btn a {
-			display: inline-block;
-			border-radius: 4px;
-			font-weight: 500;
-			padding: 13px 10px;
-			background: #338dbc;
-			color: #fff;
-			width: 82px;
-			text-align: center;
-		}
-
-		.redeem-form-used {
-			padding-top: 10px;
-		}
-
-		.btn-redeem-loading .btn-redeem-spinner {
-			-webkit-animation: rotate 0.5s linear infinite;
-			animation: rotate 0.5s linear infinite;
-			opacity: 1;
-			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" 100 ")";
-			filter: alpha(opacity=100);
-		}
-
-		.icon-redeem-button-spinner {
-			position: absolute;
-			top: 0;
-			opacity: 0;
-			right: -25px;
-			width: 12px;
-			height: 12px;
-			border: 2px solid #999999;
-			border-bottom-color: transparent;
-			border-radius: 100%;
-		}
-
-		.total-line-table-footer {
-			white-space: nowrap;
-		}
-
-		.row-align-top {
-			vertical-align: top;
-		}
-	</style>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no">
-	<script type="text/javascript">
-    var parseQueryString = function (url) {
-
-      var str = url;
-      var objURL = {};
-
-      str.replace(
-        new RegExp("([^?=&]+)(=([^&]*))?", "g"),
-        function ($0, $1, $2, $3) {
-
-          if ($3 != undefined && $3 != null)
-            objURL[$1] = decodeURIComponent($3);
-          else
-            objURL[$1] = $3;
-        });
-
-      return objURL;
-    };
-	</script>
-
-	<script type="text/javascript">
-    $(document).ready(function () {
-      setTimeout(function () {
-        var stepCheckout = parseInt($('.step-sections').attr('step'));
-        if (stepCheckout === 1) {
-          var flagVal = 0;
-          $('body').on('change', '#stored_addresses', function () {
-            flagVal = $(this).val();
-          });
-          $('body').on('click', '.step-footer-continue-btn', function () {
-            $(document).ajaxComplete(function (event, xhr, settings) {
-              if (settings.url.indexOf("form_next_step") > -1) {
-                $('#stored_addresses').val(flagVal);
-              }
-            });
-          })
-
-          function check_required() {
-            $('.field-required').each(function () {
-              var self = $(this).find('input');
-              var selfSelect = $(this).find('select');
-
-              if (self.val() !== '') {
-                self.parent().next().remove();
-                self.parents('.field-error').removeClass('field-error')
-              }
-
-              if (selfSelect !== null || selfSelect !== 0) {
-                selfSelect.parent().next().remove();
-                selfSelect.parents('.field-error').removeClass('field-error')
-              }
-            });
-          }
-
-          $('body').on('change', '#stored_addresses', function () {
-            check_required();
-          });
-
-        }
-      }, 0)
-    })
-	</script>
-
-	<script type="text/javascript">
-    window.onpageshow = function (event) {
-      if (event.persisted) {
-        var currentUrl = '';
-
-        currentUrl = '/checkouts/e56ebfe37f924e9e9a675c14ab609b3d?step=1';
-
-
-        if (currentUrl)
-          window.location = currentUrl;
-      }
-    };
-
-
-    var isInit = false;
-
-
-    function funcFormOnSubmit(e) {
-      if (!isInit) {
-        isInit = true;
-
-        $.fn.tagName = function () {
-          return this.prop("tagName").toLowerCase();
-        };
-      }
-
-      if (typeof (e) == 'string') {
-        var element = $(e);
-        var formData = e;
-      } else {
-        var element = this;
-        var formData = this;
-        e.preventDefault();
-      }
-
-      $(element).find('button:submit').addClass('btn-loading');
-
-      var formId = $(element).attr('id'), replaceElement = [], funcCallback;
-
-      if (formId == undefined || formId == null || formId == '')
-        return;
-      if (formId == 'form_update_location_customer_shipping' || formId == 'form_update_location' || formId == 'form_update_shipping_method') {
-        if ($('.order-checkout__loading--box').length > 0) {
-          $('.order-checkout__loading--box').addClass('show');
-        }
-      }
-
-
-      if (formId == 'form_next_step') {
-        formData = '.step-sections';
-        replaceElement.push('.step-sections');
-      } else if (
-        formId == 'form_redeem_add'
-        || formId == 'form_redeem_remove'
-        || formId == 'form_discount_add'
-        || formId == 'form_discount_remove'
-        || formId == 'form_update_location'
-
-
-        || formId == 'section-shipping-rate'
-
-      ) {
-        replaceElement.push('#form_update_location');
-        replaceElement.push('#change_pick_location_or_shipping');
-        replaceElement.push('.inventory_location_data');
-        replaceElement.push('.order-summary-toggle-inner .order-summary-toggle-total-recap');
-        replaceElement.push('.order-summary-sections');
-        replaceElement.push('.order-summary-section.order-summary-section-total-lines.total-line-table.total-line-table-footer');
-        replaceElement.push('.order-summary-section.order-summary-section-total-lines.total-line-table.total-line.total-line-redeem');
-        replaceElement.push('.order-summary-section.order-summary-section-redeem.redeem-login-section');
-
-        replaceElement.push('#section-shipping-rate');
-
-      }
-
-
-      if (!$(formData) || $(formData).length == 0) {
-        window.location.reload();
-        return false;
-      }
-
-      var inputurl = '';
-
-      if (($(formData).tagName() != 'form' && $(formData).tagName() != 'input' && $(formData).tagName() != 'div')
-        || ($(formData).tagName() == 'input' || $(formData).tagName() == 'div')) {
-
-        formData += ' :input';
-      }
-      try {
-        var listparameters = new URLSearchParams($(formData).serialize());
-        var provincetmp = $('body').find('input[name$="selected_customer_shipping_province"]').val();
-        if (provincetmp != '') listparameters.set('customer_shipping_province', provincetmp);
-
-        var districttmp = $('body').find('input[name$="selected_customer_shipping_district"]').val();
-        if (districttmp != '') listparameters.set('customer_shipping_district', districttmp);
-
-        var wardtmp = $('body').find('input[name$="selected_customer_shipping_ward"]').val();
-        if (wardtmp != '') listparameters.set('customer_shipping_ward', wardtmp);
-
-        listparameters.delete('selected_customer_shipping_province');
-        listparameters.delete('selected_customer_shipping_district');
-        listparameters.delete('selected_customer_shipping_ward');
-        inputurl = listparameters.toString();
-
-      } catch (err) {
-
-        // Older Browser URLSearchParams not support
-        var listparameters = parseQueryString($(formData).serialize());
-        var provincetmp = $('body').find('input[name$="selected_customer_shipping_province"]').val();
-        if (provincetmp != '' && listparameters.customer_shipping_province) listparameters.customer_shipping_province = provincetmp;
-
-        var districttmp = $('body').find('input[name$="selected_customer_shipping_district"]').val();
-        if (districttmp != '' && listparameters.customer_shipping_district) listparameters.customer_shipping_district = districttmp;
-
-        var wardtmp = $('body').find('input[name$="selected_customer_shipping_ward"]').val();
-        if (wardtmp != '' && listparameters.customer_shipping_ward) listparameters.customer_shipping_ward = wardtmp;
-
-        delete listparameters.selected_customer_shipping_province;
-        delete listparameters.selected_customer_shipping_district;
-        delete listparameters.selected_customer_shipping_ward;
-
-        var listObject = '';
-        for (var key in listparameters) {
-          listObject += '&' + key + '=' + encodeURIComponent(listparameters[key]);
-        }
-        ;
-        inputurl = listObject.substring(1);
-
-      }
-
-
-      $.ajax({
-        type: 'GET',
-        url: window.location.origin + window.location.pathname + '?' + inputurl + encodeURI('&form_name=' + formId),
-        success: function (html) {
-          if ($(html).attr('id') == 'redirect-url') {
-            window.location = $(html).val();
-          } else {
-            if (replaceElement.length > 0) {
-              for (var i = 0; i < replaceElement.length; i++) {
-                var tempElement = replaceElement[i];
-                var newElement = $(html).find(tempElement);
-
-                if (newElement.length > 0) {
-                  if (tempElement == '.step-sections')
-                    $(tempElement).attr('step', $(newElement).attr('step'));
-
-                  var listTempElement = $(tempElement);
-
-                  for (var j = 0; j < newElement.length; j++)
-                    if (j < listTempElement.length)
-                      $(listTempElement[j]).html($(newElement[j]).html());
-                }
-              }
-            }
-
-
-            $("#div_location_country_not_vietnam").hide();
-            var is_vietnam = $("#is_vietnam").val();
-            if (is_vietnam && is_vietnam == "true") {
-              $("#div_country_not_vietnam").hide();
-            } else {
-              $("#div_country_not_vietnam").show();
-            }
-
-
-            $('body').attr('src', $(html).attr('src'));
-            $(element).find('button:submit').removeClass('btn-loading');
-
-            if (($('body').find('.field-error') && $('body').find('.field-error').length > 0)
-              || ($('body').find('.has-error') && $('body').find('.has-error').length > 0)) {
-              $("html, body").animate({scrollTop: 0}, "slow");
-            }
-            if (formId == 'form_update_location_customer_shipping' || formId == 'form_update_location' || formId == 'form_update_shipping_method') {
-              if ($('.order-checkout__loading--box').length > 0) {
-                $('.order-checkout__loading--box').removeClass('show');
-              }
-            }
-            if (funcCallback)
-              funcCallback();
-          }
-        }
-      }).fail(function () {
-        $(element).find('button:submit').removeClass('btn-loading');
-        if (formId == 'form_update_location_customer_shipping' || formId == 'form_update_location' || formId == 'form_update_shipping_method') {
-          if ($('.order-checkout__loading--box').length > 0) {
-            $('.order-checkout__loading--box').removeClass('show');
-          }
-        }
-      });
-
-      return false;
-    };
-
-    function funcSetEvent() {
-      var effectControlFieldClass = '.field input, .field select, .field textarea';
-
-      $('body')
-        .on('focus', effectControlFieldClass, function () {
-          funcFieldFocus($(this), true);
-        })
-        .on('blur', effectControlFieldClass, function () {
-          funcFieldFocus($(this), false);
-          funcFieldHasValue($(this), true);
-        })
-        .on('keyup input paste', effectControlFieldClass, function () {
-          funcFieldHasValue($(this), false);
-        })
-        .on('submit', 'form', funcFormOnSubmit);
-
-
-      $("#div_location_country_not_vietnam").hide();
-      $("#is_vietnam").val("true");
-      $("#div_country_not_vietnam").hide();
-
-
-      $('body')
-        .on('change', '#form_update_location', function () {
-          $(this).submit();
-        });
-
-
-      $('body')
-
-        .on('change', '#form_update_location select[name=customer_shipping_country]', function () {
-          var currentCountry = $(this).val();
-          if (currentCountry && currentCountry != "null" && currentCountry != 241) {
-            $("#is_vietnam").val("false");
-            $("#div_country_not_vietnam").show();
-          } else {
-            $("#is_vietnam").val("true");
-            $("#div_country_not_vietnam").hide();
-          }
-        })
-
-        .on('change', '#form_update_location select[name=customer_shipping_district]', function () {
-          $('.section-customer-information input:hidden[name=customer_shipping_district]').val($(this).val());
-        })
-        .on('change', '#form_update_location select[name=customer_shipping_ward]', function () {
-          $('.section-customer-information input:hidden[name=customer_shipping_ward]').val($(this).val());
-        });
-
-
-      $('body')
-        .on('change', '#form_update_shipping_method input:radio', function () {
-          $('#form_update_shipping_method .content-box-row.content-box-row-secondary').addClass('hidden');
-
-          var id = $(this).attr('id');
-
-          if (id) {
-            var sub = $('body').find('.content-box-row.content-box-row-secondary[for=' + id + ']')
-
-            if (sub && sub.length > 0) {
-              $(sub).removeClass('hidden');
-            }
-          }
-        });
-
-
-      $('body')
-        .on('change', '#section-payment-method input:radio', function () {
-          $('#section-payment-method .content-box-row.content-box-row-secondary').addClass('hidden');
-
-          var id = $(this).attr('id');
-
-          if (id) {
-            var sub = $('body').find('.content-box-row.content-box-row-secondary[for=' + id + ']')
-
-            if (sub && sub.length > 0) {
-              $(sub).removeClass('hidden');
-            }
-          }
-        });
-
-
-      $('body')
-        .on('change', '#section-shipping-rate input:radio[name=shipping_rate_id]', function () {
-          funcFormOnSubmit('#section-shipping-rate');
-        });
-
-
-    };
-
-    function funcFieldFocus(fieldInputElement, isFocus) {
-      if (fieldInputElement == undefined)
-        return;
-
-      var fieldElement = $(fieldInputElement).closest('.field');
-
-      if (fieldElement == undefined)
-        return;
-
-      if (isFocus)
-        $(fieldElement).addClass('field-active');
-      else
-        $(fieldElement).removeClass('field-active');
-    };
-
-    function funcFieldHasValue(fieldInputElement, isCheckRemove) {
-      if (fieldInputElement == undefined)
-        return;
-
-      var fieldElement = $(fieldInputElement).closest('.field');
-
-      if (fieldElement == undefined)
-        return;
-
-      if ($(fieldElement).find('.field-input-wrapper-select').length > 0) {
-        var value = $(fieldInputElement).find(':selected').val();
-
-        if (value == 'null')
-          value = undefined;
-      } else {
-        var value = $(fieldInputElement).val();
-      }
-
-      if (!isCheckRemove) {
-        if (value != $(fieldInputElement).attr('value'))
-          $(fieldElement).removeClass('field-error');
-      }
-
-      var fieldInputBtnWrapperElement = $(fieldInputElement).closest('.field-input-btn-wrapper');
-
-      if (value && value.trim() != '') {
-        $(fieldElement).addClass('field-show-floating-label');
-        $(fieldInputBtnWrapperElement).find('button:submit').removeClass('btn-disabled');
-      } else if (isCheckRemove) {
-        $(fieldElement).removeClass('field-show-floating-label');
-        $(fieldInputBtnWrapperElement).find('button:submit').addClass('btn-disabled');
-      } else {
-        $(fieldInputBtnWrapperElement).find('button:submit').addClass('btn-disabled');
-      }
-    };
-
-    function funcInit() {
-      funcSetEvent();
-
-
-    }
-
-    function funcReplaceMembershipInfo(html, replaceElement) {
-      var tempElement = $(replaceElement);
-      var newElement = $(html).find(replaceElement);
-      tempElement.html(newElement.html());
-    }
-
-    function funcMembershipInfo() {
-
-    }
-
-    $(document).ready(function () {
-
-      funcInit();
-      funcMembershipInfo();
-
-    });
-
-	</script>
-
-
-	<script type="text/javascript">
-    var toggleShowOrderSummary = false;
-    $(document).ready(function () {
-      var currentUrl = '';
-
-
-      currentUrl = '/checkouts/e56ebfe37f924e9e9a675c14ab609b3d?step=1';
-
-
-      if ($('#reloadValue').val().length == 0) {
-        $('#reloadValue').val(currentUrl);
-        $('body').show();
-      } else {
-        window.location = $('#reloadValue').val();
-        $('#reloadValue').val('');
-      }
-
-      $('body')
-        .on('click', '.order-summary-toggle', function () {
-          toggleShowOrderSummary = !toggleShowOrderSummary;
-
-          if (toggleShowOrderSummary) {
-            $('.order-summary-toggle')
-              .removeClass('order-summary-toggle-hide')
-              .addClass('order-summary-toggle-show');
-
-            $('.sidebar:not(".sidebar-second") .sidebar-content .order-summary')
-              .removeClass('order-summary-is-collapsed')
-              .addClass('order-summary-is-expanded');
-
-            $('.sidebar.sidebar-second .sidebar-content .order-summary')
-              .removeClass('order-summary-is-expanded')
-              .addClass('order-summary-is-collapsed');
-          } else {
-            $('.order-summary-toggle')
-              .removeClass('order-summary-toggle-show')
-              .addClass('order-summary-toggle-hide');
-
-            $('.sidebar:not(".sidebar-second") .sidebar-content .order-summary')
-              .removeClass('order-summary-is-expanded')
-              .addClass('order-summary-is-collapsed');
-
-            $('.sidebar.sidebar-second .sidebar-content .order-summary')
-              .removeClass('order-summary-is-collapsed')
-              .addClass('order-summary-is-expanded');
-          }
-        });
-    });
-	</script>
-
-	<script type='text/javascript'>
-    //<![CDATA[
-    if ((typeof Haravan) === 'undefined') {
-      Haravan = {};
-    }
-    Haravan.culture = 'vi-VN';
-    Haravan.shop = 'storehanghieu160.myharavan.com';
-    Haravan.theme = {"name": "SALE GPMN - QTLĐ 30-04-2021", "id": 1000703955, "role": "main"};
-    Haravan.domain = 'www.160store.com';
-    //]]>
-	</script>
-	<!-- Global site tag (gtag.js) - Google Ads: 758684278 -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=AW-758684278"></script>
-	<script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'AW-758684278');
-	</script>
-	<meta name="google-site-verification" content="NfxFHSP9ghNf35Ew5iWwo3TymRZ9gydv22amjJQhNSw"/>
-	<script>
-    //<![CDATA[
-    (function () {
-      function asyncLoad() {
-        var urls = ["https://app.haraloyalty.com/api/assets/webpopup.js?scope=checkout&v=1599493693"];
-        for (var i = 0; i < urls.length; i++) {
-          var s = document.createElement('script');
-          s.type = 'text/javascript';
-          s.async = true;
-          s.src = urls[i];
-          var x = document.getElementsByTagName('script')[0];
-          x.parentNode.insertBefore(s, x);
-        }
-      }
-
-      window.attachEvent ? window.attachEvent('onload', asyncLoad) : window.addEventListener('load', asyncLoad, false);
-    })();
-    //]]>
-	</script>
-	<script type='text/javascript'>!function () {
-    var hrv_analytics = window.hrv_analytics = window.hrv_analytics || [];
-    if (!hrv_analytics.initialize) if (hrv_analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
-      hrv_analytics.invoked = !0;
-      hrv_analytics.methods = ["start", "trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"];
-      hrv_analytics.factory = function (t) {
-        return function () {
-          var e = Array.prototype.slice.call(arguments);
-          e.unshift(t);
-          hrv_analytics.push(e);
-          return hrv_analytics
-        }
-      };
-      for (var t = 0; t < hrv_analytics.methods.length; t++) {
-        var e = hrv_analytics.methods[t];
-        hrv_analytics[e] = hrv_analytics.factory(e)
-      }
-      hrv_analytics.load = function (t, e) {
-        var n = document.createElement("script");
-        n.type = "text/javascript";
-        n.async = !0;
-        n.src = "https://stats.hstatic.net/analytics.min.js?t=2";
-        var a = document.getElementsByTagName("script")[0];
-        a.parentNode.insertBefore(n, a);
-        hrv_analytics._loadOptions = e
-      };
-      hrv_analytics.SNIPPET_VERSION = "4.1.0";
-      hrv_analytics.start('pro:web:1000253775');
-      hrv_analytics.page();
-      hrv_analytics.load();
-    }
-  }();</script>
-	<style>.grecaptcha-badge {
-		visibility: hidden;
-	}</style>
-	<script type='text/javascript'>
-    window.HaravanAnalytics = window.HaravanAnalytics || {};
-    window.HaravanAnalytics.meta = window.HaravanAnalytics.meta || {};
-    window.HaravanAnalytics.meta.currency = 'VND';
-    var meta = {
-      "page": {
-        "pageType": "checkout",
-        "resourceType": "checkout",
-        "resourceId": "e56ebfe37f924e9e9a675c14ab609b3d"
-      },
-      "cart": {
-        "products": [{
-          "variantId": 1061698177,
-          "productId": 1028261018,
-          "price": 40000000.0,
-          "name": "Áo khoác RUNPOW training ss20 - Trắng-0012 / M",
-          "sku": "AKRP0012-06",
-          "vendor": "NCHHSI0072",
-          "variant": "Trắng-0012 / M",
-          "type": "FORADV",
-          "quantity": 2
-        }, {
-          "variantId": 1070287164,
-          "productId": 1032218274,
-          "price": 28000000.0,
-          "name": "Áo thun BOUTON Deep wash acid - Xám Deep-0069 / S",
-          "sku": "ATBO0069-01",
-          "vendor": "NCHHSI0145",
-          "variant": "Xám Deep-0069 / S",
-          "type": "FORADV",
-          "quantity": 2
-        }], "item_count": 4, "total_price": 136000000.0
-      }
-    };
-    for (var attr in meta) {
-      window.HaravanAnalytics.meta[attr] = meta[attr];
-    }
-    window.HaravanAnalytics.AutoTrack = true;
-	</script>
-	<script>
-    //<![CDATA[
-    window.HaravanAnalytics.ga = "UA-113376140-1";
-    window.HaravanAnalytics.enhancedEcommerce = true;
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', window.HaravanAnalytics.ga, {
-      cookieDomain: 'auto',
-      siteSpeedSampleRate: '10',
-      sampleRate: 100,
-      allowLinker: true
-    });
-    ga('send', 'pageview');
-    ga('require', 'linker');
-    ga('require', 'linker');
-    //]]>
-	</script>
-	<script>
-    window.HaravanAnalytics.fb = "498778034242936";
-    //<![CDATA[
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function () {
-        n.callMethod ?
-          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n;
-      n.push = n;
-      n.loaded = !0;
-      n.version = '2.0';
-      n.queue = [];
-      t = b.createElement(e);
-      t.async = !0;
-      t.src = v;
-      s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window,
-      document, 'script', '//connect.facebook.net/en_US/fbevents.js');
-    // Insert Your Facebook Pixel ID below.
-    fbq('init', window.HaravanAnalytics.fb, {}, {'agent': 'plharavan'});
-    fbq('track', 'PageView');
-    //]]>
-	</script>
-	<noscript><img height='1' width='1' style='display:none'
-								 src='https://www.facebook.com/tr?id=498778034242936&amp;ev=PageView&amp;noscript=1'/></noscript>
-	<!-- Event snippet for PAGE_VIEW-0-10/26/2020 08:56:32 conversion page -->
-	<script>
-    gtag('event', 'conversion', {'send_to': 'AW-758684278/QFGfCNaK6-QBEPa04ukC'});
-	</script>
-
 </head>
 <body>
 
@@ -847,7 +21,7 @@
 <div class="banner">
 	<div class="wrap">
 		<a href="/" class="logo">
-			<h1 class="logo-text">160STORE</h1>
+			<h1 class="logo-text">HOLOMEN STORE</h1>
 		</a>
 	</div>
 </div>
@@ -880,44 +54,6 @@
 		</div>
 	</div>
 </button>
-<div class="content content-second">
-	<div class="wrap">
-		<div class="sidebar sidebar-second">
-			<div class="sidebar-content">
-				<div class="order-summary">
-					<div class="order-summary-sections">
-
-
-						<div class="order-summary-section order-summary-section-discount" data-order-summary-section="discount">
-							<form id="form_discount_add" accept-charset="UTF-8" method="post">
-								<input name="utf8" type="hidden" value="✓">
-								<div class="fieldset">
-									<div class="field  ">
-										<div class="field-input-btn-wrapper">
-											<div class="field-input-wrapper">
-												<label class="field-label" for="discount.code">Mã giảm giá</label>
-												<input placeholder="Mã giảm giá" class="field-input" data-discount-field="true"
-															 autocomplete="off" autocapitalize="off" spellcheck="false" size="30" type="text"
-															 id="discount.code" name="discount.code" value=""/>
-											</div>
-											<button type="submit" class="field-input-btn btn btn-default btn-disabled">
-												<span class="btn-content">Sử dụng</span>
-												<i class="btn-spinner icon icon-button-spinner"></i>
-											</button>
-										</div>
-
-									</div>
-								</div>
-							</form>
-						</div>
-
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <div class="content">
 
 	<div class="wrap">
@@ -990,54 +126,6 @@
 								</tbody>
 							</table>
 						</div>
-
-						<div class="order-summary-section order-summary-section-discount" data-order-summary-section="discount">
-							<form id="form_discount_add" accept-charset="UTF-8" method="post">
-								<input name="utf8" type="hidden" value="✓">
-								<div class="fieldset">
-									<div class="field  ">
-										<div class="field-input-btn-wrapper">
-											<div class="field-input-wrapper">
-												<label class="field-label" for="discount.code">Mã giảm giá</label>
-												<input placeholder="Mã giảm giá" class="field-input" data-discount-field="true"
-															 autocomplete="off" autocapitalize="off" spellcheck="false" size="30" type="text"
-															 id="discount.code" name="discount.code" value=""/>
-											</div>
-											<button type="submit" class="field-input-btn btn btn-default btn-disabled">
-												<span class="btn-content">Sử dụng</span>
-												<i class="btn-spinner icon icon-button-spinner"></i>
-											</button>
-										</div>
-
-									</div>
-								</div>
-							</form>
-						</div>
-
-						<div class="order-summary-section order-summary-section-redeem redeem-login-section"
-								 data-order-summary-section="discount">
-							<div class="redeem-login">
-								<div class="redeem-login-title">
-									<h2>Khách hàng thân thiết</h2>
-
-
-									<i class="btn-redeem-spinner icon-redeem-button-spinner"></i>
-
-
-								</div>
-
-
-								<div class="redeem-login-btn">
-									<a href="/account/login?urlredirect=%2Fcheckouts%2Fe56ebfe37f924e9e9a675c14ab609b3d%3Fstep%3D1">Đăng
-										nhập</a>
-								</div>
-
-
-							</div>
-
-						</div>
-
-
 						<div class="order-summary-section order-summary-section-total-lines payment-lines"
 								 data-order-summary-section="payment-lines">
 							<table class="total-line-table">
@@ -1092,7 +180,7 @@
 		<div class="main">
 			<div class="main-header">
 				<a href="/" class="logo">
-					<h1 class="logo-text">160STORE</h1>
+					<h1 class="logo-text">HOLOMEN STORE</h1>
 				</a>
 
 				<ul class="breadcrumb">
@@ -1118,15 +206,6 @@
 								<h2 class="section-title">Thông tin giao hàng</h2>
 							</div>
 							<div class="section-content section-customer-information no-mb">
-
-
-								<p class="section-content-text">
-									Bạn đã có tài khoản?
-									<a href="/account/login?urlredirect=%2Fcheckouts%2Fe56ebfe37f924e9e9a675c14ab609b3d%3Fstep%3D1">Đăng
-										nhập</a>
-								</p>
-
-
 								<div class="fieldset">
 
 
@@ -1405,22 +484,6 @@
 									</form>
 
 								</div>
-								<div class="section-content section-customer-information fieldset" id="div_country_not_vietnam">
-									<div class="field field-two-thirds">
-										<div class="field-input-wrapper">
-											<label class="field-label" for="billing_address_city">Thành phố</label>
-											<input placeholder="Thành phố" autocapitalize="off" spellcheck="false" class="field-input"
-														 size="30" type="text" id="billing_address_city" name="billing_address[city]" value=""/>
-										</div>
-									</div>
-									<div class="field field-third">
-										<div class="field-input-wrapper">
-											<label class="field-label" for="billing_address_zip">Mã bưu chính</label>
-											<input placeholder="Mã bưu chính" autocapitalize="off" spellcheck="false" class="field-input"
-														 size="30" type="text" id="billing_address_zip" name="billing_address[zip]" value=""/>
-										</div>
-									</div>
-								</div>
 							</div>
 							<div id="change_pick_location_or_shipping">
 
@@ -1430,11 +493,6 @@
 										<h2 class="section-title">Phương thức vận chuyển</h2>
 									</div>
 									<div class="section-content">
-
-										<div class="content-box  blank-slate">
-											<i class="blank-slate-icon icon icon-closed-box "></i>
-											<p>Vui lòng chọn tỉnh / thành để có danh sách phương thức vận chuyển.</p>
-										</div>
 
 									</div>
 								</div>
@@ -1459,10 +517,6 @@
 
 											<div class="radio-wrapper content-box-row content-box-row-secondary "
 													 for="payment_method_id_799117">
-												<div class="blank-slate">
-													- Nếu bạn là thành viên Silver hoặc Gold-Diamond, nhân viên sẽ cộng dồn giảm giá khi gọi xác
-													nhận.
-												</div>
 											</div>
 
 
@@ -1478,14 +532,7 @@
 
 											<div class="radio-wrapper content-box-row content-box-row-secondary hidden"
 													 for="payment_method_id_799115">
-												<div class="blank-slate">
-													Nếu bạn là thành viên Silver hoặc Gold-Diamond, nhân viên sẽ cộng dồn giảm giá khi gọi xác
-													nhận.
-													Thông tin chuyển khoản vui lòng xem trên trang chủ.
-												</div>
 											</div>
-
-
 										</div>
 									</div>
 								</div>
@@ -1516,8 +563,6 @@
 				</div>
 
 			</div>
-			<div class="main-footer footer-powered-by">
-				Powered by Haravan
 			</div>
 		</div>
 	</div>
@@ -1525,6 +570,199 @@
 </div>
 
 </body>
+<script>
+  // ham tao doi tuong
+  function taoDoiTuongSanPham(sanPhamDetailId, tenSanPham, giaSp, mau, size, soLuong) {
+    var sanPham = new Object();
+    sanPham.sanPhamDetailId = sanPhamDetailId;
+    sanPham.tenSanPham = tenSanPham;
+    sanPham.giaSP = giaSp;
+    sanPham.mau = mau
+    sanPham.size = size;
+    sanPham.soLuong = soLuong;
+
+    sanPham.thanhTien = function () {
+      var thanhTien = this.giaSP * this.soLuong;
+      return thanhTien;
+
+    }
+
+    sanPham.toJson = function () {
+      var sanPhamJson = JSON.stringify(this);
+      return sanPhamJson
+    }
+
+    sanPham.fromJson = function (json) {
+      var doiTuongDayDu = new Object();
+      var doiTuong = JSON.parse(json);
+      var doiTuongDayDu = taoDoiTuongSanPham(doiTuong.sanPhamDetailId, doiTuong.tenSanPham, doiTuong.giaSP,
+        doiTuong.mau, doiTuong.size, doiTuong.soLuong);
+      return doiTuongDayDu;
+    }
+    return sanPham;
+  }
+
+  // chuyen gio hang thanh html
+  function chuyenGioHangThanhHtml(gioHang) {
+    var gioHangHtml = '';
+    for (var i = 0; i < gioHang.length; i++) {
+
+      var sanPham = gioHang[i];
+      var index = i;
+      var sanPhamHtml = chuyenSanPhamThanhHtml(sanPham,index);
+      gioHangHtml = gioHangHtml + sanPhamHtml;
+
+    }
+    return gioHangHtml
+  }
+
+  //tong tien
+  function tongTien() {
+    var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));
+    var thanhTienSp = 0;
+    for (var i = 0; i < gioHang.length; i++) {
+      var sanPhamHienTai = gioHang[i];
+      var thanhTien = Number(sanPhamHienTai.soLuong) * Number(sanPhamHienTai.giaSP);
+      thanhTienSp += thanhTien;
+
+    }
+    return formatTien(thanhTienSp);
+  }
+
+  // chuyen doi tuong thanh html
+  function chuyenSanPhamThanhHtml(sanPham,index) {
+    var sanPhamHtml = '';
+    sanPhamHtml +='<table id="cart-view">'
+    sanPhamHtml +='<tbody> '
+    sanPhamHtml += '<tbody>'
+    sanPhamHtml += '<tr class="item_2">'
+    sanPhamHtml +=  '<td class="img" style="height: 70px; width: 10px;"><a title="/products/ao-thun-bouton-deep-wash-acid"><img src=""></a></td>'
+    sanPhamHtml +='<td>'
+    sanPhamHtml +='<a class="pro-title-view" href="/products/ao-thun-bouton-deep-wash-acid" title="/products/ao-thun-bouton-deep-wash-acid">' + sanPham.tenSanPham + '</a>'
+    sanPhamHtml +='<span class="variant">'+ sanPham.mau + '/' + sanPham.size +'</span>'
+    sanPhamHtml +='<span class="pro-quantity-view">'
+    sanPhamHtml +='<div class="qty quantity-partent qty-click clearfix"><input type="text" readonly=""  value="'+ sanPham.soLuong +'" class="tc line-item-qty item-quantity"></div>'
+    sanPhamHtml +=  '</span>'
+    sanPhamHtml +=  '<span class="pro-price-view">'+ formatTien(sanPham.giaSP) +'</span>'
+    sanPhamHtml +='<span class="remove_link remove-cart">'
+    sanPhamHtml +=  '<a onclick="xoaSanPhamTrongGioHang(' + index +')">'
+    sanPhamHtml += '<svg enable-background="new 0 0 438.529 438.529" version="1.1" viewBox="0 0 438.53 438.53" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">'
+    sanPhamHtml +=  '<path d="m417.69 75.654c-1.711-1.709-3.901-2.568-6.563-2.568h-88.224l-19.985-47.676c-2.854-7.044-7.994-13.04-15.413-17.989-7.426-4.948-14.948-7.421-22.559-7.421h-91.363c-7.611 0-15.131 2.473-22.554 7.421-7.424 4.949-12.563 10.944-15.419 17.989l-19.985 47.676h-88.22c-2.667 0-4.853 0.859-6.567 2.568-1.709 1.713-2.568 3.903-2.568 6.567v18.274c0 2.664 0.855 4.854 2.568 6.564 1.714 1.712 3.904 2.568 6.567 2.568h27.406v271.8c0 15.803 4.473 29.266 13.418 40.398 8.947 11.139 19.701 16.703 32.264 16.703h237.54c12.566 0 23.319-5.756 32.265-17.268 8.945-11.52 13.415-25.174 13.415-40.971v-270.66h27.411c2.662 0 4.853-0.856 6.563-2.568 1.708-1.709 2.57-3.9 2.57-6.564v-18.274c2e-3 -2.664-0.861-4.854-2.569-6.567zm-248.39-35.976c1.331-1.712 2.95-2.762 4.853-3.14h90.504c1.903 0.381 3.525 1.43 4.854 3.14l13.709 33.404h-127.91l13.99-33.404zm177.87 340.61c0 4.186-0.664 8.042-1.999 11.561-1.334 3.518-2.717 6.088-4.141 7.706-1.431 1.622-2.423 2.427-2.998 2.427h-237.54c-0.571 0-1.565-0.805-2.996-2.427-1.429-1.618-2.81-4.188-4.143-7.706-1.331-3.519-1.997-7.379-1.997-11.561v-270.66h255.82v270.66z"></path>'
+    sanPhamHtml +=  '<path d="m137.04 347.17h18.271c2.667 0 4.858-0.855 6.567-2.567 1.709-1.718 2.568-3.901 2.568-6.57v-164.45c0-2.663-0.859-4.853-2.568-6.567-1.714-1.709-3.899-2.565-6.567-2.565h-18.271c-2.667 0-4.854 0.855-6.567 2.565-1.711 1.714-2.568 3.904-2.568 6.567v164.45c0 2.669 0.854 4.853 2.568 6.57 1.713 1.711 3.9 2.567 6.567 2.567z"></path>'
+    sanPhamHtml +=  '<path d="m210.13 347.17h18.271c2.666 0 4.856-0.855 6.564-2.567 1.718-1.718 2.569-3.901 2.569-6.57v-164.45c0-2.663-0.852-4.853-2.569-6.567-1.708-1.709-3.898-2.565-6.564-2.565h-18.271c-2.664 0-4.854 0.855-6.567 2.565-1.714 1.714-2.568 3.904-2.568 6.567v164.45c0 2.669 0.854 4.853 2.568 6.57 1.712 1.711 3.903 2.567 6.567 2.567z"></path>'
+    sanPhamHtml +=  '<path d="m283.22 347.17h18.268c2.669 0 4.859-0.855 6.57-2.567 1.711-1.718 2.562-3.901 2.562-6.57v-164.45c0-2.663-0.852-4.853-2.562-6.567-1.711-1.709-3.901-2.565-6.57-2.565h-18.268c-2.67 0-4.853 0.855-6.571 2.565-1.711 1.714-2.566 3.904-2.566 6.567v164.45c0 2.669 0.855 4.853 2.566 6.57 1.718 1.711 3.901 2.567 6.571 2.567z"></path>'
+    sanPhamHtml += '</svg>'
+    sanPhamHtml +=  '</a>'
+    sanPhamHtml +=  '</span>'
+    sanPhamHtml +=  '</td>'
+    sanPhamHtml +=  '</tr>'
+    sanPhamHtml +=  '</tbody>'
+    sanPhamHtml += '</table>'
+
+    return sanPhamHtml
+  }
+
+
+  // B1:tạo đối tượng sản phẩm
+
+  // hien thi gio hang
+  function hienthigiohang(giohang) {
+    if (giohang.length == 0) {
+      var html = '';
+      var tongTienHtml = ''
+      var nodeGioHang = document.getElementById('cart-view');
+      var nodeTongTien = document.getElementById('total-view-cart');
+      nodeGioHang.innerHTML = html;
+      nodeTongTien.innerHTML = tongTienHtml;
+    } else {
+      hienthigiohangclick()
+    }
+  }
+
+  function hienthigiohangclick() {
+    var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"));
+    var html = chuyenGioHangThanhHtml(gioHang);
+    var tongTienHtml = '<td class="text-right" id="total-view-cart">' + tongTien() + ' </td>'
+    var nodeGioHang = document.getElementById('cart-view');
+    var nodeTongTien = document.getElementById('total-view-cart');
+    nodeGioHang.innerHTML = html;
+    nodeTongTien.innerHTML = tongTienHtml;
+    hienThiSoSp()
+  }
+
+  // hiển thị số item giỏ hàng
+  window.onload = function () {
+
+  }
+
+  function hienThiSoSp() {
+    var gioHang = (JSON.parse(localStorage.getItem("danhSachSanPham"))).length;
+    if (gioHang > 0) {
+      var tongTienHtml = '<span class="count">' + gioHang + '</span>'
+      var nodeGioHang = document.getElementById('soHang');
+      nodeGioHang.innerHTML = tongTienHtml;
+    } else {
+      var tongTienHtml = '<span class="count"></span>'
+      var nodeGioHang = document.getElementById('soHang');
+      nodeGioHang.innerHTML = tongTienHtml;
+    }
+  }
+
+  function formatTien(tien) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tien)}
+</script>
+<script type="text/javascript">
+  var toggleShowOrderSummary = false;
+  $(document).ready(function() {
+    var currentUrl = '';
+
+
+    currentUrl = '/checkouts/e56ebfe37f924e9e9a675c14ab609b3d?step=1';
+
+
+    if ($('#reloadValue').val().length == 0)
+    {
+      $('#reloadValue').val(currentUrl);
+      $('body').show();
+    }
+    else
+    {
+      window.location = $('#reloadValue').val();
+      $('#reloadValue').val('');
+    }
+
+    $('body')
+      .on('click', '.order-summary-toggle', function() {
+        toggleShowOrderSummary = !toggleShowOrderSummary;
+
+        if(toggleShowOrderSummary) {
+          $('.order-summary-toggle')
+            .removeClass('order-summary-toggle-hide')
+            .addClass('order-summary-toggle-show');
+
+          $('.sidebar:not(".sidebar-second") .sidebar-content .order-summary')
+            .removeClass('order-summary-is-collapsed')
+            .addClass('order-summary-is-expanded');
+
+          $('.sidebar.sidebar-second .sidebar-content .order-summary')
+            .removeClass('order-summary-is-expanded')
+            .addClass('order-summary-is-collapsed');
+        } else {
+          $('.order-summary-toggle')
+            .removeClass('order-summary-toggle-show')
+            .addClass('order-summary-toggle-hide');
+
+          $('.sidebar:not(".sidebar-second") .sidebar-content .order-summary')
+            .removeClass('order-summary-is-expanded')
+            .addClass('order-summary-is-collapsed');
+
+          $('.sidebar.sidebar-second .sidebar-content .order-summary')
+            .removeClass('order-summary-is-collapsed')
+            .addClass('order-summary-is-expanded');
+        }
+      });
+  });
+</script>
 </html>
 
 

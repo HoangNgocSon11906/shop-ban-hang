@@ -15402,7 +15402,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 								</div>
 								<div class="product-price pdPrice" id="price-preview">
 
-									<span th:text="${sanPhamDetail.getGiaKM().formattedValue()} + 'đ'" class="pro-price">320,000₫</span>
+									<span th:text="${sanPhamDetail.getGiaKM().formattedValue()} + ' đ'" class="pro-price">320,000₫</span>
 									<input hidden="hidden" th:value="${sanPhamDetail.sanPhamDetailId.value}" id="sanPhamDetailId"/>
 									<input hidden="hidden" th:value="${sanPhamDetail.getGiaKM().value}" id="giaSp"/>
 									<input hidden="hidden" th:value="${sanPhamDetail.tenSanPham.value}" id="tenSanPham"/>
@@ -20162,7 +20162,7 @@ _Hasync.push(['Histats.track_hits', '']);
       thanhTienSp += thanhTien;
 
     }
-    return thanhTienSp;
+    return formatTien(thanhTienSp);
   }
 
   // xoa san pham trong gio hang
@@ -20186,7 +20186,7 @@ _Hasync.push(['Histats.track_hits', '']);
     sanPhamHtml += '<a class="pro-title-view" href="" title="">' + sanPham.tenSanPham + '</a>'
     sanPhamHtml += '<span class="variant">' + sanPham.mau + '/' + sanPham.size + '</span>'
     sanPhamHtml += '<span class="pro-quantity-view">' + sanPham.soLuong + '</span>'
-    sanPhamHtml += '<span class="pro-price-view">' + sanPham.giaSP + '</span>'
+    sanPhamHtml += '<span class="pro-price-view">' + formatTien(sanPham.giaSP) + '</span>'
     sanPhamHtml += '<button class="" onclick="xoaSanPhamTrongGioHang(' + index +')"><i class="fas fa-trash-alt"></i> </button>'
     sanPhamHtml += '</td>'
     sanPhamHtml += '</tr>'
@@ -20202,20 +20202,31 @@ _Hasync.push(['Histats.track_hits', '']);
 
       danhSachSanPham = new Array();
     }
-
+    var chonMau =false;
+    var chonSize =false;
     // lay mau
     $("div.chon-mau").each(function () {
       if ($(this).hasClass('checked')) {
+        if($(this).find('input').val() != null){
         localStorage.setItem('mau', $(this).find('input').val())
+					chonMau = true;
+        }
       }
 
     })
     // lay size
     $("div.chon-size").each(function () {
       if ($(this).hasClass('checked')) {
-        localStorage.setItem('size', $(this).find('input').val())
+        if($(this).find('input').val() != null) {
+          localStorage.setItem('size', $(this).find('input').val())
+					chonSize = true;
+        }
       }
     })
+		if (chonMau ==false | chonSize == false) {
+		  alert("Vui lòng chọn đầy đủ thông tin đặt hàng")
+			return;
+		}
     var sanPhamDetailId = $('#sanPhamDetailId').val();
     var mauSp = localStorage.getItem("mau");
     var sizeSp = localStorage.getItem("size");

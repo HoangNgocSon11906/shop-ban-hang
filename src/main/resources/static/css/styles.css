@@ -5009,7 +5009,7 @@ table tr td {
 
 table tr td, table tr th {
 	padding: 10px;
-	text-align: center; }
+	}
 
 table tr td:first-child, table tr th:first-child {
 	padding-left: 0px; }

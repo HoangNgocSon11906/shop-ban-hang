@@ -5199,7 +5199,7 @@
 
 		.alert h4 {
 			margin-top: 0;
-			color: inherit
+			color: inheritproduct-img
 		}
 
 		.alert .alert-link {
@@ -14986,7 +14986,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 
 										<div class="product-block product-resize site-animation" data-anmation="1">
 											<div class="product-img">
-												<a th:href="@{/products/{ten}/{sanPhamDetailId}(ten = *{sanPham.getTenSanPham().value}, sanPhamDetailId = *{sanPham.sanPhamDetailId.value})}" th:title="${sanPham.getTenSanPham().value}"
+												<a th:href="@{/products/{ten}/{sanPhamDetailId}(ten = 'aothun', sanPhamDetailId = *{sanPham.sanPhamDetailId.value})}" th:title="${sanPham.getTenSanPham().value}"
 													 class="image-resize">
 													<picture>
 														<source media="(max-width: 767px)"

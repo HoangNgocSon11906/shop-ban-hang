@@ -50,7 +50,7 @@
 	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/><![endif]-->
 	<!--[if lt IE 9]>
 	<script src="//hstatic.net/0/0/global/design/theme-default/html5shiv.js"></script><![endif]-->
-	<!--<title th:text="${sanPhamDetail.tenSanPham.value}">-->
+	<title th:text="${sanPhamDetail.tenSanPham.value}">
 
 	</title>
 
@@ -15126,7 +15126,7 @@
 							 style="enable-background:new 0 0 24 27;" xml:space="preserve"> <g> <path
 						d="M0,6v21h24V6H0z M22,25H2V8h20V25z"/> </g> <g> <path
 						d="M12,2c3,0,3,2.3,3,4h2c0-2.8-1-6-5-6S7,3.2,7,6h2C9,4.3,9,2,12,2z"/> </g> </svg>
-					<span class="count-holder"><span class="count"></span></span>
+					<span class="count-holder"><span class="count" id="soHang"></span></span>
 				</span>
 			</a>
 		</span>
@@ -15218,7 +15218,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 							<li><a href="/collections/san-pham-moi" target="_self">SẢN PHẨM MỚI</a></li>
 
 
-							<!--<li class="active"><span th:text="${sanPhamDetail.tenSanPham.value}"> </span></li>-->
+							<li class="active"><span th:text="${sanPhamDetail.tenSanPham.value}"> </span></li>
 
 						</ol>
 					</div>
@@ -15314,7 +15314,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 										<div class="product-gallery__thumbs thumb-fix">
 
 											<div class="product-gallery__thumb active">
-												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
+												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getMainImage().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getMainImage().getLinkHinh().value}|"
 													 th:data-zoom-image="|data:image/png;base64,${sanPhamDetail.getMainImage().getLinkHinh().value}|">
@@ -15325,7 +15325,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 											</div>
 
 											<div class="product-gallery__thumb ">
-												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
+												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage1().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage1().getLinkHinh().value}|"
 													 th:data-zoom-image="|data:image/png;base64,${sanPhamDetail.getImage1().getLinkHinh().value}|">
@@ -15336,7 +15336,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 											</div>
 
 											<div class="product-gallery__thumb ">
-												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
+												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage2().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage2().getLinkHinh().value}|"
 													 th:data-zoom-image="|data:image/png;base64,${sanPhamDetail.getImage2().getLinkHinh().value}|">
@@ -15347,7 +15347,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 											</div>
 
 											<div class="product-gallery__thumb ">
-												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
+												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage3().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage3().getLinkHinh().value}|"
 													 th:data-zoom-image="|data:image/png;base64,${sanPhamDetail.getImage3().getLinkHinh().value}|">
@@ -15358,7 +15358,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 											</div>
 
 											<div class="product-gallery__thumb ">
-												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
+												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage4().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage4().getLinkHinh().value}|"
 													 th:data-zoom-image="|data:image/png;base64,${sanPhamDetail.getImage4().getLinkHinh().value}|">
@@ -15374,7 +15374,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 										<ul id="sliderproduct" class="site-box-content slide_product">
 
 											<li class="product-gallery-item gallery-item">
-												<img class="product-image-feature"
+												<img class="product-image-feature" id="hinh-anh"
 														 th:src="|data:image/png;base64,${sanPhamDetail.getMainImage().getLinkHinh().value}|"
 														 alt=" Áo thun SWALLA STAIIROF ">
 											</li>
@@ -15507,7 +15507,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 
 										<div class="quantity-area clearfix">
 											<input type="button" value="-" class="qty-btn minus">
-											<input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
+											<input readonly="readonly" type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
 											<input type="button" value="+" class="qty-btn plus">
 										</div>
 
@@ -19569,7 +19569,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 
 
 			<div class="copyright">
-				© 2021 160STORE
+				© 2021 HOLOMEN STORE
 			</div>
 	</footer>
 
@@ -20243,6 +20243,7 @@ _Hasync.push(['Histats.track_hits', '']);
     // hien thi gio hang
     $('.cart-menu-1').trigger('click');
     hienthigiohang(gioHangHienThi);
+    hienThiSoSp()
 
   })
 
@@ -20257,13 +20258,6 @@ _Hasync.push(['Histats.track_hits', '']);
       nodeTongTien.innerHTML = tongTienHtml;
     } else {
       hienthigiohangclick()
-      // console.log("aaa", giohang)
-      // var html = chuyenGioHangThanhHtml(gioHang);
-      // var tongTienHtml = '<td class="text-right" id="total-view-cart">' + tongTien() + ' </td>';
-      // var nodeGioHang = document.getElementById('clone-item-cart');
-      // var nodeTongTien = document.getElementById('total-view-cart');
-      // nodeGioHang.innerHTML = html;
-      // nodeTongTien.innerHTML = tongTienHtml;
     }
   }
 
@@ -20275,7 +20269,41 @@ _Hasync.push(['Histats.track_hits', '']);
     var nodeTongTien = document.getElementById('total-view-cart');
     nodeGioHang.innerHTML = html;
     nodeTongTien.innerHTML = tongTienHtml;
+    hienThiSoSp()
   }
+
+  // hiển thị số item giỏ hàng
+  window.onload = function () {
+    hienThiSoSp();
+  }
+
+  function hienThiSoSp() {
+    var gioHang = (JSON.parse(localStorage.getItem("danhSachSanPham"))).length;
+    if (gioHang > 0) {
+      var tongTienHtml = '<span class="count">' + gioHang + '</span>'
+      var nodeGioHang = document.getElementById('soHang');
+      nodeGioHang.innerHTML = tongTienHtml;
+    } else {
+      var tongTienHtml = '<span class="count"></span>'
+      var nodeGioHang = document.getElementById('soHang');
+      nodeGioHang.innerHTML = tongTienHtml;
+    }
+}
+  // đổi hình ảnh khi click
+
+  $(".product-gallery__thumb img").click(function(){
+    $(".product-gallery__thumb").removeClass('active');
+    $(this).parents('.product-gallery__thumb').addClass('active');
+    var img_thumb = $(this).data('image');
+
+    /*$('html, body').animate({
+			scrollTop: $("#sliderproduct img[src='"+img_thumb+"']").offset().top
+		}, 1000);*/
+    $(".product-image-feature").attr("src",$(this).attr("data-image"));
+
+
+  });
+  $(".product-gallery__thumb").first().addClass('active');
 </script>
 </body>
 </html>

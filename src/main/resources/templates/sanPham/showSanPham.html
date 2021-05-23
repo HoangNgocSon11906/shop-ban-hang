@@ -15324,7 +15324,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 												</a>
 											</div>
 
-											<div class="product-gallery__thumb ">
+											<div class="product-gallery__thumb " th:if="${sanPhamDetail.getImage1().getLinkHinh().value} !=''">
 												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage1().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage1().getLinkHinh().value}|"
@@ -15335,7 +15335,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 												</a>
 											</div>
 
-											<div class="product-gallery__thumb ">
+											<div class="product-gallery__thumb " th:if="${sanPhamDetail.getImage2().getLinkHinh().value} !=''">
 												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage2().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage2().getLinkHinh().value}|"
@@ -15346,7 +15346,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 												</a>
 											</div>
 
-											<div class="product-gallery__thumb ">
+											<div class="product-gallery__thumb " th:if="${sanPhamDetail.getImage3().getLinkHinh().value} !=''">
 												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage3().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage3().getLinkHinh().value}|"
@@ -15357,7 +15357,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 												</a>
 											</div>
 
-											<div class="product-gallery__thumb ">
+											<div class="product-gallery__thumb " th:if="${sanPhamDetail.getImage4().getLinkHinh().value} !=''">
 												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage4().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage4().getLinkHinh().value}|"
@@ -20304,6 +20304,9 @@ _Hasync.push(['Histats.track_hits', '']);
 
   });
   $(".product-gallery__thumb").first().addClass('active');
+
+  function formatTien(tien) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tien)}
 </script>
 </body>
 </html>

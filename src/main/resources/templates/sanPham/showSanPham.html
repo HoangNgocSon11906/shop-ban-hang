@@ -50,7 +50,7 @@
 	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/><![endif]-->
 	<!--[if lt IE 9]>
 	<script src="//hstatic.net/0/0/global/design/theme-default/html5shiv.js"></script><![endif]-->
-	<!--<title th:text="${sanPhamDetail.tenSanPham.value}">-->
+	<title th:text="${sanPhamDetail.tenSanPham.value}">
 
 	</title>
 
@@ -15119,14 +15119,14 @@
 			</a>
 		</span>
 			<span id="site-cart-handle" class="icon-cart" aria-label="Open cart" title="Giỏ hàng">
-			<a href="/cart" onclick="hienthigiohang()" class="cart-menu-1">
+			<a href="/cart" onclick="hienthigiohangclick()" class="cart-menu-1">
 				<span class="cart-menu" aria-hidden="true">
 					<svg version="1.1" class="svg-cart" xmlns="http://www.w3.org/2000/svg"
 							 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 27"
 							 style="enable-background:new 0 0 24 27;" xml:space="preserve"> <g> <path
 						d="M0,6v21h24V6H0z M22,25H2V8h20V25z"/> </g> <g> <path
 						d="M12,2c3,0,3,2.3,3,4h2c0-2.8-1-6-5-6S7,3.2,7,6h2C9,4.3,9,2,12,2z"/> </g> </svg>
-					<span class="count-holder"><span class="count"></span></span>
+					<span class="count-holder"><span class="count" id="soHang"></span></span>
 				</span>
 			</a>
 		</span>
@@ -15218,7 +15218,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 							<li><a href="/collections/san-pham-moi" target="_self">SẢN PHẨM MỚI</a></li>
 
 
-							<!--<li class="active"><span th:text="${sanPhamDetail.tenSanPham.value}"> </span></li>-->
+							<li class="active"><span th:text="${sanPhamDetail.tenSanPham.value}"> </span></li>
 
 						</ol>
 					</div>
@@ -15314,7 +15314,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 										<div class="product-gallery__thumbs thumb-fix">
 
 											<div class="product-gallery__thumb active">
-												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
+												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getMainImage().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getMainImage().getLinkHinh().value}|"
 													 th:data-zoom-image="|data:image/png;base64,${sanPhamDetail.getMainImage().getLinkHinh().value}|">
@@ -15324,8 +15324,8 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 												</a>
 											</div>
 
-											<div class="product-gallery__thumb ">
-												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
+											<div class="product-gallery__thumb " th:if="${sanPhamDetail.getImage1().getLinkHinh().value} !=''">
+												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage1().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage1().getLinkHinh().value}|"
 													 th:data-zoom-image="|data:image/png;base64,${sanPhamDetail.getImage1().getLinkHinh().value}|">
@@ -15335,8 +15335,8 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 												</a>
 											</div>
 
-											<div class="product-gallery__thumb ">
-												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
+											<div class="product-gallery__thumb " th:if="${sanPhamDetail.getImage2().getLinkHinh().value} !=''">
+												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage2().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage2().getLinkHinh().value}|"
 													 th:data-zoom-image="|data:image/png;base64,${sanPhamDetail.getImage2().getLinkHinh().value}|">
@@ -15346,8 +15346,8 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 												</a>
 											</div>
 
-											<div class="product-gallery__thumb ">
-												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
+											<div class="product-gallery__thumb " th:if="${sanPhamDetail.getImage3().getLinkHinh().value} !=''">
+												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage3().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage3().getLinkHinh().value}|"
 													 th:data-zoom-image="|data:image/png;base64,${sanPhamDetail.getImage3().getLinkHinh().value}|">
@@ -15357,8 +15357,8 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 												</a>
 											</div>
 
-											<div class="product-gallery__thumb ">
-												<a class="product-gallery__thumb-placeholder" href="javascript:void(0);"
+											<div class="product-gallery__thumb " th:if="${sanPhamDetail.getImage4().getLinkHinh().value} !=''">
+												<a class="product-gallery__thumb-placeholder"
 													 th:data-trigger="|data:image/png;base64,${sanPhamDetail.getImage4().getLinkHinh().value}|"
 													 th:data-image="|data:image/png;base64,${sanPhamDetail.getImage4().getLinkHinh().value}|"
 													 th:data-zoom-image="|data:image/png;base64,${sanPhamDetail.getImage4().getLinkHinh().value}|">
@@ -15374,7 +15374,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 										<ul id="sliderproduct" class="site-box-content slide_product">
 
 											<li class="product-gallery-item gallery-item">
-												<img class="product-image-feature"
+												<img class="product-image-feature" id="hinh-anh"
 														 th:src="|data:image/png;base64,${sanPhamDetail.getMainImage().getLinkHinh().value}|"
 														 alt=" Áo thun SWALLA STAIIROF ">
 											</li>
@@ -15398,11 +15398,11 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 							</div>
 							<div class="col-md-4 col-sm-12 col-xs-12 product-content-desc" id="detail-product">
 								<div class="product-title">
-									<h1  th:text="${sanPhamDetail.getTenSanPham().value}">Áo thun SWALLA STAIIROF</h1>
+									<h1 th:text="${sanPhamDetail.getTenSanPham().value}">Áo thun SWALLA STAIIROF</h1>
 								</div>
 								<div class="product-price pdPrice" id="price-preview">
 
-									<span  th:text="${sanPhamDetail.getGiaKM().formattedValue()} + 'đ'" class="pro-price">320,000₫</span>
+									<span th:text="${sanPhamDetail.getGiaKM().formattedValue()} + ' đ'" class="pro-price">320,000₫</span>
 									<input hidden="hidden" th:value="${sanPhamDetail.sanPhamDetailId.value}" id="sanPhamDetailId"/>
 									<input hidden="hidden" th:value="${sanPhamDetail.getGiaKM().value}" id="giaSp"/>
 									<input hidden="hidden" th:value="${sanPhamDetail.tenSanPham.value}" id="tenSanPham"/>
@@ -15442,11 +15442,13 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 											<div id="variant-swatch-1" class="swatch clearfix optionSwatch " data-option="option2"
 													 data-option-index="1">
 												<div class="header">SIZE</div>
-												<div class="select-swap" >
-													<div data-value="S" class="swatch-element1 chon-size " th:each="size : ${sanPhamDetail.sizes.sizes}">
-														<input class="variant-1" th:id="${size.value}" type="radio" name="size" th:value="${size.value}"/>
+												<div class="select-swap">
+													<div data-value="S" class="swatch-element1 chon-size "
+															 th:each="size : ${sanPhamDetail.sizes.sizes}">
+														<input class="variant-1" th:id="${size.value}" type="radio" name="size"
+																	 th:value="${size.value}"/>
 
-														<label class="lbSwatch" th:for="${size.value}" >
+														<label class="lbSwatch" th:for="${size.value}">
 															<span th:text="${size.value}"></span>
 															<img alt="select-pro" class="img-check"
 																	 src="//theme.hstatic.net/1000253775/1000703955/14/select-pro.png?v=39"/>
@@ -15505,7 +15507,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 
 										<div class="quantity-area clearfix">
 											<input type="button" value="-" class="qty-btn minus">
-											<input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
+											<input readonly="readonly" type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
 											<input type="button" value="+" class="qty-btn plus">
 										</div>
 
@@ -19567,7 +19569,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 
 
 			<div class="copyright">
-				© 2021 160STORE
+				© 2021 HOLOMEN STORE
 			</div>
 	</footer>
 
@@ -19800,42 +19802,63 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 	<div id="site-cart" class="site-nav-container" tabindex="-1">
 		<div class="site-nav-container-last">
 			<p class="title">Giỏ hàng</p>
-			<div class="cart-view clearfix" id="gio-hang">
-				<table id="clone-item-cart" class="table-clone-cart">
-
-				</table>
+			<div class="cart-view clearfix">
 				<form action="/cart" method="post" id="cartformpage">
 					<table id="cart-view">
+						<tbody>
+						<tr class="item_2">
+							<td class="img"><a title="/products/ao-thun-bouton-deep-wash-acid"><img src=""></a></td>
+							<td>
+								<a class="pro-title-view" href="/products/ao-thun-bouton-deep-wash-acid" title="/products/ao-thun-bouton-deep-wash-acid">Áo thun BOUTON Deep wash acid</a>
+								<span class="variant">Xám Deep-0069 / S</span>
+								<span class="pro-quantity-view">
+                        <div class="qty quantity-partent qty-click clearfix"><input type="text" readonly="" size="4" name="updates[]" min="1" id="updates_1070287164" data-id="1070287164" data-price="28000000" value="1" class="tc line-item-qty item-quantity"></div>
+                     </span>
+								<span class="pro-price-view">280,000₫</span>
+								<span class="remove_link remove-cart">
+                        <a href="javascript:void(0);" onclick="deleteCart(1)">
+                           <svg enable-background="new 0 0 438.529 438.529" version="1.1" viewBox="0 0 438.53 438.53" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                              <path d="m417.69 75.654c-1.711-1.709-3.901-2.568-6.563-2.568h-88.224l-19.985-47.676c-2.854-7.044-7.994-13.04-15.413-17.989-7.426-4.948-14.948-7.421-22.559-7.421h-91.363c-7.611 0-15.131 2.473-22.554 7.421-7.424 4.949-12.563 10.944-15.419 17.989l-19.985 47.676h-88.22c-2.667 0-4.853 0.859-6.567 2.568-1.709 1.713-2.568 3.903-2.568 6.567v18.274c0 2.664 0.855 4.854 2.568 6.564 1.714 1.712 3.904 2.568 6.567 2.568h27.406v271.8c0 15.803 4.473 29.266 13.418 40.398 8.947 11.139 19.701 16.703 32.264 16.703h237.54c12.566 0 23.319-5.756 32.265-17.268 8.945-11.52 13.415-25.174 13.415-40.971v-270.66h27.411c2.662 0 4.853-0.856 6.563-2.568 1.708-1.709 2.57-3.9 2.57-6.564v-18.274c2e-3 -2.664-0.861-4.854-2.569-6.567zm-248.39-35.976c1.331-1.712 2.95-2.762 4.853-3.14h90.504c1.903 0.381 3.525 1.43 4.854 3.14l13.709 33.404h-127.91l13.99-33.404zm177.87 340.61c0 4.186-0.664 8.042-1.999 11.561-1.334 3.518-2.717 6.088-4.141 7.706-1.431 1.622-2.423 2.427-2.998 2.427h-237.54c-0.571 0-1.565-0.805-2.996-2.427-1.429-1.618-2.81-4.188-4.143-7.706-1.331-3.519-1.997-7.379-1.997-11.561v-270.66h255.82v270.66z"></path>
+                              <path d="m137.04 347.17h18.271c2.667 0 4.858-0.855 6.567-2.567 1.709-1.718 2.568-3.901 2.568-6.57v-164.45c0-2.663-0.859-4.853-2.568-6.567-1.714-1.709-3.899-2.565-6.567-2.565h-18.271c-2.667 0-4.854 0.855-6.567 2.565-1.711 1.714-2.568 3.904-2.568 6.567v164.45c0 2.669 0.854 4.853 2.568 6.57 1.713 1.711 3.9 2.567 6.567 2.567z"></path>
+                              <path d="m210.13 347.17h18.271c2.666 0 4.856-0.855 6.564-2.567 1.718-1.718 2.569-3.901 2.569-6.57v-164.45c0-2.663-0.852-4.853-2.569-6.567-1.708-1.709-3.898-2.565-6.564-2.565h-18.271c-2.664 0-4.854 0.855-6.567 2.565-1.714 1.714-2.568 3.904-2.568 6.567v164.45c0 2.669 0.854 4.853 2.568 6.57 1.712 1.711 3.903 2.567 6.567 2.567z"></path>
+                              <path d="m283.22 347.17h18.268c2.669 0 4.859-0.855 6.57-2.567 1.711-1.718 2.562-3.901 2.562-6.57v-164.45c0-2.663-0.852-4.853-2.562-6.567-1.711-1.709-3.901-2.565-6.57-2.565h-18.268c-2.67 0-4.853 0.855-6.571 2.565-1.711 1.714-2.566 3.904-2.566 6.567v164.45c0 2.669 0.855 4.853 2.566 6.57 1.718 1.711 3.901 2.567 6.571 2.567z"></path>
+                           </svg>
+                        </a>
+                     </span>
+							</td>
+						</tr>
+						</tbody>
 					</table>
 					<span class="line"></span>
 					<table class="table-total">
+						<tbody>
 						<tr>
 							<td class="text-left">TỔNG TIỀN:</td>
-							<td class="text-right" id="total-view-cart"></td>
+							<td class="text-right" id="total-view-cart">280,000₫</td>
 						</tr>
-
 						<tr>
 							<td><a href="javascript:void(0)" class="linktocart button dark">Tiếp tục mua hàng</a></td>
 							<td class="checkout">
-								<a href="/checkout" id="checkout" class="linktocheckout btn-checkout button dark" name="checkout"
-									 value="">
+								<a href="/checkout" id="checkout" class="linktocheckout btn-checkout button dark" name="checkout" value="">
 									<div>
 										Thanh toán
 									</div>
 								</a>
 							</td>
 						</tr>
+						</tbody>
 					</table>
+					<div class="checkout-note clearfix">
+						<textarea id="note" name="note" rows="8" cols="50" placeholder="Ghi chú"></textarea>
+					</div>
 					<table>
+						<tbody>
 						<tr>
-							<div class="checkout-note clearfix">
-								<textarea id="note" name="note" rows="8" cols="50" placeholder="Ghi chú"></textarea>
-							</div>
 						</tr>
+						</tbody>
 					</table>
 				</form>
 			</div>
-
 		</div>
 	</div>
 	<div id="site-search" class="site-nav-container" tabindex="-1">
@@ -20105,8 +20128,8 @@ _Hasync.push(['Histats.track_hits', '']);
   })
 </script>
 <script>
-	// ham tao doi tuong
-	function taoDoiTuongSanPham(sanPhamDetailId, tenSanPham, giaSp, mau, size, soLuong) {
+  // ham tao doi tuong
+  function taoDoiTuongSanPham(sanPhamDetailId, tenSanPham, giaSp, mau, size, soLuong) {
     var sanPham = new Object();
     sanPham.sanPhamDetailId = sanPhamDetailId;
     sanPham.tenSanPham = tenSanPham;
@@ -20127,103 +20150,211 @@ _Hasync.push(['Histats.track_hits', '']);
     }
 
     sanPham.fromJson = function (json) {
-			var doiTuongDayDu = new Object();
-			var doiTuong = JSON.parse(json);
-			var doiTuongDayDu = taoDoiTuongSanPham(doiTuong.sanPhamDetailId, doiTuong.tenSanPham, doiTuong.giaSP,
-				doiTuong.mau, doiTuong.size, doiTuong.soLuong);
-			return doiTuongDayDu;
+      var doiTuongDayDu = new Object();
+      var doiTuong = JSON.parse(json);
+      var doiTuongDayDu = taoDoiTuongSanPham(doiTuong.sanPhamDetailId, doiTuong.tenSanPham, doiTuong.giaSP,
+        doiTuong.mau, doiTuong.size, doiTuong.soLuong);
+      return doiTuongDayDu;
     }
-  return sanPham;
+    return sanPham;
   }
+
   // chuyen gio hang thanh html
   function chuyenGioHangThanhHtml(gioHang) {
-	  var gioHangHtml = '';
-	  for (var i=0; i< gioHang.length; i++){
-	    var sanPham = gioHang[i];
-	    var sanPhamHtml = chuyenSanPhamThanhHtml(sanPham);
-	    gioHangHtml = gioHangHtml + sanPhamHtml;
-		}
-		return gioHangHtml
+    var gioHangHtml = '';
+    for (var i = 0; i < gioHang.length; i++) {
+
+      var sanPham = gioHang[i];
+      var index = i;
+      var sanPhamHtml = chuyenSanPhamThanhHtml(sanPham,index);
+      gioHangHtml = gioHangHtml + sanPhamHtml;
+
+    }
+    return gioHangHtml
   }
-  
+
+  //tong tien
+  function tongTien() {
+    var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));
+    var thanhTienSp = 0;
+    for (var i = 0; i < gioHang.length; i++) {
+      var sanPhamHienTai = gioHang[i];
+      var thanhTien = Number(sanPhamHienTai.soLuong) * Number(sanPhamHienTai.giaSP);
+      thanhTienSp += thanhTien;
+
+    }
+    return formatTien(thanhTienSp);
+  }
+
+  // xoa san pham trong gio hang
+  function xoaSanPhamTrongGioHang(index) {
+    var gioHang1 = JSON.parse(localStorage.getItem('danhSachSanPham'));
+    for (var i = 0; i < gioHang1.length; i++) {
+      if (i == index)
+       gioHang1.splice(i,1)
+    }
+
+    localStorage.setItem("danhSachSanPham", JSON.stringify(gioHang1));
+    hienthigiohangclick()
+  }
+
   // chuyen doi tuong thanh html
-	function chuyenSanPhamThanhHtml(sanPham) {
-	  var sanPhamHtml = '<tr class="item_2">';
-		sanPhamHtml += '<td class="img"><a href="" title=""><img src="" alt=""/></a></td>'
-    sanPhamHtml += '<td>'
-    sanPhamHtml += '<a class="pro-title-view" href="" title="">'+ sanPham.tenSanPham +'</a>'
-    sanPhamHtml +=	'<span class="variant">'+ sanPham.mau +'/'+ sanPham.size +'</span>'
-    sanPhamHtml +=	'<span class="pro-quantity-view">'+ sanPham.soLuong +'</span>'
-    sanPhamHtml +=  '<span class="pro-price-view">'+ sanPham.giaSP +'</span>'
-    sanPhamHtml +=  '<span class="remove_link remove-cart"><i class="fas fa-trash-alt"></i></span>'
+  function chuyenSanPhamThanhHtml(sanPham,index) {
+    var sanPhamHtml = '';
+    sanPhamHtml +='<table id="cart-view">'
+    sanPhamHtml +='<tbody> '
+    sanPhamHtml += '<tbody>'
+    sanPhamHtml += '<tr class="item_2">'
+    sanPhamHtml +=  '<td class="img" style="height: 70px; width: 10px;"><a title="/products/ao-thun-bouton-deep-wash-acid"><img src=""></a></td>'
+    sanPhamHtml +='<td>'
+    sanPhamHtml +='<a class="pro-title-view" href="/products/ao-thun-bouton-deep-wash-acid" title="/products/ao-thun-bouton-deep-wash-acid">' + sanPham.tenSanPham + '</a>'
+    sanPhamHtml +='<span class="variant">'+ sanPham.mau + '/' + sanPham.size +'</span>'
+    sanPhamHtml +='<span class="pro-quantity-view">'
+    sanPhamHtml +='<div class="qty quantity-partent qty-click clearfix"><input type="text" readonly=""  value="'+ sanPham.soLuong +'" class="tc line-item-qty item-quantity"></div>'
+    sanPhamHtml +=  '</span>'
+    sanPhamHtml +=  '<span class="pro-price-view">'+ formatTien(sanPham.giaSP) +'</span>'
+    sanPhamHtml +='<span class="remove_link remove-cart">'
+    sanPhamHtml +=  '<a onclick="xoaSanPhamTrongGioHang(' + index +')">'
+    sanPhamHtml += '<svg enable-background="new 0 0 438.529 438.529" version="1.1" viewBox="0 0 438.53 438.53" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">'
+    sanPhamHtml +=  '<path d="m417.69 75.654c-1.711-1.709-3.901-2.568-6.563-2.568h-88.224l-19.985-47.676c-2.854-7.044-7.994-13.04-15.413-17.989-7.426-4.948-14.948-7.421-22.559-7.421h-91.363c-7.611 0-15.131 2.473-22.554 7.421-7.424 4.949-12.563 10.944-15.419 17.989l-19.985 47.676h-88.22c-2.667 0-4.853 0.859-6.567 2.568-1.709 1.713-2.568 3.903-2.568 6.567v18.274c0 2.664 0.855 4.854 2.568 6.564 1.714 1.712 3.904 2.568 6.567 2.568h27.406v271.8c0 15.803 4.473 29.266 13.418 40.398 8.947 11.139 19.701 16.703 32.264 16.703h237.54c12.566 0 23.319-5.756 32.265-17.268 8.945-11.52 13.415-25.174 13.415-40.971v-270.66h27.411c2.662 0 4.853-0.856 6.563-2.568 1.708-1.709 2.57-3.9 2.57-6.564v-18.274c2e-3 -2.664-0.861-4.854-2.569-6.567zm-248.39-35.976c1.331-1.712 2.95-2.762 4.853-3.14h90.504c1.903 0.381 3.525 1.43 4.854 3.14l13.709 33.404h-127.91l13.99-33.404zm177.87 340.61c0 4.186-0.664 8.042-1.999 11.561-1.334 3.518-2.717 6.088-4.141 7.706-1.431 1.622-2.423 2.427-2.998 2.427h-237.54c-0.571 0-1.565-0.805-2.996-2.427-1.429-1.618-2.81-4.188-4.143-7.706-1.331-3.519-1.997-7.379-1.997-11.561v-270.66h255.82v270.66z"></path>'
+    sanPhamHtml +=  '<path d="m137.04 347.17h18.271c2.667 0 4.858-0.855 6.567-2.567 1.709-1.718 2.568-3.901 2.568-6.57v-164.45c0-2.663-0.859-4.853-2.568-6.567-1.714-1.709-3.899-2.565-6.567-2.565h-18.271c-2.667 0-4.854 0.855-6.567 2.565-1.711 1.714-2.568 3.904-2.568 6.567v164.45c0 2.669 0.854 4.853 2.568 6.57 1.713 1.711 3.9 2.567 6.567 2.567z"></path>'
+    sanPhamHtml +=  '<path d="m210.13 347.17h18.271c2.666 0 4.856-0.855 6.564-2.567 1.718-1.718 2.569-3.901 2.569-6.57v-164.45c0-2.663-0.852-4.853-2.569-6.567-1.708-1.709-3.898-2.565-6.564-2.565h-18.271c-2.664 0-4.854 0.855-6.567 2.565-1.714 1.714-2.568 3.904-2.568 6.567v164.45c0 2.669 0.854 4.853 2.568 6.57 1.712 1.711 3.903 2.567 6.567 2.567z"></path>'
+    sanPhamHtml +=  '<path d="m283.22 347.17h18.268c2.669 0 4.859-0.855 6.57-2.567 1.711-1.718 2.562-3.901 2.562-6.57v-164.45c0-2.663-0.852-4.853-2.562-6.567-1.711-1.709-3.901-2.565-6.57-2.565h-18.268c-2.67 0-4.853 0.855-6.571 2.565-1.711 1.714-2.566 3.904-2.566 6.567v164.45c0 2.669 0.855 4.853 2.566 6.57 1.718 1.711 3.901 2.567 6.571 2.567z"></path>'
+    sanPhamHtml += '</svg>'
+    sanPhamHtml +=  '</a>'
+    sanPhamHtml +=  '</span>'
     sanPhamHtml +=  '</td>'
     sanPhamHtml +=  '</tr>'
-	return sanPhamHtml
+    sanPhamHtml +=  '</tbody>'
+    sanPhamHtml += '</table>'
+
+    return sanPhamHtml
   }
-  
-  function xoaSanPhamTrongGioHang() {
-		
-  }
-  var danhSachSanPham = JSON.parse(localStorage.getItem("danhSachSanPham"));
-	if (danhSachSanPham == null) {
-	  danhSachSanPham = new Array();
-	}
-	// B1:tạo đối tượng sản phẩm
+
+
+  // B1:tạo đối tượng sản phẩm
   $('#add-to-cart').click(function () {
+    var danhSachSanPham = JSON.parse(localStorage.getItem("danhSachSanPham"));
+    if (danhSachSanPham == null) {
 
-
+      danhSachSanPham = new Array();
+    }
+    var chonMau =false;
+    var chonSize =false;
     // lay mau
-      $("div.chon-mau").each(function () {
-        if ($(this).hasClass('checked')) {
-          localStorage.setItem('mau', $(this).find('input').val())
+    $("div.chon-mau").each(function () {
+      if ($(this).hasClass('checked')) {
+        if($(this).find('input').val() != null){
+        localStorage.setItem('mau', $(this).find('input').val())
+					chonMau = true;
         }
+      }
 
     })
-		// lay size
-    	$( "div.chon-size" ).each(function(){
-    		if ($(this).hasClass('checked')) {
-    			localStorage.setItem('size', $(this).find('input').val())
-    		}
-    	})
+    // lay size
+    $("div.chon-size").each(function () {
+      if ($(this).hasClass('checked')) {
+        if($(this).find('input').val() != null) {
+          localStorage.setItem('size', $(this).find('input').val())
+					chonSize = true;
+        }
+      }
+    })
+		if (chonMau ==false | chonSize == false) {
+		  alert("Vui lòng chọn đầy đủ thông tin đặt hàng")
+			return;
+		}
     var sanPhamDetailId = $('#sanPhamDetailId').val();
-		var mauSp = localStorage.getItem("mau");
-		var sizeSp = localStorage.getItem("size");
+    var mauSp = localStorage.getItem("mau");
+    var sizeSp = localStorage.getItem("size");
     var giaSp = $('#giaSp').val();
     var tenSp = $('#tenSanPham').val();
     var soLuong = $('#quantity').val();
-    var sanPhamDautien = taoDoiTuongSanPham(sanPhamDetailId, tenSp, giaSp, mauSp, sizeSp, soLuong );
+    var sanPhamDautien = taoDoiTuongSanPham(sanPhamDetailId, tenSp, giaSp, mauSp, sizeSp, soLuong);
     var coTonTaiTronggioHang = false;
-		for ( var i = 0; i< danhSachSanPham.length; i++){
-		  var sanPhamHienTai = danhSachSanPham[i];
-			if (sanPhamHienTai.sanPhamDetailId == sanPhamDautien.sanPhamDetailId &&
-				sanPhamHienTai.mau == sanPhamDautien.mau &&
-			sanPhamHienTai.size == sanPhamDautien.size){
-			  sanPhamHienTai.soLuong = Number(sanPhamDautien.soLuong) + Number(sanPhamHienTai.soLuong);
-			  coTonTaiTronggioHang = true;
-			}
-		}
-	if(coTonTaiTronggioHang == false) {
-	  danhSachSanPham.push(sanPhamDautien);
-	}
+    for (var i = 0; i < danhSachSanPham.length; i++) {
+      var sanPhamHienTai = danhSachSanPham[i];
+      if (sanPhamHienTai.sanPhamDetailId == sanPhamDautien.sanPhamDetailId &&
+        sanPhamHienTai.mau == sanPhamDautien.mau &&
+        sanPhamHienTai.size == sanPhamDautien.size) {
+        sanPhamHienTai.soLuong = Number(sanPhamDautien.soLuong) + Number(sanPhamHienTai.soLuong);
+        coTonTaiTronggioHang = true;
+      }
+    }
+    if (coTonTaiTronggioHang == false) {
+      danhSachSanPham.push(sanPhamDautien);
+    }
 
-		var danhSachSanPhamJson = JSON.stringify(danhSachSanPham)
-		localStorage.setItem("danhSachSanPham", danhSachSanPhamJson)
+    var danhSachSanPhamJson = JSON.stringify(danhSachSanPham)
+    localStorage.setItem("danhSachSanPham", danhSachSanPhamJson)
+    var gioHangHienThi = JSON.parse(localStorage.getItem("danhSachSanPham"));
     // hien thi gio hang
     $('.cart-menu-1').trigger('click');
-    var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"));
-    var html = chuyenGioHangThanhHtml(gioHang);
-    var nodeGioHang = document.getElementById('clone-item-cart');
-    nodeGioHang.innerHTML = html;
+    hienthigiohang(gioHangHienThi);
+    hienThiSoSp()
 
   })
+
   // hien thi gio hang
-	function hienthigiohang() {
-    var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"))
-    var html = chuyenGioHangThanhHtml(gioHang);
-    var nodeGioHang = document.getElementById('clone-item-cart');
-    console.log("ngonnnn")
-    nodeGioHang.innerHTML = html;
+  function hienthigiohang(giohang) {
+    if (giohang.length == 0) {
+      var html = '';
+      var tongTienHtml = ''
+      var nodeGioHang = document.getElementById('cart-view');
+      var nodeTongTien = document.getElementById('total-view-cart');
+      nodeGioHang.innerHTML = html;
+      nodeTongTien.innerHTML = tongTienHtml;
+    } else {
+      hienthigiohangclick()
+    }
   }
+
+  function hienthigiohangclick() {
+    var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"));
+    var html = chuyenGioHangThanhHtml(gioHang);
+    var tongTienHtml = '<td class="text-right" id="total-view-cart">' + tongTien() + ' </td>'
+    var nodeGioHang = document.getElementById('cart-view');
+    var nodeTongTien = document.getElementById('total-view-cart');
+    nodeGioHang.innerHTML = html;
+    nodeTongTien.innerHTML = tongTienHtml;
+    hienThiSoSp()
+  }
+
+  // hiển thị số item giỏ hàng
+  window.onload = function () {
+    hienThiSoSp();
+  }
+
+  function hienThiSoSp() {
+    var gioHang = (JSON.parse(localStorage.getItem("danhSachSanPham"))).length;
+    if (gioHang > 0) {
+      var tongTienHtml = '<span class="count">' + gioHang + '</span>'
+      var nodeGioHang = document.getElementById('soHang');
+      nodeGioHang.innerHTML = tongTienHtml;
+    } else {
+      var tongTienHtml = '<span class="count"></span>'
+      var nodeGioHang = document.getElementById('soHang');
+      nodeGioHang.innerHTML = tongTienHtml;
+    }
+}
+  // đổi hình ảnh khi click
+
+  $(".product-gallery__thumb img").click(function(){
+    $(".product-gallery__thumb").removeClass('active');
+    $(this).parents('.product-gallery__thumb').addClass('active');
+    var img_thumb = $(this).data('image');
+
+    /*$('html, body').animate({
+			scrollTop: $("#sliderproduct img[src='"+img_thumb+"']").offset().top
+		}, 1000);*/
+    $(".product-image-feature").attr("src",$(this).attr("data-image"));
+
+
+  });
+  $(".product-gallery__thumb").first().addClass('active');
+
+  function formatTien(tien) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tien)}
 </script>
 </body>
 </html>

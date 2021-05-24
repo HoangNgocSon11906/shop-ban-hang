@@ -10,7 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ThanhToanController {
 
     @RequestMapping(value = "/checkout")
-    public String show(@ModelAttribute("formThanhToan") FormThanhToan formThanhToan ) {
+    public String show() {
         return "thanhToan/thanhToan";
     }
+
+    @RequestMapping(value = "/hoanThanh")
+        public String hoanThanh() {
+
+        return "aa";
+        }
 }

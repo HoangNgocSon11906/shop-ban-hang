@@ -497,7 +497,7 @@
 
 						<form id="form_next_step" accept-charset="UTF-8" method="post">
 							<input name="utf8" type="hidden" value="✓">
-							<button type="submit" class="step-footer-continue-btn btn">
+							<button type="submit" id="hoan-thanh" class="step-footer-continue-btn btn">
 								<span class="btn-content">Hoàn tất đơn hàng</span>
 								<i class="btn-spinner icon icon-button-spinner"></i>
 							</button>
@@ -608,13 +608,17 @@
 
   function hienthigiohangclick() {
     var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"));
+    if(gioHang.length>0){
     var html = chuyenGioHangThanhHtml(gioHang);
     var nodeGioHang = document.getElementById('san-pham');
     var nodeTongTien = '<span class="order-summary-emphasis" data-checkout-subtotal-price-target="136000000"> ' + tongTien() + '</span>'
     var tongTienhang = document.getElementById('tong-tien');
     nodeGioHang.innerHTML = html;
     tongTienhang.innerHTML = nodeTongTien;
-    tinhPhiShip();
+    tinhPhiShip();}
+    else{
+      return;
+		}
   }
   // tinh phi ship
 function tinhPhiShip() {
@@ -689,6 +693,8 @@ hienthigiohangclick();
     }
     return formatTien(thanhTienSp);
   }
+
+
 </script>
 <script type="text/javascript">
   var toggleShowOrderSummary = false;
@@ -697,7 +703,7 @@ hienthigiohangclick();
 
 
     currentUrl = '/checkouts/e56ebfe37f924e9e9a675c14ab609b3d?step=1';
-
+    $('#reloadValue').val().length == 0
 
     if ($('#reloadValue').val().length == 0)
     {
@@ -741,6 +747,36 @@ hienthigiohangclick();
         }
       });
   });
+</script>
+/// ajax
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    console.log('ngon')
+    //khai báo biến submit form lấy đối tượng nút submit
+    var submit = document.getElementById('hoan-thanh');
+
+    //khi nút submit được click
+    submit.addEventListener("click", (function()
+    {
+      console.log("vip")
+      //khai báo các biến dữ liệu gửi lên server
+      var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"));
+
+      //Sử dụng phương thức Ajax.
+      $.ajax({
+        type : 'POST', //Sử dụng kiểu gửi dữ liệu POST
+        url : '/hoanThanh', //gửi dữ liệu sang trang data.php
+        data : gioHang, //dữ liệu sẽ được gửi
+        dataType: 'json',
+        success :  hoanThanh() // Hàm thực thi khi nhận dữ liệu được từ server
+      });
+    }));
+  });
+
+  function hoanThanh() {
+    window.location.href = '/path';
+  }
 </script>
 </html>
 

@@ -49,7 +49,7 @@
 				</svg>
 			</div>
 			<div class="order-summary-toggle-total-recap" data-checkout-payment-due-target="136000000">
-				<span class="total-recap-final-price">1,360,000₫</span>
+				<span class="total-recap-final-price"></span>
 			</div>
 		</div>
 	</div>
@@ -98,7 +98,7 @@
 
 								<tr class="total-line total-line-shipping">
 									<td class="total-line-name">Phí vận chuyển</td>
-									<td class="total-line-price">
+									<td class="total-line-price" id="tinh-phi-ship">
 															<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">
 
 																	—
@@ -116,7 +116,7 @@
 									</td>
 									<td class="total-line-name payment-due">
 										<span class="payment-due-currency">VND</span>
-										<span class="payment-due-price" data-checkout-payment-due-target="136000000">
+										<span class="payment-due-price" id="tong-don-hang" data-checkout-payment-due-target="136000000">
 																1,360,000₫
 															</span>
 									</td>
@@ -443,7 +443,7 @@
 									<div class="section-header">
 										<h2 class="section-title">Phương thức vận chuyển</h2>
 									</div>
-									<div class="section-content">
+									<div class="section-content" id="phi-ship">
 
 									</div>
 								</div>
@@ -614,8 +614,63 @@
     var tongTienhang = document.getElementById('tong-tien');
     nodeGioHang.innerHTML = html;
     tongTienhang.innerHTML = nodeTongTien;
+    tinhPhiShip();
   }
+  // tinh phi ship
+function tinhPhiShip() {
+    var htmlPhiShip = '';
+      var phiShip = 0;
+      var htmlTinhPhiShip = '';
+  var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));
+  var thanhTienSp = 0;
+  for (var i = 0; i < gioHang.length; i++) {
+    var sanPhamHienTai = gioHang[i];
+    var thanhTien = Number(sanPhamHienTai.soLuong) * Number(sanPhamHienTai.giaSP);
+    thanhTienSp += thanhTien;
 
+  }
+    if (thanhTienSp < 500000) {
+      phiShip += 30000;
+      htmlPhiShip += '<div class="content-box">'
+      htmlPhiShip +='<div class="content-box-row">'
+      htmlPhiShip +=' <div class="radio-wrapper">'
+      htmlPhiShip +='<label class="radio-label" for="shipping_rate_id_1666082">'
+      htmlPhiShip +='<div class="radio-input">'
+      htmlPhiShip +=' <input id="shipping_rate_id_1666082" class="input-radio" type="radio" name="shipping_rate_id" value="1666082" checked="">'
+      htmlPhiShip +='</div>'
+      htmlPhiShip +='<span class="radio-label-primary">Phí ship cho đơn dưới 500k</span>'
+      htmlPhiShip +='<span class="radio-accessory content-box-emphasis">' + formatTien(phiShip) + '</span>'
+      htmlPhiShip +='</label>'
+      htmlPhiShip +='</div>'
+      htmlPhiShip +=' </div>'
+      htmlPhiShip +='</div>'
+			htmlTinhPhiShip += '<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">'+ formatTien(phiShip) +'</span>'
+		}
+    else {
+      htmlPhiShip += '<div class="content-box">'
+      htmlPhiShip +='<div class="content-box-row">'
+      htmlPhiShip +=' <div class="radio-wrapper">'
+      htmlPhiShip +='<label class="radio-label" for="shipping_rate_id_1666082">'
+      htmlPhiShip +='<div class="radio-input">'
+      htmlPhiShip +=' <input id="shipping_rate_id_1666082" class="input-radio" type="radio" name="shipping_rate_id" value="1666082" checked="">'
+      htmlPhiShip +='</div>'
+      htmlPhiShip +='<span class="radio-label-primary">Miễn Phí cho đơn hàng trên 500k</span>'
+      htmlPhiShip +='<span class="radio-accessory content-box-emphasis">' + formatTien(phiShip) + '</span>'
+      htmlPhiShip +='</label>'
+      htmlPhiShip +='</div>'
+      htmlPhiShip +=' </div>'
+      htmlPhiShip +='</div>'
+      htmlTinhPhiShip += '<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">'+ formatTien(phiShip) +'</span>'
+		}
+    var tongDonHang = phiShip + thanhTienSp;
+    var htmlTongDonHang = '<span class="total-recap-final-price">'+ formatTien(tongDonHang) +'</span>';
+    var nodeTongDonHang = document.getElementById('tong-don-hang');
+    nodeTongDonHang.innerHTML = htmlTongDonHang;
+    var nodePhiShip = document.getElementById('phi-ship');
+    nodePhiShip.innerHTML = htmlPhiShip;
+    var nodeTinhPhiShip = document.getElementById('tinh-phi-ship');
+    nodeTinhPhiShip.innerHTML = htmlTinhPhiShip;
+}
   // hiển thị số item giỏ hàng
   window.onload = function () {
 hienthigiohangclick();

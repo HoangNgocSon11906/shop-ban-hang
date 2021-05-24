@@ -14752,43 +14752,7 @@
 </div>
 
 
-<script>
 
-  function checkcart() {
-    debugger
-    var giachuan = parseInt("1000000");
-    var tongtiencart = "";
-    jQuery.ajax({
-      url: '/cart.js',
-      async: false,
-      success: function (data) {
-        tongtiencart = data.total_price / 100;
-      }
-    });
-    var checkcartontai = $(".icart").length;
-    if (checkcartontai == 0) {
-      location.href = "/checkout";
-    } else {
-
-      if (tongtiencart >= giachuan) {
-        location.href = "/checkout";
-      } else {
-
-        var tienphaico = Haravan.formatMoney(parseInt($(".icart").attr("datakm")) + "00", "{{amount}}₫");
-        console.log(tienphaico);
-        var htmlc = "<div>Đơn hàng của bạn đang có sản phẩm đồng giá 9k, để thanh toán được bạn cần xóa sản phẩm này khỏi giỏ hàng, hoặc bạn phải mua thêm để đủ điều kiện thanh toán khi có sản phẩm khuyến mãi trong giỏ hàng</div>";
-        htmlc += "<div class='toithieu'>Sản phẩm khuyến mãi đang có trong giỏ hàng là: " + $(".icart").attr("datatitle") + "</div>";
-        htmlc += "<div class=''>Số tiền tối thiểu của đơn hàng để được thanh toán là: " + tienphaico + "</div>";
-
-
-        $(".contentthongbao").html(htmlc);
-        $('#thongbaodonhang').modal('show');
-
-
-      }
-    }
-  }
-</script>
 
 
 <!-- Google Tag Manager (noscript) -->
@@ -19839,11 +19803,12 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 						<tr>
 							<td><a href="javascript:void(0)" class="linktocart button dark">Tiếp tục mua hàng</a></td>
 							<td class="checkout">
-								<button type="submit" id="checkout" class="linktocheckout btn-checkout button dark" name="checkout" value="">
+								<a id="checkout" class="linktocheckout btn-checkout button dark" name="checkout" value="">
 									<div>
 										Thanh toán
 									</div>
-								</button>
+								</a>
+								<button id="thanh-toan" type="submit" hidden="hidden"></button>
 							</td>
 						</tr>
 						</tbody>
@@ -20337,6 +20302,16 @@ _Hasync.push(['Histats.track_hits', '']);
       nodeGioHang.innerHTML = tongTienHtml;
     }
 }
+
+// check don hang
+  $('#checkout').click(function checkDonHang() {
+    var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));
+    if (gioHang.length < 1) {
+      alert("Vui lòng chọn sản phẩm để thanh toán");
+      return;
+		}
+    document.getElementById("thanh-toan").click();
+	})
   // đổi hình ảnh khi click
 
   $(".product-gallery__thumb img").click(function(){

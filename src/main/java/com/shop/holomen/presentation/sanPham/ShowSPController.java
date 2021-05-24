@@ -4,6 +4,7 @@ import com.shop.holomen.application.TrangChuService;
 import com.shop.holomen.application.admin.NhapSanPhamService;
 import com.shop.holomen.domain.loaiSanPham.LoaiSanPhams;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetail;
+import com.shop.holomen.domain.thanhtoan.FormThanhToan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,8 @@ public class ShowSPController {
         model.addAttribute("sanPhamDetail", sanPhamDetail);
         LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
         model.addAttribute("loaiSanPham", loaiSanPhams);
+        FormThanhToan formThanhToan = new FormThanhToan();
+        model.addAttribute("formThanhToan", formThanhToan);
         return "sanPham/showSanPham";
     }
 }

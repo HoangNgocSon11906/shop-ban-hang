@@ -19803,7 +19803,7 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 		<div class="site-nav-container-last">
 			<p class="title">Giỏ hàng</p>
 			<div class="cart-view clearfix">
-				<form action="/cart" method="post" id="cartformpage">
+				<form action="/checkout" method="post" th:object="${formThanhToan}" id="cartformpage">
 					<table id="cart-view">
 						<tbody>
 						<tr class="item_2">
@@ -19839,11 +19839,11 @@ c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85
 						<tr>
 							<td><a href="javascript:void(0)" class="linktocart button dark">Tiếp tục mua hàng</a></td>
 							<td class="checkout">
-								<a href="/checkout" id="checkout" class="linktocheckout btn-checkout button dark" name="checkout" value="">
+								<button type="submit" id="checkout" class="linktocheckout btn-checkout button dark" name="checkout" value="">
 									<div>
 										Thanh toán
 									</div>
-								</a>
+								</button>
 							</td>
 						</tr>
 						</tbody>
@@ -20207,7 +20207,7 @@ _Hasync.push(['Histats.track_hits', '']);
     sanPhamHtml += '<tr class="item_2">'
     sanPhamHtml +=  '<td class="img" style="height: 70px; width: 10px;"><a title="/products/ao-thun-bouton-deep-wash-acid"><img src=""></a></td>'
     sanPhamHtml +='<td>'
-    sanPhamHtml +='<a class="pro-title-view" href="/products/ao-thun-bouton-deep-wash-acid" title="/products/ao-thun-bouton-deep-wash-acid">' + sanPham.tenSanPham + '</a>'
+    sanPhamHtml +='<a class="pro-title-view" href="/products/ao-thun-bouton-deep-wash-acid" th:field="*{formThanhToan.tenSanPham.value}"  title="/products/ao-thun-bouton-deep-wash-acid">' + sanPham.tenSanPham + '</a>'
     sanPhamHtml +='<span class="variant">'+ sanPham.mau + '/' + sanPham.size +'</span>'
     sanPhamHtml +='<span class="pro-quantity-view">'
     sanPhamHtml +='<div class="qty quantity-partent qty-click clearfix"><input type="text" readonly=""  value="'+ sanPham.soLuong +'" class="tc line-item-qty item-quantity"></div>'

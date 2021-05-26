@@ -165,7 +165,7 @@
 											<label class="field-label" for="billing_address_full_name">Họ và tên</label>
 											<input placeholder="Họ và tên" autocapitalize="off" spellcheck="false" class="field-input"
 														 size="30" type="text" id="billing_address_full_name" name="billing_address[full_name]"
-														 value=""/>
+														 />
 										</div>
 
 									</div>
@@ -176,7 +176,7 @@
 											<label class="field-label" for="billing_address_phone">Số điện thoại</label>
 											<input placeholder="Số điện thoại" autocapitalize="off" spellcheck="false" class="field-input"
 														 size="30" maxlength="15" type="tel" id="billing_address_phone"
-														 name="billing_address[phone]" value=""/>
+														 name="billing_address[phone]" />
 										</div>
 
 									</div>
@@ -210,7 +210,7 @@
 											<div class="field-input-wrapper field-input-wrapper-select">
 												<label class="field-label" for="customer_shipping_province"> Tỉnh / thành </label>
 												<select class="field-input" id="customer_shipping_province" name="customer_shipping_province">
-													<option data-code="null" value="null" selected> Chọn tỉnh / thành</option>
+													<option data-code="null" value="null"> Chọn tỉnh / thành</option>
 
 
 													<option data-code="HC" value="50">Hồ Chí Minh</option>
@@ -412,7 +412,9 @@
 											<div class="field-input-wrapper field-input-wrapper-select">
 												<label class="field-label" for="customer_shipping_district">Quận / huyện</label>
 												<select class="field-input" id="customer_shipping_district" name="customer_shipping_district">
-													<option data-code="null" value="null" selected>Chọn quận / huyện</option>
+													<option data-code="4" value="Quan 4" >Quan 4</option>
+													<option data-code="1" value="Quan 1" >Quan 1</option>
+													<option data-code="2" value="Quan 2" >Quan 2</option>
 
 												</select>
 											</div>
@@ -424,7 +426,9 @@
 												<label class="field-label" for="customer_shipping_ward">Phường / xã</label>
 												<select class="field-input" id="customer_shipping_ward" name="customer_shipping_ward">
 
-													<option data-code="null" value="null" selected>Chọn phường / xã</option>
+													<option data-code="4" value="Quan 4" >Quan 4</option>
+													<option data-code="1" value="Quan 1" >Quan 1</option>
+													<option data-code="2" value="Quan 2" >Quan 2</option>
 
 												</select>
 											</div>
@@ -552,6 +556,17 @@
     }
     return sanPham;
   }
+  
+  // tao doi tuong khach hang
+	function taoKhachHang(hoVaTen, sdt, diaChi, phiShip, tongTien) {
+    var khachHang = new Object();
+    khachHang.hoVaten = hoVaTen;
+    khachHang.sdt = sdt;
+    khachHang.diaChi = diaChi;
+    khachHang.phiShip = phiShip;
+    khachHang.tongTien = tongTien;
+    return khachHang;
+  }
 
   // chuyen gio hang thanh html
   function chuyenGioHangThanhHtml(gioHang) {
@@ -667,7 +682,7 @@ function tinhPhiShip() {
       htmlTinhPhiShip += '<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">'+ formatTien(phiShip) +'</span>'
 		}
     var tongDonHang = phiShip + thanhTienSp;
-    var htmlTongDonHang = '<span class="total-recap-final-price">'+ formatTien(tongDonHang) +'</span>';
+    var htmlTongDonHang = '<span class="total-recap-final-price" >'+ formatTien(tongDonHang) +'</span>';
     var nodeTongDonHang = document.getElementById('tong-don-hang');
     nodeTongDonHang.innerHTML = htmlTongDonHang;
     var nodePhiShip = document.getElementById('phi-ship');
@@ -676,7 +691,14 @@ function tinhPhiShip() {
     nodeTinhPhiShip.innerHTML = htmlTinhPhiShip;
 }
   // hiển thị số item giỏ hàng
+	function taoDanhSachThanhToan(gioHang, khachHang) {
+    var thanhToan = new Object();
+    thanhToan.gioHang = gioHang;
+    thanhToan.khachHang = khachHang;
+    return thanhToan;
+	}
   window.onload = function () {
+
 hienthigiohangclick();
   }
   function formatTien(tien) {
@@ -759,15 +781,43 @@ hienthigiohangclick();
     //khi nút submit được click
     submit.addEventListener("click", (function()
     {
+      console.log('vip');
+      var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));
+      var hoVaten = $( "#billing_address_full_name" ).val();
+      console.log(hoVaten);
+      var sdt = $( "#billing_address_phone" ).val();
+      var diaChi =$( "#billing_address_address1" ).val();
+      var thanhPho =$( "#customer_shipping_province" ).val();
+      var quan = $( "#customer_shipping_district" ).val();
+      var huyen = $( "#customer_shipping_ward" ).val();
+     var phiShip = 30000;
+      var thanhTienSp = 0;
+      for (var i = 0; i < gioHang.length; i++) {
+        var sanPhamHienTai = gioHang[i];
+        var thanhTien = Number(sanPhamHienTai.soLuong) * Number(sanPhamHienTai.giaSP);
+        thanhTienSp += thanhTien;
+
+      }
+      var tongTien = thanhTienSp;
+      if(thanhTienSp < 500) {
+        phiShip = 0;
+			}
+      var diaChiFull = diaChi + huyen + quan +thanhPho;
+      var khachHang = taoKhachHang(hoVaten,sdt, diaChiFull, phiShip, tongTien);
+      var danhSachThanhToan = taoDanhSachThanhToan(gioHang, khachHang);
+      localStorage.setItem('danhSachThanhToan',JSON.stringify(danhSachThanhToan));
+      console.log(danhSachThanhToan);
       console.log("vip")
       //khai báo các biến dữ liệu gửi lên server
-      var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"));
+      var thanhToan = JSON.parse(localStorage.getItem("danhSachThanhToan"));
 
       //Sử dụng phương thức Ajax.
       $.ajax({
-        type : 'POST', //Sử dụng kiểu gửi dữ liệu POST
-        url : '/hoanThanh', //gửi dữ liệu sang trang data.php
-        data : gioHang, //dữ liệu sẽ được gửi
+        type : "POST", //Sử dụng kiểu gửi dữ liệu POST
+        contentType: "application/json",
+        url: "/hoanThanh",
+				//gửi dữ liệu sang trang data.php
+        data : thanhToan, //dữ liệu sẽ được gửi
         dataType: 'json',
         success :  hoanThanh() // Hàm thực thi khi nhận dữ liệu được từ server
       });
@@ -775,7 +825,7 @@ hienthigiohangclick();
   });
 
   function hoanThanh() {
-    window.location.href = '/path';
+    window.location.href = '/';
   }
 </script>
 </html>

@@ -1,14 +1,17 @@
 package com.shop.holomen.domain.thanhtoan;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class KhachHang {
-    String ten;
+
+    String hoVaten;
     String sdt;
     String diaChi;
     String phiShip;
     String tongTien;
 
     public KhachHang(String ten, String sdt, String diaChi, String phiShip, String tongTien) {
-        this.ten = ten;
+        this.hoVaten = ten;
         this.sdt = sdt;
         this.diaChi = diaChi;
         this.phiShip = phiShip;
@@ -19,11 +22,10 @@ public class KhachHang {
     }
 
     public String getTen() {
-        return ten;
+        return hoVaten;
     }
-
     public void setTen(String ten) {
-        this.ten = ten;
+        this.hoVaten = ten;
     }
 
     public String getSdt() {

@@ -1,18 +1,29 @@
 package com.shop.holomen.domain.thanhtoan;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class FormThanhToan {
-    SanPhamS gioHang;
+
+    List<SanPham> sanPhams = new ArrayList<>();
+
     KhachHang khachHang;
 
-    public FormThanhToan() {
+    @JsonCreator
+    public FormThanhToan(List<SanPham> sanPhams, KhachHang khachHang) {
+        this.sanPhams = sanPhams;
+        this.khachHang = khachHang;
     }
 
-    public SanPhamS getGioHang() {
-        return gioHang;
+    public List<SanPham> getSanPhams() {
+        return sanPhams;
     }
 
-    public void setGioHang(SanPhamS gioHang) {
-        this.gioHang = gioHang;
+    public void setSanPhams(List<SanPham> sanPhams) {
+        this.sanPhams = sanPhams;
     }
 
     public KhachHang getKhachHang() {

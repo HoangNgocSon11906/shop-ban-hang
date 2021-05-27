@@ -26,8 +26,8 @@ public class ShowSPController {
         model.addAttribute("sanPhamDetail", sanPhamDetail);
         LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
         model.addAttribute("loaiSanPham", loaiSanPhams);
-        FormThanhToan formThanhToan = new FormThanhToan();
-        model.addAttribute("formThanhToan", formThanhToan);
+//        FormThanhToan formThanhToan = new FormThanhToan();
+//        model.addAttribute("formThanhToan", formThanhToan);
         return "sanPham/showSanPham";
     }
 }

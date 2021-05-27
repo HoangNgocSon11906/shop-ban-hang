@@ -11,6 +11,7 @@
 	<script src='//hstatic.net/0/0/global/jquery.min.js' type='text/javascript'></script>
 
 	<script src='//hstatic.net/0/0/global/jquery.validate.js' type='text/javascript'></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -809,17 +810,38 @@ hienthigiohangclick();
       console.log(danhSachThanhToan);
       console.log("vip")
       //khai báo các biến dữ liệu gửi lên server
-      var thanhToan = JSON.parse(localStorage.getItem("danhSachThanhToan"));
+      var thanhToan = localStorage.getItem("danhSachThanhToan");
+      console.log(khachHang)
 
       //Sử dụng phương thức Ajax.
+      // $.ajax({
+      //   type : "POST", //Sử dụng kiểu gửi dữ liệu POST
+      //   contentType: "application/json",
+      //   url: "/hoanThanh",
+			// 	//gửi dữ liệu sang trang data.php
+      //   data : JSON.stringify(thanhToan), //dữ liệu sẽ được gửi
+      //   dataType: 'json',
+      //   success :  hoanThanh() // Hàm thực thi khi nhận dữ liệu được từ server
+      // });
       $.ajax({
-        type : "POST", //Sử dụng kiểu gửi dữ liệu POST
-        contentType: "application/json",
-        url: "/hoanThanh",
-				//gửi dữ liệu sang trang data.php
-        data : thanhToan, //dữ liệu sẽ được gửi
-        dataType: 'json',
-        success :  hoanThanh() // Hàm thực thi khi nhận dữ liệu được từ server
+        type : "POST",
+        contentType : 'application/json',
+        url : "/hoanThanh",
+        data : JSON.stringify(thanhToan),
+        dataType : 'json',
+        timeout : 100000,
+        success : function(data) {
+          console.log("SUCCESS: ", data);
+          display(data);
+        },
+        error : function(e) {
+          console.log("ERROR: ", e);
+          display(e);
+        },
+        done : function(e) {
+          console.log("DONE");
+          enableSearchButton(true);
+        }
       });
     }));
   });

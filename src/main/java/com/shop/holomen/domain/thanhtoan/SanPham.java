@@ -1,31 +1,28 @@
 package com.shop.holomen.domain.thanhtoan;
 
-import com.shop.holomen.domain.sanPham.TenSanPham;
-import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailId;
-
 public class SanPham {
-    String sanPhamDeTailId;
+    String sanPhamDetailId;
     String tenSanPham;
-    String giaSp;
+    String giaSP;
     String mau;
     String size;
     String soLuong;
 
-    public SanPham(String sanPhamDeTailId, String tenSanPham, String giaSp, String mau, String size, String soLuong) {
-        this.sanPhamDeTailId = sanPhamDeTailId;
+    public SanPham(String sanPhamDetailId, String tenSanPham, String giaSP, String mau, String size, String soLuong) {
+        this.sanPhamDetailId = sanPhamDetailId;
         this.tenSanPham = tenSanPham;
-        this.giaSp = giaSp;
+        this.giaSP = giaSP;
         this.mau = mau;
         this.size = size;
         this.soLuong = soLuong;
     }
 
-    public String getSanPhamDeTailId() {
-        return sanPhamDeTailId;
+    public String getSanPhamDetailId() {
+        return sanPhamDetailId;
     }
 
-    public void setSanPhamDeTailId(String sanPhamDeTailId) {
-        this.sanPhamDeTailId = sanPhamDeTailId;
+    public void setSanPhamDetailId(String sanPhamDetailId) {
+        this.sanPhamDetailId = sanPhamDetailId;
     }
 
     public String getTenSanPham() {
@@ -36,12 +33,12 @@ public class SanPham {
         this.tenSanPham = tenSanPham;
     }
 
-    public String getGiaSp() {
-        return giaSp;
+    public String getGiaSP() {
+        return giaSP;
     }
 
-    public void setGiaSp(String giaSp) {
-        this.giaSp = giaSp;
+    public void setGiaSP(String giaSP) {
+        this.giaSP = giaSP;
     }
 
     public String getMau() {

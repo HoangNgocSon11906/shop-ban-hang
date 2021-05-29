@@ -807,27 +807,14 @@ hienthigiohangclick();
       var khachHang = taoKhachHang(hoVaten,sdt, diaChiFull, phiShip, tongTien);
       var danhSachThanhToan = taoDanhSachThanhToan(gioHang, khachHang);
       localStorage.setItem('danhSachThanhToan',JSON.stringify(danhSachThanhToan));
-      console.log(danhSachThanhToan);
-      console.log("vip")
       //khai báo các biến dữ liệu gửi lên server
       var thanhToan = localStorage.getItem("danhSachThanhToan");
       console.log(khachHang)
-
-      //Sử dụng phương thức Ajax.
-      // $.ajax({
-      //   type : "POST", //Sử dụng kiểu gửi dữ liệu POST
-      //   contentType: "application/json",
-      //   url: "/hoanThanh",
-			// 	//gửi dữ liệu sang trang data.php
-      //   data : JSON.stringify(thanhToan), //dữ liệu sẽ được gửi
-      //   dataType: 'json',
-      //   success :  hoanThanh() // Hàm thực thi khi nhận dữ liệu được từ server
-      // });
       $.ajax({
         type : "POST",
         contentType : 'application/json',
         url : "/hoanThanh",
-        data : JSON.stringify(thanhToan),
+        data : JSON.stringify(danhSachThanhToan),
         dataType : 'json',
         timeout : 100000,
         success : function(data) {

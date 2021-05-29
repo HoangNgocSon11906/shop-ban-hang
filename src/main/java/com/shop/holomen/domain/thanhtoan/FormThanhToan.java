@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FormThanhToan {
-
+    @JsonProperty("gioHang")
     List<SanPham> sanPhams = new ArrayList<>();
 
+    @JsonProperty("khachHang")
     KhachHang khachHang;
 
-    @JsonCreator
     public FormThanhToan(List<SanPham> sanPhams, KhachHang khachHang) {
         this.sanPhams = sanPhams;
         this.khachHang = khachHang;

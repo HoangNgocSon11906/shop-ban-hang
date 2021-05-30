@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shop.holomen.infrastructure.datasource.mapper.thanhToan.ThanhToanMapper">
+
+    <resultMap id="mau" type="com.shop.holomen.domain.sanPhamDetail.Mau">
+       <result property="value" column="mau"></result>
+    </resultMap>
+
+    <resultMap id="size" type="com.shop.holomen.domain.sanPhamDetail.Size">
+        <result property="value" column="size"></result>
+    </resultMap>
+
+    <insert id="insertKhachHang" parameterType="com.shop.holomen.domain.thanhtoan.KhachHang"
+            useGeneratedKeys="true" keyProperty="khachId">
+        INSERT INTO shop.thong_tin_khach (
+        ten,
+        SDT,
+        dia_chi
+        )
+        values (
+        #{khachHang.hoVaten},
+        #{khachHang.sdt},
+        #{khachHang.diaChi}
+        )
+    </insert>
+
+    <insert id="insertOrder" parameterType="com.shop.holomen.domain.thanhtoan.KhachHang"
+            useGeneratedKeys="true" keyProperty="OrderId">
+        INSERT INTO shop.Order (
+        khach_id,
+        tong_tien,
+        phi_ship,
+        status
+        )
+        values (
+        #{khachHang.khachId},
+        #{khachHang.tongTien},
+        #{khachHang.phiShip},
+        "Chờ Xác Nhận"
+        )
+    </insert>
+
+    <insert id="insertDonHang">
+        INSERT INTO shop.order_detail(
+        ten_san_pham,
+        size,
+        mau,
+        gia,
+        so_luong,
+        order_id
+        )
+        values (
+        #{sanPham.tenSanPham},
+        #{sanPham.size},
+        #{sanPham.mau},
+        #{sanPham.giaSP},
+        #{sanPham.soLuong},
+        #{id}
+        )
+    </insert>
+
+</mapper>

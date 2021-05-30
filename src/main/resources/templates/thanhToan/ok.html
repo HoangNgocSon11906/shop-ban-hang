@@ -1,0 +1,486 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="flexbox" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="shortcut icon" href="//theme.hstatic.net/1000253775/1000703955/14/favicon.png?v=39" type="image/png"/>
+	<title>
+		HOLOMEN STORE - Thanh toán đơn hàng
+	</title>
+	<meta name="description" content="160STORE - Thanh to&#225;n đơn h&#224;ng"/>
+	<link rel="stylesheet" href="/static/css/checkout.css" th:href="@{/css/checkout.css}"/>
+
+	<script src='//hstatic.net/0/0/global/jquery.min.js' type='text/javascript'></script>
+
+	<script src='//hstatic.net/0/0/global/jquery.validate.js' type='text/javascript'></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<input id="reloadValue" type="hidden" name="reloadValue" value=""/>
+<input id="is_vietnam" type="hidden" value="true"/>
+<input id="is_vietnam_location" type="hidden" value="true"/>
+<div class="banner">
+	<div class="wrap">
+		<a href="/" class="logo">
+			<h1 class="logo-text">HOLOMEN STORE</h1>
+		</a>
+	</div>
+</div>
+<button class="order-summary-toggle order-summary-toggle-hide">
+	<div class="wrap">
+		<div class="order-summary-toggle-inner">
+			<div class="order-summary-toggle-icon-wrapper">
+				<svg width="20" height="19" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle-icon">
+					<path
+						d="M17.178 13.088H5.453c-.454 0-.91-.364-.91-.818L3.727 1.818H0V0h4.544c.455 0 .91.364.91.818l.09 1.272h13.45c.274 0 .547.09.73.364.18.182.27.454.18.727l-1.817 9.18c-.09.455-.455.728-.91.728zM6.27 11.27h10.09l1.454-7.362H5.634l.637 7.362zm.092 7.715c1.004 0 1.818-.813 1.818-1.817s-.814-1.818-1.818-1.818-1.818.814-1.818 1.818.814 1.817 1.818 1.817zm9.18 0c1.004 0 1.817-.813 1.817-1.817s-.814-1.818-1.818-1.818-1.818.814-1.818 1.818.814 1.817 1.818 1.817z"></path>
+				</svg>
+			</div>
+			<div class="order-summary-toggle-text order-summary-toggle-text-show">
+				<span>Hiển thị thông tin đơn hàng</span>
+				<svg width="11" height="6" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle-dropdown" fill="#000">
+					<path
+						d="M.504 1.813l4.358 3.845.496.438.496-.438 4.642-4.096L9.504.438 4.862 4.534h.992L1.496.69.504 1.812z"></path>
+				</svg>
+			</div>
+			<div class="order-summary-toggle-text order-summary-toggle-text-hide">
+				<span>Ẩn thông tin đơn hàng</span>
+				<svg width="11" height="7" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle-dropdown" fill="#000">
+					<path
+						d="M6.138.876L5.642.438l-.496.438L.504 4.972l.992 1.124L6.138 2l-.496.436 3.862 3.408.992-1.122L6.138.876z"></path>
+				</svg>
+			</div>
+			<div class="order-summary-toggle-total-recap" data-checkout-payment-due-target="136000000">
+				<span class="total-recap-final-price"></span>
+			</div>
+		</div>
+	</div>
+</button>
+<div class="content">
+
+	<div class="wrap">
+		<div class="sidebar">
+			<div class="sidebar-content">
+				<div class="order-summary order-summary-is-collapsed">
+					<h2 class="visually-hidden">Thông tin đơn hàng</h2>
+					<div class="order-summary-sections">
+						<div class="order-summary-section order-summary-section-product-list"
+								 data-order-summary-section="line-items">
+							<table class="product-table">
+								<thead>
+								<tr>
+									<th scope="col"><span class="visually-hidden">Hình ảnh</span></th>
+									<th scope="col"><span class="visually-hidden">Mô tả</span></th>
+									<th scope="col"><span class="visually-hidden">Số lượng</span></th>
+									<th scope="col"><span class="visually-hidden">Giá</span></th>
+								</tr>
+								</thead>
+								<tbody id="san-pham">
+								</tbody>
+							</table>
+						</div>
+						<div class="order-summary-section order-summary-section-total-lines payment-lines"
+								 data-order-summary-section="payment-lines">
+							<table class="total-line-table">
+								<thead>
+								<tr>
+									<th scope="col"><span class="visually-hidden">Mô tả</span></th>
+									<th scope="col"><span class="visually-hidden">Giá</span></th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr class="total-line total-line-subtotal">
+									<td class="total-line-name">Tạm tính</td>
+									<td class="total-line-price" id="tong-tien">
+															<span class="order-summary-emphasis" data-checkout-subtotal-price-target="136000000">
+																1,360,000₫
+															</span>
+									</td>
+								</tr>
+
+								<tr class="total-line total-line-shipping">
+									<td class="total-line-name">Phí vận chuyển</td>
+									<td class="total-line-price" id="tinh-phi-ship">
+															<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">
+
+																	—
+
+															</span>
+									</td>
+								</tr>
+
+
+								</tbody>
+								<tfoot class="total-line-table-footer">
+								<tr class="total-line">
+									<td class="total-line-name payment-due-label">
+										<span class="payment-due-label-total">Tổng cộng</span>
+									</td>
+									<td class="total-line-name payment-due">
+										<span class="payment-due-currency">VND</span>
+										<span class="payment-due-price" id="tong-don-hang" data-checkout-payment-due-target="136000000">
+																1,360,000₫
+															</span>
+									</td>
+								</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="main-header">
+				<a href="/" class="logo">
+					<h1 class="logo-text">160STORE</h1>
+				</a>
+			</div>
+			<div class="main">
+				<div class="main-header">
+					<a href="/" class="logo">
+						<h1 class="logo-text">160STORE</h1>
+					</a>
+				</div>
+				<div class="main-content">
+					<div >
+						<div class="section">
+							<div class="section-header os-header">
+								<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000" stroke-width="2" class="hanging-icon checkmark">
+									<path class="checkmark_circle" d="M25 49c13.255 0 24-10.745 24-24S38.255 1 25 1 1 11.745 1 25s10.745 24 24 24z"></path>
+									<path class="checkmark_check" d="M15 24.51l7.307 7.308L35.125 19"></path>
+								</svg>
+								<div class="os-header-heading">
+									<h2 class="os-header-title">
+										Đặt hàng thành công
+									</h2>
+									<span class="os-description">
+                              Cám ơn bạn đã mua hàng!
+                              </span>
+								</div>
+							</div>
+						</div>
+						<div class="thank-you-additional-content">
+							Nhân viên bán hàng của 160STORE sẽ liên lạc với quý khách sớm, bằng số điện thoại 028.7100.6789 <br/>
+							Quý khách vui lòng nghe máy để được xác nhận đơn hàng! 160STORE xin cảm ơn! <br/>
+							<br/>
+							Để thuận lợi trong việc thanh toán, Quý Khách chỉ chuyển khoản sau khi nhận cuộc gọi xác nhận đơn. Mọi thắc mắc và góp ý Quý khách vui lòng gọi hotline 028.7100.6789 để được hỗ trợ trong thời gian sớm nhất. Xin cảm ơn. <br/>
+							Rất hân hạnh phục vụ quý khách.
+							<!--<script>-->
+                <!--var sct = document.createElement('script'); sct.async=true;-->
+                <!--sct.src="https://www.googletagmanager.com/gtag/js?id=AW-665491305";-->
+                <!--document.getElementsByTagName('head')[0].appendChild(sct);-->
+                <!--window.dataLayer = window.dataLayer || [];-->
+                <!--function gtag(){dataLayer.push(arguments);}-->
+                <!--gtag('js', new Date());-->
+                <!--gtag('config', 'AW-665491305');-->
+
+                <!--gtag('event', 'conversion', {-->
+                  <!--'send_to': 'AW-665491305/weAECIWN8-IBEOmuqr0C',-->
+                  <!--'value': 300000,-->
+                  <!--'currency': 'VND',-->
+                  <!--'transaction_id': '160S992146'-->
+                <!--});-->
+
+							<!--</script>-->
+						</div>
+						<div class="section thank-you-checkout-info">
+							<div class="section-content">
+								<div class="content-box">
+									<div class="content-box-row content-box-row-padding content-box-row-no-border">
+										<h2>Thông tin đơn hàng</h2>
+									</div>
+									<div class="content-box-row content-box-row-padding">
+										<div class="section-content">
+											<div class="section-content-column">
+												<h3>Thông tin giao hàng</h3>
+												<p th:text="${khacHang.hoVaten}">
+													<br th:text="${khachHang.diaChi}" />
+													<br th:text="${khachHang.sdt}" />
+												</p>
+												<h3>Phương thức thanh toán</h3>
+												<p>
+													Thanh toán khi giao hàng (COD)
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="step-footer">
+							<a href="/" class="step-footer-continue-btn btn">
+								<span class="btn-content">Tiếp tục mua hàng</span>
+							</a>
+							<!--<p class="step-footer-info">-->
+							<!--<i class="icon icon-os-question"></i>-->
+							<!--<span>-->
+							<!--Cần hỗ trợ? <a href="mailto:cod@160store.com">Liên hệ chúng tôi</a>-->
+							<!--</span>-->
+							<!--</p>-->
+						</div>
+					</div>
+				</div>
+				<!--<div class="main-footer footer-powered-by">-->
+				<!--Powered by Haravan-->
+				<!--</div>-->
+			</div>
+			<div class="main-footer footer-powered-by">
+				Powered by Haravan
+			</div>
+		</div>
+		</div>
+	</div>
+
+</div>
+
+</body>
+<script>
+  // ham tao doi tuong
+  function taoDoiTuongSanPham(sanPhamDetailId, tenSanPham, giaSp, mau, size, soLuong) {
+    var sanPham = new Object();
+    sanPham.sanPhamDetailId = sanPhamDetailId;
+    sanPham.tenSanPham = tenSanPham;
+    sanPham.giaSP = giaSp;
+    sanPham.mau = mau
+    sanPham.size = size;
+    sanPham.soLuong = soLuong;
+
+    sanPham.thanhTien = function () {
+      var thanhTien = this.giaSP * this.soLuong;
+      return thanhTien;
+
+    }
+
+    sanPham.toJson = function () {
+      var sanPhamJson = JSON.stringify(this);
+      return sanPhamJson
+    }
+
+    sanPham.fromJson = function (json) {
+      var doiTuongDayDu = new Object();
+      var doiTuong = JSON.parse(json);
+      var doiTuongDayDu = taoDoiTuongSanPham(doiTuong.sanPhamDetailId, doiTuong.tenSanPham, doiTuong.giaSP,
+        doiTuong.mau, doiTuong.size, doiTuong.soLuong);
+      return doiTuongDayDu;
+    }
+    return sanPham;
+  }
+
+  // tao doi tuong khach hang
+	function taoKhachHang(hoVaTen, sdt, diaChi, phiShip, tongTien) {
+    var khachHang = new Object();
+    khachHang.hoVaten = hoVaTen;
+    khachHang.sdt = sdt;
+    khachHang.diaChi = diaChi;
+    khachHang.phiShip = phiShip;
+    khachHang.tongTien = tongTien;
+    return khachHang;
+  }
+
+  // chuyen gio hang thanh html
+  function chuyenGioHangThanhHtml(gioHang) {
+    var gioHangHtml = '';
+    for (var i = 0; i < gioHang.length; i++) {
+
+      var sanPham = gioHang[i];
+      var index = i;
+      var sanPhamHtml = chuyenSanPhamThanhHtml(sanPham,index);
+      gioHangHtml = gioHangHtml + sanPhamHtml;
+
+    }
+    return gioHangHtml
+  }
+
+  //tong tien
+
+
+  // chuyen doi tuong thanh html
+  function chuyenSanPhamThanhHtml(sanPham,index) {
+    var sanPhamHtml = '';
+    var thanhTien = formatTien(Number(sanPham.giaSP) * Number(sanPham.soLuong));
+    sanPhamHtml += '<tr class="product" data-product-id="1028261018'+ index + '" data-variant-id="1061698177'+ index +'">'
+    sanPhamHtml +=  '<td class="product-description">'
+    sanPhamHtml +=  '<span class="product-description-name order-summary-emphasis">'+ sanPham.tenSanPham+'</span>'
+
+    sanPhamHtml +='<span class="product-description-variant order-summary-small-text"> ' + sanPham.mau +'/' + sanPham.size+'　' + formatTien(sanPham.giaSP) + ' x ' + sanPham.soLuong + '</span>'
+
+    sanPhamHtml += '</td>'
+    sanPhamHtml += '<td class="product-quantity visually-hidden">2</td>'
+    sanPhamHtml += '<td class="product-price">'
+    sanPhamHtml += '<span class="order-summary-emphasis"> ' + thanhTien +'</span>'
+    sanPhamHtml +='</td>'
+    sanPhamHtml +=' </tr>'
+    return sanPhamHtml
+  }
+
+
+  // B1:tạo đối tượng sản phẩm
+
+  // hien thi gio hang
+  function hienthigiohang(giohang) {
+    if (giohang.length == 0) {
+      var html = '';
+      var tongTienHtml = ''
+      var nodeGioHang = document.getElementById('cart-view');
+      var nodeTongTien = document.getElementById('total-view-cart');
+      nodeGioHang.innerHTML = html;
+      nodeTongTien.innerHTML = tongTienHtml;
+    } else {
+      hienthigiohangclick()
+    }
+  }
+
+  function hienthigiohangclick() {
+    var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"));
+    if(gioHang.length>0){
+    var html = chuyenGioHangThanhHtml(gioHang);
+    var nodeGioHang = document.getElementById('san-pham');
+    var nodeTongTien = '<span class="order-summary-emphasis" data-checkout-subtotal-price-target="136000000"> ' + tongTien() + '</span>'
+    var tongTienhang = document.getElementById('tong-tien');
+    nodeGioHang.innerHTML = html;
+    tongTienhang.innerHTML = nodeTongTien;
+    tinhPhiShip();}
+    else{
+      return;
+		}
+  }
+  // tinh phi ship
+function tinhPhiShip() {
+    var htmlPhiShip = '';
+      var phiShip = 0;
+      var htmlTinhPhiShip = '';
+  var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));
+  var thanhTienSp = 0;
+  for (var i = 0; i < gioHang.length; i++) {
+    var sanPhamHienTai = gioHang[i];
+    var thanhTien = Number(sanPhamHienTai.soLuong) * Number(sanPhamHienTai.giaSP);
+    thanhTienSp += thanhTien;
+
+  }
+    if (thanhTienSp < 500000) {
+      phiShip += 30000;
+      htmlPhiShip += '<div class="content-box">'
+      htmlPhiShip +='<div class="content-box-row">'
+      htmlPhiShip +=' <div class="radio-wrapper">'
+      htmlPhiShip +='<label class="radio-label" for="shipping_rate_id_1666082">'
+      htmlPhiShip +='<div class="radio-input">'
+      htmlPhiShip +=' <input id="shipping_rate_id_1666082" class="input-radio" type="radio" name="shipping_rate_id" value="1666082" checked="">'
+      htmlPhiShip +='</div>'
+      htmlPhiShip +='<span class="radio-label-primary">Phí ship cho đơn dưới 500k</span>'
+      htmlPhiShip +='<span class="radio-accessory content-box-emphasis">' + formatTien(phiShip) + '</span>'
+      htmlPhiShip +='</label>'
+      htmlPhiShip +='</div>'
+      htmlPhiShip +=' </div>'
+      htmlPhiShip +='</div>'
+			htmlTinhPhiShip += '<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">'+ formatTien(phiShip) +'</span>'
+		}
+    else {
+      htmlPhiShip += '<div class="content-box">'
+      htmlPhiShip +='<div class="content-box-row">'
+      htmlPhiShip +=' <div class="radio-wrapper">'
+      htmlPhiShip +='<label class="radio-label" for="shipping_rate_id_1666082">'
+      htmlPhiShip +='<div class="radio-input">'
+      htmlPhiShip +=' <input id="shipping_rate_id_1666082" class="input-radio" type="radio" name="shipping_rate_id" value="1666082" checked="">'
+      htmlPhiShip +='</div>'
+      htmlPhiShip +='<span class="radio-label-primary">Miễn Phí cho đơn hàng trên 500k</span>'
+      htmlPhiShip +='<span class="radio-accessory content-box-emphasis">' + formatTien(phiShip) + '</span>'
+      htmlPhiShip +='</label>'
+      htmlPhiShip +='</div>'
+      htmlPhiShip +=' </div>'
+      htmlPhiShip +='</div>'
+      htmlTinhPhiShip += '<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">'+ formatTien(phiShip) +'</span>'
+		}
+    var tongDonHang = phiShip + thanhTienSp;
+    var htmlTongDonHang = '<span class="total-recap-final-price" >'+ formatTien(tongDonHang) +'</span>';
+    var nodeTongDonHang = document.getElementById('tong-don-hang');
+    nodeTongDonHang.innerHTML = htmlTongDonHang;
+    var nodePhiShip = document.getElementById('phi-ship');
+    nodePhiShip.innerHTML = htmlPhiShip;
+    var nodeTinhPhiShip = document.getElementById('tinh-phi-ship');
+    nodeTinhPhiShip.innerHTML = htmlTinhPhiShip;
+}
+  // hiển thị số item giỏ hàng
+	function taoDanhSachThanhToan(gioHang, khachHang) {
+    var thanhToan = new Object();
+    thanhToan.gioHang = gioHang;
+    thanhToan.khachHang = khachHang;
+    return thanhToan;
+	}
+  window.onload = function () {
+
+hienthigiohangclick();
+  }
+  function formatTien(tien) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tien)}
+
+  function tongTien() {
+    var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));
+    var thanhTienSp = 0;
+    for (var i = 0; i < gioHang.length; i++) {
+      var sanPhamHienTai = gioHang[i];
+      var thanhTien = Number(sanPhamHienTai.soLuong) * Number(sanPhamHienTai.giaSP);
+      thanhTienSp += thanhTien;
+
+    }
+    return formatTien(thanhTienSp);
+  }
+
+
+</script>
+<script type="text/javascript">
+  var toggleShowOrderSummary = false;
+  $(document).ready(function() {
+    var currentUrl = '';
+
+
+    currentUrl = '/checkouts/e56ebfe37f924e9e9a675c14ab609b3d?step=1';
+    $('#reloadValue').val().length == 0
+
+    if ($('#reloadValue').val().length == 0)
+    {
+      $('#reloadValue').val(currentUrl);
+      $('body').show();
+    }
+    else
+    {
+      window.location = $('#reloadValue').val();
+      $('#reloadValue').val('');
+    }
+
+    $('body')
+      .on('click', '.order-summary-toggle', function() {
+        toggleShowOrderSummary = !toggleShowOrderSummary;
+
+        if(toggleShowOrderSummary) {
+          $('.order-summary-toggle')
+            .removeClass('order-summary-toggle-hide')
+            .addClass('order-summary-toggle-show');
+
+          $('.sidebar:not(".sidebar-second") .sidebar-content .order-summary')
+            .removeClass('order-summary-is-collapsed')
+            .addClass('order-summary-is-expanded');
+
+          $('.sidebar.sidebar-second .sidebar-content .order-summary')
+            .removeClass('order-summary-is-expanded')
+            .addClass('order-summary-is-collapsed');
+        } else {
+          $('.order-summary-toggle')
+            .removeClass('order-summary-toggle-show')
+            .addClass('order-summary-toggle-hide');
+
+          $('.sidebar:not(".sidebar-second") .sidebar-content .order-summary')
+            .removeClass('order-summary-is-expanded')
+            .addClass('order-summary-is-collapsed');
+
+          $('.sidebar.sidebar-second .sidebar-content .order-summary')
+            .removeClass('order-summary-is-collapsed')
+            .addClass('order-summary-is-expanded');
+        }
+      });
+  });
+</script>
+</html>
+
+
+
+

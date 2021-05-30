@@ -1,31 +1,37 @@
 package com.shop.holomen.domain.thanhtoan;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class KhachHang {
-
+    Integer khachId;
+    Integer OrderId;
     String hoVaten;
     String sdt;
     String diaChi;
     String phiShip;
     String tongTien;
 
-    public KhachHang(String ten, String sdt, String diaChi, String phiShip, String tongTien) {
-        this.hoVaten = ten;
+    public KhachHang(Integer khachId, String hoVaten, String sdt, String diaChi, String phiShip, String tongTien) {
+        this.khachId = khachId;
+        this.hoVaten = hoVaten;
         this.sdt = sdt;
         this.diaChi = diaChi;
         this.phiShip = phiShip;
         this.tongTien = tongTien;
     }
 
-    public KhachHang() {
+    public Integer getKhachId() {
+        return khachId;
     }
 
-    public String getTen() {
+    public void setKhachId(Integer khachId) {
+        this.khachId = khachId;
+    }
+
+    public String getHoVaten() {
         return hoVaten;
     }
-    public void setTen(String ten) {
-        this.hoVaten = ten;
+
+    public void setHoVaten(String hoVaten) {
+        this.hoVaten = hoVaten;
     }
 
     public String getSdt() {
@@ -58,5 +64,13 @@ public class KhachHang {
 
     public void setTongTien(String tongTien) {
         this.tongTien = tongTien;
+    }
+
+    public Integer getOrderId() {
+        return OrderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        OrderId = orderId;
     }
 }

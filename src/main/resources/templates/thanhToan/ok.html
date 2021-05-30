@@ -193,9 +193,9 @@
 										<div class="section-content">
 											<div class="section-content-column">
 												<h3>Thông tin giao hàng</h3>
-												<p th:text="${khacHang.hoVaten}">
-													<br th:text="${khachHang.diaChi}" />
-													<br th:text="${khachHang.sdt}" />
+												<p th:text="${khachHang.khachHang.hoVaten}">
+													<br th:text="${khachHang.getKhachHang().getDiaChi()}" />
+													<br th:text="${khachHang.khachHang.sdt}" />
 												</p>
 												<h3>Phương thức thanh toán</h3>
 												<p>

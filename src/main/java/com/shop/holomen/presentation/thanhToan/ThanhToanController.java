@@ -20,13 +20,15 @@ public class ThanhToanController {
 
     @ResponseBody
     @RequestMapping(value = "/hoanThanh")
-    public String hoanThanh(@RequestBody FormThanhToan formThanhToan, Model model) {
+    public String hoanThanh(@RequestBody FormThanhToan formThanhToan) {
         thanhToanService.insertThanhToan(formThanhToan);
-        model.addAttribute("khachHang", formThanhToan.getKhachHang());
+
         return formThanhToan.getKhachHang().getKhachId().toString();
     }
     @RequestMapping(value = "/ok/{id}")
-    public String ok(@PathVariable(value = "id") String sanPhamId) {
+    public String ok(@PathVariable(value = "id") String khachId, Model model) {
+        FormThanhToan formThanhToan = thanhToanService.findBy(khachId);
+        model.addAttribute("khachHang", formThanhToan);
         return "thanhToan/ok";
     }
 }

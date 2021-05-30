@@ -14,4 +14,8 @@ public class ThanhToanService {
     public void insertThanhToan(FormThanhToan formThanhToan) {
         thanhToanRepository.insertThanhToan(formThanhToan);
     }
+
+    public FormThanhToan findBy(String khachId) {
+        return thanhToanRepository.findBy(khachId);
+    }
 }

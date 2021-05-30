@@ -2,20 +2,25 @@ package com.shop.holomen.domain.thanhtoan;
 
 public class KhachHang {
     Integer khachId;
-    Integer OrderId;
+    String status;
+    Integer orderId;
     String hoVaten;
     String sdt;
     String diaChi;
     String phiShip;
     String tongTien;
+    String ngayMua;
 
-    public KhachHang(Integer khachId, String hoVaten, String sdt, String diaChi, String phiShip, String tongTien) {
+    public KhachHang(Integer khachId, String status, Integer orderId, String hoVaten, String sdt, String diaChi, String phiShip, String tongTien, String ngayMua) {
         this.khachId = khachId;
+        this.status = status;
+        this.orderId = orderId;
         this.hoVaten = hoVaten;
         this.sdt = sdt;
         this.diaChi = diaChi;
         this.phiShip = phiShip;
         this.tongTien = tongTien;
+        this.ngayMua = ngayMua;
     }
 
     public Integer getKhachId() {
@@ -67,10 +72,26 @@ public class KhachHang {
     }
 
     public Integer getOrderId() {
-        return OrderId;
+        return orderId;
     }
 
     public void setOrderId(Integer orderId) {
-        OrderId = orderId;
+        this.orderId = orderId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getNgayMua() {
+        return ngayMua;
+    }
+
+    public void setNgayMua(String ngayMua) {
+        this.ngayMua = ngayMua;
     }
 }

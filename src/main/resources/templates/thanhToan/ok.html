@@ -63,8 +63,7 @@
 				<div class="order-summary order-summary-is-collapsed">
 					<h2 class="visually-hidden">Thông tin đơn hàng</h2>
 					<div class="order-summary-sections">
-						<div class="order-summary-section order-summary-section-product-list"
-								 data-order-summary-section="line-items">
+						<div class="order-summary-section order-summary-section-product-list" data-order-summary-section="line-items">
 							<table class="product-table">
 								<thead>
 								<tr>
@@ -75,11 +74,17 @@
 								</tr>
 								</thead>
 								<tbody id="san-pham">
+								<div th:each="sanPham : ${khachHang.getSanPhams()}">
+								<tr class="product" data-product-id="10282610180" data-variant-id="10616981770">
+									<td class="product-description"><span class="product-description-name order-summary-emphasis" th:text="${sanPham.getTenSanPham()}">Áo thun test mới nhất</span><span class="product-description-variant order-summary-small-text" th:text="${sanPham.getMau()+'/' + sanPham.getSize() +' ' +sanPham.getGiaSP()+'x'+ sanPham.getSoLuong()}"> Trắng/S　180.000&nbsp;₫ x 1</span></td>
+									<td class="product-quantity visually-hidden" th:text="${sanPham.getSoLuong()}"></td>
+									<td class="product-price"><span class="order-summary-emphasis" > 180.000&nbsp;₫</span></td>
+								</tr>
+								</div>
 								</tbody>
 							</table>
 						</div>
-						<div class="order-summary-section order-summary-section-total-lines payment-lines"
-								 data-order-summary-section="payment-lines">
+						<div class="order-summary-section order-summary-section-total-lines payment-lines" data-order-summary-section="payment-lines">
 							<table class="total-line-table">
 								<thead>
 								<tr>
@@ -90,25 +95,12 @@
 								<tbody>
 								<tr class="total-line total-line-subtotal">
 									<td class="total-line-name">Tạm tính</td>
-									<td class="total-line-price" id="tong-tien">
-															<span class="order-summary-emphasis" data-checkout-subtotal-price-target="136000000">
-																1,360,000₫
-															</span>
-									</td>
+									<td class="total-line-price" id="tong-tien"><span class="order-summary-emphasis" data-checkout-subtotal-price-target="136000000" > 180.000&nbsp;₫</span></td>
 								</tr>
-
 								<tr class="total-line total-line-shipping">
 									<td class="total-line-name">Phí vận chuyển</td>
-									<td class="total-line-price" id="tinh-phi-ship">
-															<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">
-
-																	—
-
-															</span>
-									</td>
+									<td class="total-line-price" id="tinh-phi-ship"><span class="order-summary-emphasis" data-checkout-total-shipping-target="0" th:text="${khachHang.getKhachHang().getPhiShip()}">30.000&nbsp;₫</span></td>
 								</tr>
-
-
 								</tbody>
 								<tfoot class="total-line-table-footer">
 								<tr class="total-line">
@@ -117,9 +109,7 @@
 									</td>
 									<td class="total-line-name payment-due">
 										<span class="payment-due-currency">VND</span>
-										<span class="payment-due-price" id="tong-don-hang" data-checkout-payment-due-target="136000000">
-																1,360,000₫
-															</span>
+										<span class="payment-due-price" id="tong-don-hang" data-checkout-payment-due-target="136000000"><span class="total-recap-final-price" th:text="${khachHang.getKhachHang().getTongTien()}">210.000&nbsp;₫</span></span>
 									</td>
 								</tr>
 								</tfoot>
@@ -135,12 +125,6 @@
 					<h1 class="logo-text">160STORE</h1>
 				</a>
 			</div>
-			<div class="main">
-				<div class="main-header">
-					<a href="/" class="logo">
-						<h1 class="logo-text">160STORE</h1>
-					</a>
-				</div>
 				<div class="main-content">
 					<div >
 						<div class="section">
@@ -193,7 +177,8 @@
 										<div class="section-content">
 											<div class="section-content-column">
 												<h3>Thông tin giao hàng</h3>
-												<p th:text="${khachHang.khachHang.hoVaten}">
+												<p>
+													<br th:text="${khachHang.khachHang.hoVaten}"/>
 													<br th:text="${khachHang.getKhachHang().getDiaChi()}" />
 													<br th:text="${khachHang.khachHang.sdt}" />
 												</p>
@@ -220,12 +205,6 @@
 						</div>
 					</div>
 				</div>
-				<!--<div class="main-footer footer-powered-by">-->
-				<!--Powered by Haravan-->
-				<!--</div>-->
-			</div>
-			<div class="main-footer footer-powered-by">
-				Powered by Haravan
 			</div>
 		</div>
 		</div>
@@ -234,199 +213,199 @@
 </div>
 
 </body>
-<script>
-  // ham tao doi tuong
-  function taoDoiTuongSanPham(sanPhamDetailId, tenSanPham, giaSp, mau, size, soLuong) {
-    var sanPham = new Object();
-    sanPham.sanPhamDetailId = sanPhamDetailId;
-    sanPham.tenSanPham = tenSanPham;
-    sanPham.giaSP = giaSp;
-    sanPham.mau = mau
-    sanPham.size = size;
-    sanPham.soLuong = soLuong;
+<!--<script>-->
+  <!--// ham tao doi tuong-->
+  <!--function taoDoiTuongSanPham(sanPhamDetailId, tenSanPham, giaSp, mau, size, soLuong) {-->
+    <!--var sanPham = new Object();-->
+    <!--sanPham.sanPhamDetailId = sanPhamDetailId;-->
+    <!--sanPham.tenSanPham = tenSanPham;-->
+    <!--sanPham.giaSP = giaSp;-->
+    <!--sanPham.mau = mau-->
+    <!--sanPham.size = size;-->
+    <!--sanPham.soLuong = soLuong;-->
 
-    sanPham.thanhTien = function () {
-      var thanhTien = this.giaSP * this.soLuong;
-      return thanhTien;
+    <!--sanPham.thanhTien = function () {-->
+      <!--var thanhTien = this.giaSP * this.soLuong;-->
+      <!--return thanhTien;-->
 
-    }
+    <!--}-->
 
-    sanPham.toJson = function () {
-      var sanPhamJson = JSON.stringify(this);
-      return sanPhamJson
-    }
+    <!--sanPham.toJson = function () {-->
+      <!--var sanPhamJson = JSON.stringify(this);-->
+      <!--return sanPhamJson-->
+    <!--}-->
 
-    sanPham.fromJson = function (json) {
-      var doiTuongDayDu = new Object();
-      var doiTuong = JSON.parse(json);
-      var doiTuongDayDu = taoDoiTuongSanPham(doiTuong.sanPhamDetailId, doiTuong.tenSanPham, doiTuong.giaSP,
-        doiTuong.mau, doiTuong.size, doiTuong.soLuong);
-      return doiTuongDayDu;
-    }
-    return sanPham;
-  }
+    <!--sanPham.fromJson = function (json) {-->
+      <!--var doiTuongDayDu = new Object();-->
+      <!--var doiTuong = JSON.parse(json);-->
+      <!--var doiTuongDayDu = taoDoiTuongSanPham(doiTuong.sanPhamDetailId, doiTuong.tenSanPham, doiTuong.giaSP,-->
+        <!--doiTuong.mau, doiTuong.size, doiTuong.soLuong);-->
+      <!--return doiTuongDayDu;-->
+    <!--}-->
+    <!--return sanPham;-->
+  <!--}-->
 
-  // tao doi tuong khach hang
-	function taoKhachHang(hoVaTen, sdt, diaChi, phiShip, tongTien) {
-    var khachHang = new Object();
-    khachHang.hoVaten = hoVaTen;
-    khachHang.sdt = sdt;
-    khachHang.diaChi = diaChi;
-    khachHang.phiShip = phiShip;
-    khachHang.tongTien = tongTien;
-    return khachHang;
-  }
+  <!--// tao doi tuong khach hang-->
+	<!--function taoKhachHang(hoVaTen, sdt, diaChi, phiShip, tongTien) {-->
+    <!--var khachHang = new Object();-->
+    <!--khachHang.hoVaten = hoVaTen;-->
+    <!--khachHang.sdt = sdt;-->
+    <!--khachHang.diaChi = diaChi;-->
+    <!--khachHang.phiShip = phiShip;-->
+    <!--khachHang.tongTien = tongTien;-->
+    <!--return khachHang;-->
+  <!--}-->
 
-  // chuyen gio hang thanh html
-  function chuyenGioHangThanhHtml(gioHang) {
-    var gioHangHtml = '';
-    for (var i = 0; i < gioHang.length; i++) {
+  <!--// chuyen gio hang thanh html-->
+  <!--function chuyenGioHangThanhHtml(gioHang) {-->
+    <!--var gioHangHtml = '';-->
+    <!--for (var i = 0; i < gioHang.length; i++) {-->
 
-      var sanPham = gioHang[i];
-      var index = i;
-      var sanPhamHtml = chuyenSanPhamThanhHtml(sanPham,index);
-      gioHangHtml = gioHangHtml + sanPhamHtml;
+      <!--var sanPham = gioHang[i];-->
+      <!--var index = i;-->
+      <!--var sanPhamHtml = chuyenSanPhamThanhHtml(sanPham,index);-->
+      <!--gioHangHtml = gioHangHtml + sanPhamHtml;-->
 
-    }
-    return gioHangHtml
-  }
+    <!--}-->
+    <!--return gioHangHtml-->
+  <!--}-->
 
-  //tong tien
-
-
-  // chuyen doi tuong thanh html
-  function chuyenSanPhamThanhHtml(sanPham,index) {
-    var sanPhamHtml = '';
-    var thanhTien = formatTien(Number(sanPham.giaSP) * Number(sanPham.soLuong));
-    sanPhamHtml += '<tr class="product" data-product-id="1028261018'+ index + '" data-variant-id="1061698177'+ index +'">'
-    sanPhamHtml +=  '<td class="product-description">'
-    sanPhamHtml +=  '<span class="product-description-name order-summary-emphasis">'+ sanPham.tenSanPham+'</span>'
-
-    sanPhamHtml +='<span class="product-description-variant order-summary-small-text"> ' + sanPham.mau +'/' + sanPham.size+'　' + formatTien(sanPham.giaSP) + ' x ' + sanPham.soLuong + '</span>'
-
-    sanPhamHtml += '</td>'
-    sanPhamHtml += '<td class="product-quantity visually-hidden">2</td>'
-    sanPhamHtml += '<td class="product-price">'
-    sanPhamHtml += '<span class="order-summary-emphasis"> ' + thanhTien +'</span>'
-    sanPhamHtml +='</td>'
-    sanPhamHtml +=' </tr>'
-    return sanPhamHtml
-  }
+  <!--//tong tien-->
 
 
-  // B1:tạo đối tượng sản phẩm
+  <!--// chuyen doi tuong thanh html-->
+  <!--function chuyenSanPhamThanhHtml(sanPham,index) {-->
+    <!--var sanPhamHtml = '';-->
+    <!--var thanhTien = formatTien(Number(sanPham.giaSP) * Number(sanPham.soLuong));-->
+    <!--sanPhamHtml += '<tr class="product" data-product-id="1028261018'+ index + '" data-variant-id="1061698177'+ index +'">'-->
+    <!--sanPhamHtml +=  '<td class="product-description">'-->
+    <!--sanPhamHtml +=  '<span class="product-description-name order-summary-emphasis">'+ sanPham.tenSanPham+'</span>'-->
 
-  // hien thi gio hang
-  function hienthigiohang(giohang) {
-    if (giohang.length == 0) {
-      var html = '';
-      var tongTienHtml = ''
-      var nodeGioHang = document.getElementById('cart-view');
-      var nodeTongTien = document.getElementById('total-view-cart');
-      nodeGioHang.innerHTML = html;
-      nodeTongTien.innerHTML = tongTienHtml;
-    } else {
-      hienthigiohangclick()
-    }
-  }
+    <!--sanPhamHtml +='<span class="product-description-variant order-summary-small-text"> ' + sanPham.mau +'/' + sanPham.size+'　' + formatTien(sanPham.giaSP) + ' x ' + sanPham.soLuong + '</span>'-->
 
-  function hienthigiohangclick() {
-    var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"));
-    if(gioHang.length>0){
-    var html = chuyenGioHangThanhHtml(gioHang);
-    var nodeGioHang = document.getElementById('san-pham');
-    var nodeTongTien = '<span class="order-summary-emphasis" data-checkout-subtotal-price-target="136000000"> ' + tongTien() + '</span>'
-    var tongTienhang = document.getElementById('tong-tien');
-    nodeGioHang.innerHTML = html;
-    tongTienhang.innerHTML = nodeTongTien;
-    tinhPhiShip();}
-    else{
-      return;
-		}
-  }
-  // tinh phi ship
-function tinhPhiShip() {
-    var htmlPhiShip = '';
-      var phiShip = 0;
-      var htmlTinhPhiShip = '';
-  var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));
-  var thanhTienSp = 0;
-  for (var i = 0; i < gioHang.length; i++) {
-    var sanPhamHienTai = gioHang[i];
-    var thanhTien = Number(sanPhamHienTai.soLuong) * Number(sanPhamHienTai.giaSP);
-    thanhTienSp += thanhTien;
-
-  }
-    if (thanhTienSp < 500000) {
-      phiShip += 30000;
-      htmlPhiShip += '<div class="content-box">'
-      htmlPhiShip +='<div class="content-box-row">'
-      htmlPhiShip +=' <div class="radio-wrapper">'
-      htmlPhiShip +='<label class="radio-label" for="shipping_rate_id_1666082">'
-      htmlPhiShip +='<div class="radio-input">'
-      htmlPhiShip +=' <input id="shipping_rate_id_1666082" class="input-radio" type="radio" name="shipping_rate_id" value="1666082" checked="">'
-      htmlPhiShip +='</div>'
-      htmlPhiShip +='<span class="radio-label-primary">Phí ship cho đơn dưới 500k</span>'
-      htmlPhiShip +='<span class="radio-accessory content-box-emphasis">' + formatTien(phiShip) + '</span>'
-      htmlPhiShip +='</label>'
-      htmlPhiShip +='</div>'
-      htmlPhiShip +=' </div>'
-      htmlPhiShip +='</div>'
-			htmlTinhPhiShip += '<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">'+ formatTien(phiShip) +'</span>'
-		}
-    else {
-      htmlPhiShip += '<div class="content-box">'
-      htmlPhiShip +='<div class="content-box-row">'
-      htmlPhiShip +=' <div class="radio-wrapper">'
-      htmlPhiShip +='<label class="radio-label" for="shipping_rate_id_1666082">'
-      htmlPhiShip +='<div class="radio-input">'
-      htmlPhiShip +=' <input id="shipping_rate_id_1666082" class="input-radio" type="radio" name="shipping_rate_id" value="1666082" checked="">'
-      htmlPhiShip +='</div>'
-      htmlPhiShip +='<span class="radio-label-primary">Miễn Phí cho đơn hàng trên 500k</span>'
-      htmlPhiShip +='<span class="radio-accessory content-box-emphasis">' + formatTien(phiShip) + '</span>'
-      htmlPhiShip +='</label>'
-      htmlPhiShip +='</div>'
-      htmlPhiShip +=' </div>'
-      htmlPhiShip +='</div>'
-      htmlTinhPhiShip += '<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">'+ formatTien(phiShip) +'</span>'
-		}
-    var tongDonHang = phiShip + thanhTienSp;
-    var htmlTongDonHang = '<span class="total-recap-final-price" >'+ formatTien(tongDonHang) +'</span>';
-    var nodeTongDonHang = document.getElementById('tong-don-hang');
-    nodeTongDonHang.innerHTML = htmlTongDonHang;
-    var nodePhiShip = document.getElementById('phi-ship');
-    nodePhiShip.innerHTML = htmlPhiShip;
-    var nodeTinhPhiShip = document.getElementById('tinh-phi-ship');
-    nodeTinhPhiShip.innerHTML = htmlTinhPhiShip;
-}
-  // hiển thị số item giỏ hàng
-	function taoDanhSachThanhToan(gioHang, khachHang) {
-    var thanhToan = new Object();
-    thanhToan.gioHang = gioHang;
-    thanhToan.khachHang = khachHang;
-    return thanhToan;
-	}
-  window.onload = function () {
-
-hienthigiohangclick();
-  }
-  function formatTien(tien) {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tien)}
-
-  function tongTien() {
-    var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));
-    var thanhTienSp = 0;
-    for (var i = 0; i < gioHang.length; i++) {
-      var sanPhamHienTai = gioHang[i];
-      var thanhTien = Number(sanPhamHienTai.soLuong) * Number(sanPhamHienTai.giaSP);
-      thanhTienSp += thanhTien;
-
-    }
-    return formatTien(thanhTienSp);
-  }
+    <!--sanPhamHtml += '</td>'-->
+    <!--sanPhamHtml += '<td class="product-quantity visually-hidden">2</td>'-->
+    <!--sanPhamHtml += '<td class="product-price">'-->
+    <!--sanPhamHtml += '<span class="order-summary-emphasis"> ' + thanhTien +'</span>'-->
+    <!--sanPhamHtml +='</td>'-->
+    <!--sanPhamHtml +=' </tr>'-->
+    <!--return sanPhamHtml-->
+  <!--}-->
 
 
-</script>
+  <!--// B1:tạo đối tượng sản phẩm-->
+
+  <!--// hien thi gio hang-->
+  <!--function hienthigiohang(giohang) {-->
+    <!--if (giohang.length == 0) {-->
+      <!--var html = '';-->
+      <!--var tongTienHtml = ''-->
+      <!--var nodeGioHang = document.getElementById('cart-view');-->
+      <!--var nodeTongTien = document.getElementById('total-view-cart');-->
+      <!--nodeGioHang.innerHTML = html;-->
+      <!--nodeTongTien.innerHTML = tongTienHtml;-->
+    <!--} else {-->
+      <!--hienthigiohangclick()-->
+    <!--}-->
+  <!--}-->
+
+  <!--function hienthigiohangclick() {-->
+    <!--var gioHang = JSON.parse(localStorage.getItem("danhSachSanPham"));-->
+    <!--if(gioHang.length>0){-->
+    <!--var html = chuyenGioHangThanhHtml(gioHang);-->
+    <!--var nodeGioHang = document.getElementById('san-pham');-->
+    <!--var nodeTongTien = '<span class="order-summary-emphasis" data-checkout-subtotal-price-target="136000000"> ' + tongTien() + '</span>'-->
+    <!--var tongTienhang = document.getElementById('tong-tien');-->
+    <!--nodeGioHang.innerHTML = html;-->
+    <!--tongTienhang.innerHTML = nodeTongTien;-->
+    <!--tinhPhiShip();}-->
+    <!--else{-->
+      <!--return;-->
+		<!--}-->
+  <!--}-->
+  <!--// tinh phi ship-->
+<!--function tinhPhiShip() {-->
+    <!--var htmlPhiShip = '';-->
+      <!--var phiShip = 0;-->
+      <!--var htmlTinhPhiShip = '';-->
+  <!--var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));-->
+  <!--var thanhTienSp = 0;-->
+  <!--for (var i = 0; i < gioHang.length; i++) {-->
+    <!--var sanPhamHienTai = gioHang[i];-->
+    <!--var thanhTien = Number(sanPhamHienTai.soLuong) * Number(sanPhamHienTai.giaSP);-->
+    <!--thanhTienSp += thanhTien;-->
+
+  <!--}-->
+    <!--if (thanhTienSp < 500000) {-->
+      <!--phiShip += 30000;-->
+      <!--htmlPhiShip += '<div class="content-box">'-->
+      <!--htmlPhiShip +='<div class="content-box-row">'-->
+      <!--htmlPhiShip +=' <div class="radio-wrapper">'-->
+      <!--htmlPhiShip +='<label class="radio-label" for="shipping_rate_id_1666082">'-->
+      <!--htmlPhiShip +='<div class="radio-input">'-->
+      <!--htmlPhiShip +=' <input id="shipping_rate_id_1666082" class="input-radio" type="radio" name="shipping_rate_id" value="1666082" checked="">'-->
+      <!--htmlPhiShip +='</div>'-->
+      <!--htmlPhiShip +='<span class="radio-label-primary">Phí ship cho đơn dưới 500k</span>'-->
+      <!--htmlPhiShip +='<span class="radio-accessory content-box-emphasis">' + formatTien(phiShip) + '</span>'-->
+      <!--htmlPhiShip +='</label>'-->
+      <!--htmlPhiShip +='</div>'-->
+      <!--htmlPhiShip +=' </div>'-->
+      <!--htmlPhiShip +='</div>'-->
+			<!--htmlTinhPhiShip += '<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">'+ formatTien(phiShip) +'</span>'-->
+		<!--}-->
+    <!--else {-->
+      <!--htmlPhiShip += '<div class="content-box">'-->
+      <!--htmlPhiShip +='<div class="content-box-row">'-->
+      <!--htmlPhiShip +=' <div class="radio-wrapper">'-->
+      <!--htmlPhiShip +='<label class="radio-label" for="shipping_rate_id_1666082">'-->
+      <!--htmlPhiShip +='<div class="radio-input">'-->
+      <!--htmlPhiShip +=' <input id="shipping_rate_id_1666082" class="input-radio" type="radio" name="shipping_rate_id" value="1666082" checked="">'-->
+      <!--htmlPhiShip +='</div>'-->
+      <!--htmlPhiShip +='<span class="radio-label-primary">Miễn Phí cho đơn hàng trên 500k</span>'-->
+      <!--htmlPhiShip +='<span class="radio-accessory content-box-emphasis">' + formatTien(phiShip) + '</span>'-->
+      <!--htmlPhiShip +='</label>'-->
+      <!--htmlPhiShip +='</div>'-->
+      <!--htmlPhiShip +=' </div>'-->
+      <!--htmlPhiShip +='</div>'-->
+      <!--htmlTinhPhiShip += '<span class="order-summary-emphasis" data-checkout-total-shipping-target="0">'+ formatTien(phiShip) +'</span>'-->
+		<!--}-->
+    <!--var tongDonHang = phiShip + thanhTienSp;-->
+    <!--var htmlTongDonHang = '<span class="total-recap-final-price" >'+ formatTien(tongDonHang) +'</span>';-->
+    <!--var nodeTongDonHang = document.getElementById('tong-don-hang');-->
+    <!--nodeTongDonHang.innerHTML = htmlTongDonHang;-->
+    <!--var nodePhiShip = document.getElementById('phi-ship');-->
+    <!--nodePhiShip.innerHTML = htmlPhiShip;-->
+    <!--var nodeTinhPhiShip = document.getElementById('tinh-phi-ship');-->
+    <!--nodeTinhPhiShip.innerHTML = htmlTinhPhiShip;-->
+<!--}-->
+  <!--// hiển thị số item giỏ hàng-->
+	<!--function taoDanhSachThanhToan(gioHang, khachHang) {-->
+    <!--var thanhToan = new Object();-->
+    <!--thanhToan.gioHang = gioHang;-->
+    <!--thanhToan.khachHang = khachHang;-->
+    <!--return thanhToan;-->
+	<!--}-->
+  <!--window.onload = function () {-->
+
+<!--hienthigiohangclick();-->
+  <!--}-->
+  <!--function formatTien(tien) {-->
+    <!--return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tien)}-->
+
+  <!--function tongTien() {-->
+    <!--var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));-->
+    <!--var thanhTienSp = 0;-->
+    <!--for (var i = 0; i < gioHang.length; i++) {-->
+      <!--var sanPhamHienTai = gioHang[i];-->
+      <!--var thanhTien = Number(sanPhamHienTai.soLuong) * Number(sanPhamHienTai.giaSP);-->
+      <!--thanhTienSp += thanhTien;-->
+
+    <!--}-->
+    <!--return formatTien(thanhTienSp);-->
+  <!--}-->
+
+
+<!--// </script>-->
 <script type="text/javascript">
   var toggleShowOrderSummary = false;
   $(document).ready(function() {

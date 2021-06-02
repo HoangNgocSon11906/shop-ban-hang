@@ -19,4 +19,10 @@ public interface ThanhToanMapper {
     KhachHang findBy(@Param("id") String khachId);
 
     List<SanPham> findSanPham(@Param("id") Integer khachId);
+
+    List<String> findThanhPho(@Param("maTinh") String maTinh);
+
+    List<String> findQuan(@Param("maQuan") String maQuan);
+
+    List<String> findTinh();
 }

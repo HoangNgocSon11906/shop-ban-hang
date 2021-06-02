@@ -6,7 +6,7 @@
     <insert id="insertKhachHang" parameterType="com.shop.holomen.domain.thanhtoan.KhachHang"
             useGeneratedKeys="true" keyProperty="khachId">
         INSERT INTO shop.thong_tin_khach (
-        ten,
+        ho_va_ten,
         SDT,
         dia_chi
         )
@@ -62,7 +62,7 @@
     </resultMap>
     <resultMap id="khachHang" type="com.shop.holomen.domain.thanhtoan.KhachHang">
         <result property="khachId" column="khach_id"></result>
-        <result property="hoVaten" column="ten"></result>
+        <result property="hoVaten" column="ho_va_ten"></result>
         <result property="sdt" column="SDT"></result>
         <result property="diaChi" column="dia_chi"></result>
         <result property="tongTien" column="tong_tien"></result>
@@ -75,7 +75,7 @@
     SELECT
         order_id,
         khach_id,
-        ten,
+        ho_va_ten,
         SDT,
         dia_chi,
         tong_tien,
@@ -99,5 +99,23 @@
     shop.order_detail
     where order_id = #{id}
     </select>
-
+    <select id="findThanhPho" resultType="string">
+    SELECT
+        devvn_quanhuyen.name
+    FROM shop.devvn_tinhthanhpho
+    JOIN shop.devvn_quanhuyen USING(maTp)
+    WHERE devvn_tinhthanhpho.name = #{maTinh}
+    </select>
+    <select id="findQuan" resultType="string">
+        SELECT
+    devvn_xaphuongthitran.name
+    FROM shop.devvn_quanhuyen
+    JOIN shop.devvn_xaphuongthitran USING(maqh)
+    WHERE devvn_quanhuyen.name = #{maQuan}
+    </select>
+    <select id="findTinh" resultType="string">
+    SELECT
+        name
+    FROM shop.devvn_tinhthanhpho
+    </select>
 </mapper>

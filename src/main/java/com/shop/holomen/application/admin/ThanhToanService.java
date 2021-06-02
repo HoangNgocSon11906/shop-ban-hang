@@ -5,6 +5,8 @@ import com.shop.holomen.domain.thanhtoan.ThanhToanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ThanhToanService {
 
@@ -17,5 +19,17 @@ public class ThanhToanService {
 
     public FormThanhToan findBy(String khachId) {
         return thanhToanRepository.findBy(khachId);
+    }
+
+    public List<String> findThanhPho(String maTinh) {
+        return thanhToanRepository.findThanhPho(maTinh);
+    }
+
+    public List<String> findQuan(String maquan) {
+        return thanhToanRepository.findQuan(maquan);
+    }
+
+    public List<String> findTinh() {
+        return thanhToanRepository.findTinh();
     }
 }

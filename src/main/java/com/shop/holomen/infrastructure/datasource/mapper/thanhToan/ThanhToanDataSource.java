@@ -32,5 +32,22 @@ public class ThanhToanDataSource implements ThanhToanRepository {
         List<SanPham> sanPhams = thanhToanMapper.findSanPham(khachHang.getOrderId());
         return new FormThanhToan(sanPhams, khachHang);
     }
+
+    @Override
+    public List<String> findThanhPho(String maTinh) {
+        return thanhToanMapper.findThanhPho(maTinh);
+    }
+
+    @Override
+    public List<String> findQuan(String maQuan) {
+        return thanhToanMapper.findQuan(maQuan);
+    }
+
+    @Override
+    public List<String> findTinh() {
+        return thanhToanMapper.findTinh();
+    }
+
 }
+
 

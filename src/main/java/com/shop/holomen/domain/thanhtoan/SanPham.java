@@ -1,5 +1,7 @@
 package com.shop.holomen.domain.thanhtoan;
 
+import java.text.NumberFormat;
+
 public class SanPham {
     String sanPhamDetailId;
     String tenSanPham;
@@ -63,5 +65,15 @@ public class SanPham {
 
     public void setSoLuong(String soLuong) {
         this.soLuong = soLuong;
+    }
+    public String formattedValueGiaSp() {
+        int giaSPInt = Integer.parseInt(giaSP);
+        NumberFormat currency = NumberFormat.getNumberInstance();
+        return currency.format(giaSPInt);
+    }
+    public String formattedValueThanhTien() {
+        int thanhTien = Integer.parseInt(giaSP)*Integer.parseInt(soLuong);
+        NumberFormat currency = NumberFormat.getNumberInstance();
+        return currency.format(thanhTien);
     }
 }

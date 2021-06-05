@@ -76,9 +76,9 @@
 								<tbody id="san-pham">
 								<div th:each="sanPham : ${khachHang.getSanPhams()}">
 								<tr class="product" data-product-id="10282610180" data-variant-id="10616981770">
-									<td class="product-description"><span class="product-description-name order-summary-emphasis" th:text="${sanPham.getTenSanPham()}">Áo thun test mới nhất</span><span class="product-description-variant order-summary-small-text" th:text="${sanPham.getMau()+'/' + sanPham.getSize() +' ' +sanPham.getGiaSP()+'x'+ sanPham.getSoLuong()}"> Trắng/S　180.000&nbsp;₫ x 1</span></td>
+									<td class="product-description"><span class="product-description-name order-summary-emphasis" th:text="${sanPham.getTenSanPham()}">Áo thun test mới nhất</span><span class="product-description-variant order-summary-small-text" th:text="${sanPham.getMau()+'/' + sanPham.getSize() +' ' +sanPham.formattedValueGiaSp()+'đx'+ sanPham.getSoLuong()}"> Trắng/S　180.000&nbsp;₫ x 1</span></td>
 									<td class="product-quantity visually-hidden" th:text="${sanPham.getSoLuong()}"></td>
-									<td class="product-price"><span class="order-summary-emphasis" > 180.000&nbsp;₫</span></td>
+									<td class="product-price"><span class="order-summary-emphasis" th:text="${sanPham.formattedValueThanhTien()}+'đ'"> 180.000&nbsp;₫</span></td>
 								</tr>
 								</div>
 								</tbody>
@@ -95,11 +95,11 @@
 								<tbody>
 								<tr class="total-line total-line-subtotal">
 									<td class="total-line-name">Tạm tính</td>
-									<td class="total-line-price" id="tong-tien"><span class="order-summary-emphasis" data-checkout-subtotal-price-target="136000000" > 180.000&nbsp;₫</span></td>
+									<td class="total-line-price" id="tong-tien"><span class="order-summary-emphasis" data-checkout-subtotal-price-target="136000000" th:text="${khachHang.getKhachHang().formattedValueTongTien()} +'đ'"> 180.000&nbsp;₫</span></td>
 								</tr>
 								<tr class="total-line total-line-shipping">
 									<td class="total-line-name">Phí vận chuyển</td>
-									<td class="total-line-price" id="tinh-phi-ship"><span class="order-summary-emphasis" data-checkout-total-shipping-target="0" th:text="${khachHang.getKhachHang().getPhiShip()}">30.000&nbsp;₫</span></td>
+									<td class="total-line-price" id="tinh-phi-ship"><span class="order-summary-emphasis" data-checkout-total-shipping-target="0" th:text="${khachHang.getKhachHang().formattedValuePhiShip()}+'đ'">30.000&nbsp;₫</span></td>
 								</tr>
 								</tbody>
 								<tfoot class="total-line-table-footer">
@@ -109,7 +109,7 @@
 									</td>
 									<td class="total-line-name payment-due">
 										<span class="payment-due-currency">VND</span>
-										<span class="payment-due-price" id="tong-don-hang" data-checkout-payment-due-target="136000000"><span class="total-recap-final-price" th:text="${khachHang.getKhachHang().getTongTien()}">210.000&nbsp;₫</span></span>
+										<span class="payment-due-price" id="tong-don-hang" data-checkout-payment-due-target="136000000"><span class="total-recap-final-price" th:text="${khachHang.getKhachHang().formattedValueThanhTien()}+'đ'">210.000&nbsp;₫</span></span>
 									</td>
 								</tr>
 								</tfoot>

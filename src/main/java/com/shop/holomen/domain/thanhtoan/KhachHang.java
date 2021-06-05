@@ -1,5 +1,7 @@
 package com.shop.holomen.domain.thanhtoan;
 
+import java.text.NumberFormat;
+
 public class KhachHang {
     Integer khachId;
     String status;
@@ -93,5 +95,21 @@ public class KhachHang {
 
     public void setNgayMua(String ngayMua) {
         this.ngayMua = ngayMua;
+    }
+    public String formattedValuePhiShip() {
+        int giaSPInt = Integer.parseInt(phiShip);
+        NumberFormat currency = NumberFormat.getNumberInstance();
+        return currency.format(giaSPInt);
+    }
+
+    public String formattedValueTongTien() {
+        int giaSPInt = Integer.parseInt(tongTien);
+        NumberFormat currency = NumberFormat.getNumberInstance();
+        return currency.format(giaSPInt);
+    }
+    public String formattedValueThanhTien() {
+        int thanhTien = Integer.parseInt(tongTien)+Integer.parseInt(phiShip);
+        NumberFormat currency = NumberFormat.getNumberInstance();
+        return currency.format(thanhTien);
     }
 }

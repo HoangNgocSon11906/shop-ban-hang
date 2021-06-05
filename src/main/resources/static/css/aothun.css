@@ -14043,3 +14043,101 @@ button.close {
 .slick-arrow.slick-hidden {
 	display: none
 }
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 100;
+	font-style: normal;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-thin_9d6c3597075748209be2dd5bf5ca62c5.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 100;
+	font-style: italic;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-thin-italic_7751e06f63ff43f99aca4ce2cca5cc14.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 300;
+	font-style: normal;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-light_11177843fceb4df2ae14cf11371d3541.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 300;
+	font-style: italic;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-light-italic_d802e791c7a64fa98e197d4b7125cfe9.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 400;
+	font-style: normal;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-regular_5c001e125b6549009e2c593994013465.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 400;
+	font-style: italic;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-italic_58fcd9672f9b44d49ae9a717873b3be6.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 600;
+	font-style: normal;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-semibold_2b9a91306db44a84aef9ae9b6c5c7e49.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 600;
+	font-style: italic;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-semibold-italic_f1a34857bf0149928ff71160baf54120.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 700;
+	font-style: normal;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-bold_b7591bfee381449899e2e8b9f936ebc4.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 700;
+	font-style: italic;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-bold-italic_401ecb50fc7546bdabd4d5b7eab2aa5a.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 800;
+	font-style: normal;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-extrabold_c4fa7122abca41a5b55681c90968e085.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 800;
+	font-style: italic;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-extrabold-italic_50c58c2279594c04aa50fcc9593314da.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 900;
+	font-style: normal;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-black_5cd4101e55084866b4868b18aac15570.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: 'SVN-Proxima Nova';
+	font-weight: 900;
+	font-style: italic;
+	src: url("https://file.hstatic.net/1000040345/file/svn-proxima-nova-black-italic_22b106860fa6465ca5ffb8701365e213.ttf") format("truetype");
+}

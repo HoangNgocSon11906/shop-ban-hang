@@ -49,13 +49,16 @@
 	<link href='//theme.hstatic.net/1000253775/1000703955/14/jquery.fancybox.min.css?v=39' rel='stylesheet'
 				type='text/css' media='all'/>
 
-	<link href='//theme.hstatic.net/1000253775/1000703955/14/flexslider.css?v=39' rel='stylesheet' type='text/css'
-				media='all'/>
+	<!--<link href='//theme.hstatic.net/1000253775/1000703955/14/flexslider.css?v=39' rel='stylesheet' type='text/css'-->
+				<!--media='all'/>-->
 
-	<link href='//theme.hstatic.net/1000253775/1000703955/14/styles.css?v=39' rel='stylesheet' type='text/css'
-				media='all'/>
-	<link href='//theme.hstatic.net/1000253775/1000703955/14/f-cus.scss.css?v=39' rel='stylesheet' type='text/css'
-				media='all'/>
+	<!--<link href='//theme.hstatic.net/1000253775/1000703955/14/styles.css?v=39' rel='stylesheet' type='text/css'-->
+				<!--media='all'/>-->
+	<!--<link href='//theme.hstatic.net/1000253775/1000703955/14/f-cus.scss.css?v=39' rel='stylesheet' type='text/css'-->
+				<!--media='all'/>-->
+	<link rel="stylesheet" href="/static/css/styles.css" th:href="@{/css/styles.css}"/>
+	<link rel="stylesheet" href="/static/css/flexslider.css" th:href="@{/cssflexslider.css}"/>
+	<link rel="stylesheet" href="/static/css/f-cus.css" th:href="@{/css/f-cus.css}"/>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js" integrity="sha512-nhY06wKras39lb9lRO76J4397CH1XpRSLfLJSftTeo3+q2vP7PaebILH9TqH+GRpnOhfAGjuYMVmVTOZJ+682w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
@@ -569,51 +572,6 @@
 											</select>
 										</span>
 											</div>
-											<div class="product-filter pull-left">
-                                                <span class="filter-title" data-check="ao-thun">Lọc theo <i
-																									class="fa fa-angle-down"></i></span>
-												<div class="filter-container">
-													<div class="clearfix">
-
-
-														<div class="filter-item filter-tag">
-															<h4><b>KIỂU MẪU</b></h4>
-															<ul>
-
-																<li data-filter="(tag:product**TRƠN)">TRƠN</li>
-
-																<li data-filter="(tag:product**IN HÌNH)">IN HÌNH</li>
-
-																<li data-filter="(tag:product**SỌC)">SỌC</li>
-
-																<li data-filter="(tag:product**HỌA TIẾT)">HỌA TIẾT</li>
-
-																<li data-filter="(tag:product**THÊU)">THÊU</li>
-
-																<li data-filter="(tag:product**WASH)">WASH</li>
-
-															</ul>
-														</div>
-
-
-														<div class="filter-item filter-tag">
-															<h4><b>KIỂU DÁNG</b></h4>
-															<ul>
-
-																<li data-filter="(tag:product**TAY DÀI)">TAY DÀI</li>
-
-																<li data-filter="(tag:product**TAY NGẮN)">TAY NGẮN</li>
-
-															</ul>
-														</div>
-
-
-													</div>
-													<div class="filter-btn text-right">
-														<a href="javascript:void(0)">Tìm kiếm</a>
-													</div>
-												</div>
-											</div>
 										</div>
 
 										<div class="alert-no-filter"></div>
@@ -1069,7 +1027,7 @@
 						</td>
 					</tr>
 				</table>
-				<form action="/cart" method="post" id="cartformpage">
+				<form action="/checkout" method="post" id="cartformpage">
 					<table id="cart-view">
 					</table>
 					<span class="line"></span>
@@ -1084,12 +1042,13 @@
 								<span class="hamburger-menu active" aria-hidden="true"><span class="bar animate"></span></span>
 							</button>Tiếp tục mua hàng</a></td>
 							<td class="checkout">
-								<a href="/checkout" id="checkout" class="linktocheckout btn-checkout button dark"
+								<a id="checkout" class="linktocheckout btn-checkout button dark"
 									 name="checkout" value="">
 									<div>
 										Thanh toán
 									</div>
 								</a>
+								<button id="thanh-toan" type="submit" hidden="hidden"></button>
 							</td>
 						</tr>
 					</table>
@@ -1340,6 +1299,15 @@
       var nodeGioHang = document.getElementById('soHang');
       nodeGioHang.innerHTML = tongTienHtml;
     }}
+  // check don hang
+  $('#checkout').click(function checkDonHang() {
+    var gioHang = JSON.parse(localStorage.getItem('danhSachSanPham'));
+    if (gioHang.length < 1) {
+      alert("Vui lòng chọn sản phẩm để thanh toán");
+      return;
+    }
+    document.getElementById("thanh-toan").click();
+  })
 
   function formatTien(tien) {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tien)}

@@ -4170,7 +4170,7 @@ select {
 }
 .filter-box{margin-top: 20px}
 .filter-box .browse-tags {
-	width: 50%;
+	width: 100%;
 	text-align: center;
 	background-color: #eee;
 	padding: 15px 10px;

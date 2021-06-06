@@ -204,7 +204,24 @@
         JOIN shop.san_pham USING(ma_loai)
         JOIN shop.san_pham_detail USING(san_pham_id)
         WHERE loai_san_pham.ten_map = #{tenMap}
-        ORDER BY san_pham_detail.update_date DESC
+        <if test="sapXep.isTangDan()">
+        ORDER BY san_pham_detail.gia_thuong DESC
+        </if>
+        <if test="sapXep.isGiamDan()">
+            ORDER BY san_pham_detail.gia_thuong ASC
+        </if>
+        <if test="sapXep.isAToZ()">
+            ORDER BY san_pham.ten_san_pham ASC
+        </if>
+        <if test="sapXep.isZToA()">
+            ORDER BY san_pham.ten_san_pham DESC
+        </if>
+        <if test="sapXep.isCuNhat()">
+            ORDER BY san_pham_detail.update_date ASC
+        </if>
+        <if test="sapXep.isMoiNhat()">
+            ORDER BY san_pham_detail.update_date DESC
+        </if>
         LIMIT
         #{pageable.pageSize}
         OFFSET

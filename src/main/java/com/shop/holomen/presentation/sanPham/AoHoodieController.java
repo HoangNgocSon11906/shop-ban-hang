@@ -26,12 +26,12 @@ public class AoHoodieController {
 
     @RequestMapping(value = "/aohoodie")
     public String sale(Model model, @PageableDefault(size = 15, direction = Sort.Direction.ASC) Pageable pageable) {
-        LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
-        Page<SanPhamDetail> page = nhapSanPhamService.findSanPhamBy("aohoodie", pageable);
-        model.addAttribute("loaiSanPham", loaiSanPhams);
-        model.addAttribute("sanPhamDetailS", page.getContent());
-        model.addAttribute("page", page);
-        model.addAttribute("pager", new Pager(page.getTotalPages(), page.getNumber(), 3));
+//        LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
+//        Page<SanPhamDetail> page = nhapSanPhamService.findSanPhamBy("aohoodie", pageable);
+//        model.addAttribute("loaiSanPham", loaiSanPhams);
+//        model.addAttribute("sanPhamDetailS", page.getContent());
+//        model.addAttribute("page", page);
+//        model.addAttribute("pager", new Pager(page.getTotalPages(), page.getNumber(), 3));
         return "sanPham/aohoodie";
     }
 }

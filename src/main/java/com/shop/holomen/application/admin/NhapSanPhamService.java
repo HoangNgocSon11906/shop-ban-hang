@@ -1,5 +1,6 @@
 package com.shop.holomen.application.admin;
 
+import com.shop.holomen.domain.sanPham.SapXepSanPham;
 import com.shop.holomen.domain.sanPhamDetail.NhapSanPhamRepository;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetail;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailS;
@@ -32,7 +33,7 @@ public class NhapSanPhamService {
         nhapSanPhamRepository.update(sanPhamDetail);
     }
 
-    public Page<SanPhamDetail> findSanPhamBy(String tenMap, Pageable pageable) {
-        return  nhapSanPhamRepository.findSanPhamBy(tenMap, pageable);
+    public Page<SanPhamDetail> findSanPhamBy(String tenMap, Pageable pageable, SapXepSanPham sapXepSanPham) {
+        return  nhapSanPhamRepository.findSanPhamBy(tenMap, pageable, sapXepSanPham);
     }
 }

@@ -1,5 +1,6 @@
 package com.shop.holomen.domain.sanPhamDetail;
 
+import com.shop.holomen.domain.sanPham.SapXepSanPham;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,6 +15,6 @@ public interface NhapSanPhamRepository {
 
     void update(SanPhamDetail sanPhamDetail);
 
-    Page<SanPhamDetail> findSanPhamBy(String tenMap, Pageable pageable);
+    Page<SanPhamDetail> findSanPhamBy(String tenMap, Pageable pageable, SapXepSanPham sapXepSanPham);
 
 }

@@ -540,28 +540,28 @@
 
 				<div class="row">
 					<div id="collection-body" class="wrap-collection-body clearfix">
-						<form action="#" th:action="@{/processForm}" th:object="${foo}" method="post">
+						<form id="IdName" th:action="@{/aothun(sortParam=${sortParam})}" method="get">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="wrap-collection-title row">
 								<div class="heading-collection row">
+
 									<div class="col-md-12 col-sm-12 col-xs-12">
 										<div class="clearfix filter-box">
 											<div class="browse-tags pull-left">
 												<span class="hidden">Sắp xếp theo:</span>
 												<span class="custom-dropdown custom-dropdown--white">
-											<select class="sort-by custom-dropdown__select custom-dropdown__select--white">
-												<option value="manual">Sản phẩm nổi bật</option>
-												<option value="price-ascending">Giá: Tăng dần</option>
-												<option value="price-descending">Giá: Giảm dần</option>
-												<option value="title-ascending">Tên: A-Z</option>
-												<option value="title-descending">Tên: Z-A</option>
-												<option value="created-ascending">Cũ nhất</option>
-												<option value="created-descending">Mới nhất</option>
+											<select th:name="sortParam" th:value="${sortParam1}" onchange="IdName.submit()" class="sort-by custom-dropdown__select custom-dropdown__select--white">
+												<option value="moi nhat">Sản phẩm nổi bật</option>
+												<option value="tang dan">Giá: Tăng dần</option>
+												<option value="giam dan">Giá: Giảm dần</option>
+												<option value="a-z">Tên: A-Z</option>
+												<option value="z-a">Tên: Z-A</option>
+												<option value="cu nhat">Cũ nhất</option>
+												<option value="moi nhat">Mới nhất</option>
 											</select>
 										</span>
 											</div>
 										</div>
-
 										<div class="alert-no-filter"></div>
 
 									</div>
@@ -637,7 +637,21 @@
 								</div>
 								<div class="sortpagibar pagi clearfix text-center">
 									<div class="text-center" th:if="${page != null}">
-										<div th:replace="fragments/layout :: pagination">pagination</div>
+										<div th:fragment="pagination" th:if="${page.getTotalPages() != 0}" class="form-group col-md-11 pagination-centered">
+											<ul class="pagination" th:with="sortParam=${page.sort.toString().replaceAll(' ','').replace(':',',')}">
+												<li th:class="${page.first} ? disabled">
+													<span th:if="${page.first}">＜ Previous</span>
+													<a th:unless="${page.first}" class="pageLink" th:href="@{${url}(page=${page.number - 1},  size=${page.size}, sortParam=(${sortParam1}))}">＜ Previous</a>
+												</li>
+												<li th:class="${page.getNumber() == (page1)} ? 'active pointer-disabled'" th:each="page1 : ${#numbers.sequence(pager.startPage - 1, pager.endPage - 1)}">
+													<a class="pageLink" th:href="@{${url}(page=${(page1)}, size=${page.size}, sortParam=(${sortParam1}))}" th:text="${page1+1}"></a>
+												</li>
+												<li th:class="${page.last} ? disabled">
+													<span th:if="${page.last}">Next ＞</span>
+													<a th:unless="${page.last}" class="pageLink" th:href="@{${url}(page=${page.number+1}, size=${page.size}, sortParam=(${sortParam1}))}">Next ＞</a>
+												</li>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>

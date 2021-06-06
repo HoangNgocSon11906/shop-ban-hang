@@ -3,6 +3,7 @@ package com.shop.holomen.presentation.sanPham;
 import com.shop.holomen.application.TrangChuService;
 import com.shop.holomen.application.admin.NhapSanPhamService;
 import com.shop.holomen.domain.loaiSanPham.LoaiSanPhams;
+import com.shop.holomen.domain.sanPham.SapXepSanPham;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetail;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailS;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AoThunController {
@@ -23,10 +22,27 @@ public class AoThunController {
     @Autowired
     NhapSanPhamService nhapSanPhamService;
 
-    @RequestMapping(value = "/{tenMap}")
-    public String sale(@PathVariable("tenMap") String tenMap, Model model, @PageableDefault(size = 15, direction = Sort.Direction.ASC) Pageable pageable) {
+    @RequestMapping(value = "/aothun")
+    public String sale(Model model, @PageableDefault(size = 15, direction = Sort.Direction.ASC) Pageable pageable,
+                       @RequestParam(value = "sortParam" , required=false) String sortParam) {
         LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
-        Page<SanPhamDetail> page = nhapSanPhamService.findSanPhamBy(tenMap, pageable);
+        if (sortParam == null) {
+            sortParam ="moi nhat";
+        }
+        Page<SanPhamDetail> page = nhapSanPhamService.findSanPhamBy("aothun", pageable, new SapXepSanPham(sortParam));
+        model.addAttribute("sortParam1", sortParam);
+        model.addAttribute("loaiSanPham", loaiSanPhams);
+        model.addAttribute("sanPhamDetailS", page.getContent());
+        model.addAttribute("page", page);
+        model.addAttribute("pager", new Pager(page.getTotalPages(), page.getNumber(), 3));
+        return "sanPham/aothun";
+    }
+
+    @RequestMapping(value = "/aothunSx")
+    public String sort(Model model, @PageableDefault(size = 15, sort = "sapXepSp", direction = Sort.Direction.ASC) Pageable pageable,
+                       @RequestParam(value = "sortParam" , required=false) String sortParam) {
+        LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
+        Page<SanPhamDetail> page = nhapSanPhamService.findSanPhamBy("aothun", pageable, new SapXepSanPham("moi nhat"));
         model.addAttribute("loaiSanPham", loaiSanPhams);
         model.addAttribute("sanPhamDetailS", page.getContent());
         model.addAttribute("page", page);

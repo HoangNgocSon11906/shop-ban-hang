@@ -1,5 +1,6 @@
 package com.shop.holomen.infrastructure.datasource.mapper.admin;
 
+import com.shop.holomen.domain.sanPham.SapXepSanPham;
 import com.shop.holomen.domain.sanPhamDetail.Mau;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetail;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailId;
@@ -36,7 +37,7 @@ public interface NhapSanPhamMapper {
 
     void updateSanPhamDetail(@Param("sanPhamDetail") SanPhamDetail sanPhamDetail);
 
-    List<SanPhamDetail> findSanPhamBy(@Param("tenMap") String tenMap, @Param("pageable") Pageable pageable);
+    List<SanPhamDetail> findSanPhamBy(@Param("tenMap") String tenMap, @Param("pageable") Pageable pageable, @Param("sapXep")SapXepSanPham sapXepSanPham);
 
     Integer size(@Param("tenMap") String tenMap);
 }

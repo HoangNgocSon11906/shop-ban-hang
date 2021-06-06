@@ -1,5 +1,6 @@
 package com.shop.holomen.infrastructure.datasource.mapper.admin;
 
+import com.shop.holomen.domain.sanPham.SapXepSanPham;
 import com.shop.holomen.domain.sanPhamDetail.NhapSanPhamRepository;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetail;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailS;
@@ -54,8 +55,8 @@ public class NhapSanPhamDataSource implements NhapSanPhamRepository {
     }
 
     @Override
-    public Page<SanPhamDetail> findSanPhamBy(String tenMap, Pageable pageable) {
-        List<SanPhamDetail> offsetList = nhapSanPhamMapper.findSanPhamBy(tenMap, pageable);
+    public Page<SanPhamDetail> findSanPhamBy(String tenMap, Pageable pageable, SapXepSanPham sapXepSanPham) {
+        List<SanPhamDetail> offsetList = nhapSanPhamMapper.findSanPhamBy(tenMap, pageable, sapXepSanPham);
         Integer size = nhapSanPhamMapper.size(tenMap);
         Page<SanPhamDetail> page = new PageImpl(offsetList, pageable, size);
         return page;

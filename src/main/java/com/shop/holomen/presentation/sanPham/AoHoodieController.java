@@ -22,9 +22,9 @@ public class AoHoodieController {
     @RequestMapping(value = "/aohoodie")
     public String sale(Model model) {
         LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
-        SanPhamDetailS sanPhamDetailS = nhapSanPhamService.findSanPhamBy("aohoodie");
+//        SanPhamDetailS sanPhamDetailS = nhapSanPhamService.findSanPhamBy("aohoodie");
         model.addAttribute("loaiSanPham", loaiSanPhams);
-        model.addAttribute("sanPhamDetailS", sanPhamDetailS);
+//        model.addAttribute("sanPhamDetailS", sanPhamDetailS);
         return "sanPham/aohoodie";
     }
 }

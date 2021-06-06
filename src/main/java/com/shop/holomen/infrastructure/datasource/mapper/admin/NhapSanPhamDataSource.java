@@ -4,7 +4,12 @@ import com.shop.holomen.domain.sanPhamDetail.NhapSanPhamRepository;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetail;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailS;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class NhapSanPhamDataSource implements NhapSanPhamRepository {
@@ -49,8 +54,11 @@ public class NhapSanPhamDataSource implements NhapSanPhamRepository {
     }
 
     @Override
-    public SanPhamDetailS findSanPhamBy(String tenMap) {
-        return new SanPhamDetailS(nhapSanPhamMapper.findSanPhamBy(tenMap));
+    public Page<SanPhamDetail> findSanPhamBy(String tenMap, Pageable pageable) {
+        List<SanPhamDetail> offsetList = nhapSanPhamMapper.findSanPhamBy(tenMap, pageable);
+        Integer size = nhapSanPhamMapper.size(tenMap);
+        Page<SanPhamDetail> page = new PageImpl(offsetList, pageable, size);
+        return page;
     }
 }
 

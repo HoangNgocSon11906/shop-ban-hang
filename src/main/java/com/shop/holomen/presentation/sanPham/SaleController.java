@@ -19,9 +19,9 @@ public class SaleController {
     @RequestMapping(value = "/sale", method = RequestMethod.GET)
     public String sale(Model model) {
         LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
-        SanPhamDetailS sanPhamDetailS = nhapSanPhamService.findSanPhamBy("sale");
+//        SanPhamDetailS sanPhamDetailS = nhapSanPhamService.findSanPhamBy("sale");
         model.addAttribute("loaiSanPham", loaiSanPhams);
-        model.addAttribute("sanPhamDetailS", sanPhamDetailS);
+//        model.addAttribute("sanPhamDetailS", sanPhamDetailS);
         return "sanPham/sale";
     }
 }

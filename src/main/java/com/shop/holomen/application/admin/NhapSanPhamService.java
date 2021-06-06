@@ -4,6 +4,8 @@ import com.shop.holomen.domain.sanPhamDetail.NhapSanPhamRepository;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetail;
 import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailS;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +32,7 @@ public class NhapSanPhamService {
         nhapSanPhamRepository.update(sanPhamDetail);
     }
 
-    public SanPhamDetailS findSanPhamBy(String tenMap) {
-        return  nhapSanPhamRepository.findSanPhamBy(tenMap);
+    public Page<SanPhamDetail> findSanPhamBy(String tenMap, Pageable pageable) {
+        return  nhapSanPhamRepository.findSanPhamBy(tenMap, pageable);
     }
 }

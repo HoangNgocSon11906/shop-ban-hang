@@ -6,6 +6,7 @@ import com.shop.holomen.domain.sanPhamDetail.SanPhamDetailId;
 import com.shop.holomen.domain.sanPhamDetail.Size;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -35,5 +36,7 @@ public interface NhapSanPhamMapper {
 
     void updateSanPhamDetail(@Param("sanPhamDetail") SanPhamDetail sanPhamDetail);
 
-    List<SanPhamDetail> findSanPhamBy(@Param("tenMap") String tenMap);
+    List<SanPhamDetail> findSanPhamBy(@Param("tenMap") String tenMap, @Param("pageable") Pageable pageable);
+
+    Integer size(@Param("tenMap") String tenMap);
 }

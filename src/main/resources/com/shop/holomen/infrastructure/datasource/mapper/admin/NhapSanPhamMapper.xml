@@ -198,15 +198,26 @@
             image_1,
             image_2,
             image_3,
-            image_4,
-            mau,
-            size
+            image_4
         FROM
             shop.loai_san_pham
         JOIN shop.san_pham USING(ma_loai)
         JOIN shop.san_pham_detail USING(san_pham_id)
-        JOIN shop.mau USING(san_pham_detail_id)
-        JOIN shop.size USING(san_pham_detail_id)
+        WHERE loai_san_pham.ten_map = #{tenMap}
+        ORDER BY san_pham_detail.update_date DESC
+        LIMIT
+        #{pageable.pageSize}
+        OFFSET
+        #{pageable.offset}
+    </select>
+
+    <select id="size" resultType="Integer">
+        SELECT
+            count(san_pham_detail.san_pham_detail_id)
+        FROM
+            shop.loai_san_pham
+        JOIN shop.san_pham USING(ma_loai)
+        JOIN shop.san_pham_detail USING(san_pham_id)
         WHERE loai_san_pham.ten_map = #{tenMap}
         ORDER BY san_pham_detail.update_date DESC
     </select>

@@ -16,6 +16,7 @@ repositories {
 dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	implementation group: 'org.springframework.data', name: 'spring-data-commons', version: '2.5.1'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.3")

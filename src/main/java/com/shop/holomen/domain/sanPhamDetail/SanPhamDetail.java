@@ -153,4 +153,8 @@ public class SanPhamDetail {
     public void setImage4(Image4 image4) {
         this.image4 = image4;
     }
+
+    public boolean isValidGia() {
+        return giaThuong.value.intValue() > giaKM.value.intValue();
+    }
 }

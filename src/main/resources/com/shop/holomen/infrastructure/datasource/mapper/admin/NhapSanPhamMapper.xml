@@ -205,10 +205,10 @@
         JOIN shop.san_pham_detail USING(san_pham_id)
         WHERE loai_san_pham.ten_map = #{tenMap}
         <if test="sapXep.isTangDan()">
-        ORDER BY san_pham_detail.gia_thuong DESC
+        ORDER BY san_pham_detail.gia_km ASC
         </if>
         <if test="sapXep.isGiamDan()">
-            ORDER BY san_pham_detail.gia_thuong ASC
+            ORDER BY san_pham_detail.gia_km DESC
         </if>
         <if test="sapXep.isAToZ()">
             ORDER BY san_pham.ten_san_pham ASC

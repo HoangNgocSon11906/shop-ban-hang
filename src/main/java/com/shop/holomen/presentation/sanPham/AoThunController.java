@@ -37,16 +37,4 @@ public class AoThunController {
         model.addAttribute("pager", new Pager(page.getTotalPages(), page.getNumber(), 3));
         return "sanPham/aothun";
     }
-
-    @RequestMapping(value = "/aothunSx")
-    public String sort(Model model, @PageableDefault(size = 15, sort = "sapXepSp", direction = Sort.Direction.ASC) Pageable pageable,
-                       @RequestParam(value = "sortParam" , required=false) String sortParam) {
-        LoaiSanPhams loaiSanPhams = trangChuService.findLoaiSanPham();
-        Page<SanPhamDetail> page = nhapSanPhamService.findSanPhamBy("aothun", pageable, new SapXepSanPham("moi nhat"));
-        model.addAttribute("loaiSanPham", loaiSanPhams);
-        model.addAttribute("sanPhamDetailS", page.getContent());
-        model.addAttribute("page", page);
-        model.addAttribute("pager", new Pager(page.getTotalPages(), page.getNumber(), 3));
-        return "sanPham/aothun";
-    }
 }
